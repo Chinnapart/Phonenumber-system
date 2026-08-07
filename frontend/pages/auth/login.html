@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ConnectPro Internal Phone Directory Login">
+    <meta name="theme-color" content="#eef5ff">
+
+    <title>Login | ConnectPro</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "Noto Sans Thai", "Segoe UI", "sans-serif"]
+                    },
+                    colors: {
+                        brand: {
+                            50: "#eef7ff",
+                            100: "#d9edff",
+                            400: "#4da9ff",
+                            500: "#2388f5",
+                            600: "#176bd1",
+                            700: "#1755a3"
+                        }
+                    },
+                    boxShadow: {
+                        glass: "0 28px 70px rgba(46, 91, 156, 0.18)",
+                        soft: "0 14px 34px rgba(35, 136, 245, 0.16)"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        [hidden] {
+            display: none !important;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 12% 18%, rgba(100, 180, 255, 0.35), transparent 30%),
+                radial-gradient(circle at 88% 20%, rgba(164, 125, 255, 0.27), transparent 31%),
+                radial-gradient(circle at 78% 84%, rgba(75, 222, 180, 0.28), transparent 30%),
+                linear-gradient(135deg, #eff7ff 0%, #f6f2ff 48%, #ecfff9 100%);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.63);
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            box-shadow: 0 28px 70px rgba(46, 91, 156, 0.18);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(161, 189, 224, 0.42);
+            transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+        }
+
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.94);
+            border-color: #4da9ff;
+            box-shadow: 0 0 0 4px rgba(77, 169, 255, 0.16);
+            outline: none;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 9999px;
+            filter: blur(2px);
+            opacity: 0.78;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-two {
+            animation-delay: -2.5s;
+        }
+
+        .orb-three {
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(0, -16px, 0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-slate-700 antialiased">
+    <div aria-hidden="true" class="orb left-[6%] top-[12%] h-44 w-44 bg-sky-300/45"></div>
+    <div aria-hidden="true" class="orb orb-two right-[8%] top-[16%] h-56 w-56 bg-violet-300/35"></div>
+    <div aria-hidden="true" class="orb orb-three bottom-[4%] right-[22%] h-48 w-48 bg-emerald-300/35"></div>
+
+    <main class="relative z-10 flex min-h-screen items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
+        <section class="glass-panel grid w-full max-w-5xl overflow-hidden rounded-[2rem] lg:grid-cols-[1.08fr_0.92fr]" aria-labelledby="login-title">
+            <div class="relative hidden min-h-[650px] overflow-hidden bg-gradient-to-br from-brand-600 via-sky-500 to-violet-500 p-12 text-white lg:flex lg:flex-col lg:justify-between">
+                <div aria-hidden="true" class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/15 blur-2xl"></div>
+                <div aria-hidden="true" class="absolute -bottom-28 -right-20 h-80 w-80 rounded-full bg-emerald-300/25 blur-2xl"></div>
+                <div aria-hidden="true" class="absolute right-14 top-28 h-28 w-28 rounded-[2rem] border border-white/25 bg-white/10 backdrop-blur-md"></div>
+
+                <div class="relative">
+                    <a href="#" class="inline-flex items-center gap-3" aria-label="ConnectPro home">
+                        <span class="grid h-12 w-12 place-items-center rounded-2xl border border-white/30 bg-white/20 shadow-lg backdrop-blur-md">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-7 w-7 fill-none stroke-current" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 4.75h-2A1.75 1.75 0 0 0 3.75 6.5v2c0 6.49 5.26 11.75 11.75 11.75h2a1.75 1.75 0 0 0 1.75-1.75v-1.21a1.75 1.75 0 0 0-1.2-1.66l-2.1-.7a1.75 1.75 0 0 0-1.86.5l-.54.65a1.2 1.2 0 0 1-1.43.31 10.18 10.18 0 0 1-4.5-4.5 1.2 1.2 0 0 1 .31-1.43l.65-.54a1.75 1.75 0 0 0 .5-1.86l-.7-2.1a1.75 1.75 0 0 0-1.66-1.2Z"/>
+                                <path stroke-linecap="round" d="M14.5 4.75h5.75M17.38 1.88v5.75"/>
+                            </svg>
+                        </span>
+                        <span>
+                            <span class="block text-2xl font-bold tracking-tight">ConnectPro</span>
+                            <span class="block text-xs font-medium tracking-[0.18em] text-white/70">INTERNAL DIRECTORY</span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="relative max-w-lg">
+                    <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-sm backdrop-blur-md">
+                        <span class="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_0_5px_rgba(110,231,183,0.16)]"></span>
+                        Secure organization access
+                    </div>
+
+                    <h2 class="text-4xl font-bold leading-tight xl:text-5xl">
+                        ติดต่อกันง่ายขึ้น<br>
+                        ในพื้นที่เดียว
+                    </h2>
+
+                    <p class="mt-5 max-w-md text-base leading-7 text-white/82">
+                        ค้นหาเบอร์โทรภายใน แผนก สถานที่ และตรวจสอบสถานะการเชื่อมต่อของบุคลากรภายในองค์กรได้อย่างรวดเร็ว
+                    </p>
+
+                    <div class="mt-9 grid grid-cols-3 gap-3">
+                        <div class="rounded-2xl border border-white/20 bg-white/12 p-4 backdrop-blur-md">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" class="mb-3 h-6 w-6 fill-none stroke-current" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            <p class="text-sm font-semibold">Directory</p>
+                        </div>
+                        <div class="rounded-2xl border border-white/20 bg-white/12 p-4 backdrop-blur-md">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" class="mb-3 h-6 w-6 fill-none stroke-current" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 11.5a8.5 8.5 0 1 1 17 0c0 5.5-8.5 10-8.5 10S3 17 3 11.5Z"/>
+                                <circle cx="11.5" cy="11.5" r="2.5"/>
+                            </svg>
+                            <p class="text-sm font-semibold">Locations</p>
+                        </div>
+                        <div class="rounded-2xl border border-white/20 bg-white/12 p-4 backdrop-blur-md">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" class="mb-3 h-6 w-6 fill-none stroke-current" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12a7 7 0 0 1 14 0M8 12a4 4 0 0 1 8 0"/>
+                                <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/>
+                            </svg>
+                            <p class="text-sm font-semibold">Live Status</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="relative text-xs text-white/62">ConnectPro © 2026 · Internal use only</p>
+            </div>
+
+            <div class="flex min-h-[650px] items-center bg-white/48 px-6 py-10 sm:px-12 lg:px-14">
+                <div class="mx-auto w-full max-w-md">
+                    <div class="mb-8 lg:hidden">
+                        <a href="#" class="inline-flex items-center gap-3 text-brand-700" aria-label="ConnectPro home">
+                            <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-violet-500 text-white shadow-soft">
+                                <svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-current" stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 4.75h-2A1.75 1.75 0 0 0 3.75 6.5v2c0 6.49 5.26 11.75 11.75 11.75h2a1.75 1.75 0 0 0 1.75-1.75v-1.21a1.75 1.75 0 0 0-1.2-1.66l-2.1-.7a1.75 1.75 0 0 0-1.86.5l-.54.65a1.2 1.2 0 0 1-1.43.31 10.18 10.18 0 0 1-4.5-4.5 1.2 1.2 0 0 1 .31-1.43l.65-.54a1.75 1.75 0 0 0 .5-1.86l-.7-2.1a1.75 1.75 0 0 0-1.66-1.2Z"/>
+                                </svg>
+                            </span>
+                            <span class="text-xl font-bold">ConnectPro</span>
+                        </a>
+                    </div>
+
+                    <header>
+                        <p class="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-brand-500">Welcome back</p>
+                        <h1 id="login-title" class="text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">เข้าสู่ระบบ</h1>
+                        <p class="mt-3 text-sm leading-6 text-slate-500">กรอกบัญชีผู้ใช้งานองค์กรเพื่อเข้าสู่ ConnectPro</p>
+                    </header>
+
+                    <div id="alertBox" role="alert" aria-live="polite" class="mt-6 rounded-2xl border px-4 py-3 text-sm" hidden>
+                        <div class="flex items-start gap-3">
+                            <svg id="alertIcon" aria-hidden="true" viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 shrink-0 fill-none stroke-current" stroke-width="2">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path stroke-linecap="round" d="M12 8v4M12 16h.01"/>
+                            </svg>
+                            <p id="alertMessage"></p>
+                        </div>
+                    </div>
+
+                    <form id="loginForm" class="mt-8 space-y-5" novalidate>
+                        <div>
+                            <label for="username" class="mb-2 block text-sm font-semibold text-slate-700">ชื่อผู้ใช้งาน</label>
+                            <div class="relative">
+                                <span class="pointer-events-none absolute inset-y-0 left-0 grid w-12 place-items-center text-slate-400">
+                                    <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/>
+                                    </svg>
+                                </span>
+                                <input
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    autocomplete="username"
+                                    maxlength="100"
+                                    required
+                                    aria-describedby="usernameError"
+                                    class="glass-input h-13 w-full rounded-2xl py-3.5 pl-12 pr-4 text-sm text-slate-800 placeholder:text-slate-400"
+                                    placeholder="เช่น admin หรือ employee ID"
+                                >
+                            </div>
+                            <p id="usernameError" class="mt-2 text-xs font-medium text-rose-600" hidden></p>
+                        </div>
+
+                        <div>
+                            <div class="mb-2 flex items-center justify-between gap-4">
+                                <label for="password" class="block text-sm font-semibold text-slate-700">รหัสผ่าน</label>
+                                <span class="text-xs text-slate-400">ระบบภายในองค์กร</span>
+                            </div>
+                            <div class="relative">
+                                <span class="pointer-events-none absolute inset-y-0 left-0 grid w-12 place-items-center text-slate-400">
+                                    <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current" stroke-width="1.8">
+                                        <rect x="4" y="10" width="16" height="11" rx="2"/>
+                                        <path stroke-linecap="round" d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                                    </svg>
+                                </span>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autocomplete="current-password"
+                                    maxlength="255"
+                                    required
+                                    aria-describedby="passwordError"
+                                    class="glass-input h-13 w-full rounded-2xl py-3.5 pl-12 pr-12 text-sm text-slate-800 placeholder:text-slate-400"
+                                    placeholder="กรอกรหัสผ่าน"
+                                >
+                                <button
+                                    id="togglePassword"
+                                    type="button"
+                                    class="absolute inset-y-0 right-0 grid w-12 place-items-center rounded-r-2xl text-slate-400 transition hover:text-brand-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+                                    aria-label="แสดงรหัสผ่าน"
+                                    aria-pressed="false"
+                                >
+                                    <svg id="eyeOpen" aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                                        <circle cx="12" cy="12" r="2.5"/>
+                                    </svg>
+                                    <svg id="eyeClosed" aria-hidden="true" viewBox="0 0 24 24" class="hidden h-5 w-5 fill-none stroke-current" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m3 3 18 18M10.6 10.7a2 2 0 0 0 2.7 2.7M9.9 5.1A10.6 10.6 0 0 1 12 5c6 0 9.5 7 9.5 7a16 16 0 0 1-2.1 3M6.2 6.2C3.8 8 2.5 12 2.5 12s3.5 7 9.5 7a10.2 10.2 0 0 0 4-.8"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <p id="passwordError" class="mt-2 text-xs font-medium text-rose-600" hidden></p>
+                        </div>
+
+                        <div class="flex items-center justify-between gap-4">
+                            <label class="inline-flex cursor-pointer items-center gap-3 text-sm text-slate-600">
+                                <input id="remember" name="remember" type="checkbox" class="h-4 w-4 rounded border-slate-300 text-brand-500 focus:ring-brand-400">
+                                จดจำชื่อผู้ใช้งาน
+                            </label>
+                            <button type="button" id="helpButton" class="text-sm font-semibold text-brand-600 transition hover:text-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400">
+                                ต้องการความช่วยเหลือ?
+                            </button>
+                        </div>
+
+                        <button
+                            id="loginButton"
+                            type="submit"
+                            class="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-brand-500 via-sky-500 to-violet-500 px-5 py-3.5 text-sm font-bold text-white shadow-soft transition duration-200 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-400/30 disabled:cursor-not-allowed disabled:opacity-70"
+                        >
+                            <span id="buttonLabel">เข้าสู่ระบบ</span>
+                            <svg id="buttonArrow" aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current transition group-hover:translate-x-1" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/>
+                            </svg>
+                            <svg id="buttonSpinner" aria-hidden="true" viewBox="0 0 24 24" class="hidden h-5 w-5 animate-spin fill-none stroke-current" stroke-width="2">
+                                <circle cx="12" cy="12" r="9" class="opacity-25"/>
+                                <path stroke-linecap="round" d="M21 12a9 9 0 0 0-9-9" class="opacity-90"/>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <div class="mt-7 flex items-start gap-3 rounded-2xl border border-sky-100 bg-sky-50/70 px-4 py-3 text-xs leading-5 text-slate-500">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 shrink-0 fill-none stroke-brand-500" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/>
+                        </svg>
+                        <p>ระบบนี้สำหรับบุคลากรภายในองค์กรเท่านั้น การเข้าสู่ระบบและการใช้งานอาจถูกบันทึกเพื่อความปลอดภัย</p>
+                    </div>
+
+                    <footer class="mt-8 text-center text-xs text-slate-400 lg:text-left">
+                        <p>หากไม่สามารถเข้าสู่ระบบได้ กรุณาติดต่อ IT Support</p>
+                    </footer>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        "use strict";
+
+        const API_ENDPOINT = "../../../backend/api/auth/login/index.php";
+        const REDIRECTS = {
+            admin: "../admin/dashboard.html",
+            user: "../user/dashboard.html"
+        };
+
+        const form = document.getElementById("loginForm");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const rememberInput = document.getElementById("remember");
+        const usernameError = document.getElementById("usernameError");
+        const passwordError = document.getElementById("passwordError");
+        const alertBox = document.getElementById("alertBox");
+        const alertMessage = document.getElementById("alertMessage");
+        const togglePassword = document.getElementById("togglePassword");
+        const eyeOpen = document.getElementById("eyeOpen");
+        const eyeClosed = document.getElementById("eyeClosed");
+        const loginButton = document.getElementById("loginButton");
+        const buttonLabel = document.getElementById("buttonLabel");
+        const buttonArrow = document.getElementById("buttonArrow");
+        const buttonSpinner = document.getElementById("buttonSpinner");
+        const helpButton = document.getElementById("helpButton");
+
+        initializeLoginPage();
+
+        function initializeLoginPage() {
+            const rememberedUsername = localStorage.getItem("connectpro.rememberedUsername");
+
+            if (rememberedUsername) {
+                usernameInput.value = rememberedUsername;
+                rememberInput.checked = true;
+                passwordInput.focus();
+            } else {
+                usernameInput.focus();
+            }
+        }
+
+        togglePassword.addEventListener("click", () => {
+            const shouldShow = passwordInput.type === "password";
+            passwordInput.type = shouldShow ? "text" : "password";
+            togglePassword.setAttribute("aria-pressed", String(shouldShow));
+            togglePassword.setAttribute("aria-label", shouldShow ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน");
+            eyeOpen.classList.toggle("hidden", shouldShow);
+            eyeClosed.classList.toggle("hidden", !shouldShow);
+            passwordInput.focus();
+        });
+
+        usernameInput.addEventListener("input", () => clearFieldError(usernameInput, usernameError));
+        passwordInput.addEventListener("input", () => clearFieldError(passwordInput, passwordError));
+
+        helpButton.addEventListener("click", () => {
+            showAlert("กรุณาติดต่อ IT Support เพื่อขอตรวจสอบบัญชีหรือรีเซ็ตรหัสผ่าน", "info");
+        });
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            clearAlert();
+
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value;
+
+            if (!validateForm(username, password)) {
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        remember: rememberInput.checked
+                    })
+                });
+
+                const payload = await readJsonResponse(response);
+
+                if (!response.ok || payload.success !== true) {
+                    throw new Error(payload.message || "ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง");
+                }
+
+                saveRememberedUsername(username);
+                showAlert("เข้าสู่ระบบสำเร็จ กำลังเปิดหน้าหลัก...", "success");
+
+                const role = String(payload.data?.user?.role || "").toLowerCase();
+                const destination = REDIRECTS[role];
+
+                if (!destination) {
+                    throw new Error("บัญชีนี้ไม่มีสิทธิ์เข้าสู่หน้าระบบ");
+                }
+
+                window.setTimeout(() => {
+                    window.location.href = destination;
+                }, 500);
+            } catch (error) {
+                const isNetworkError = error instanceof TypeError;
+                const message = isNetworkError
+                    ? "ยังไม่สามารถเชื่อมต่อ Login API ได้ กรุณาตรวจสอบ Apache และ Backend API"
+                    : error.message;
+
+                showAlert(message, "error");
+                passwordInput.value = "";
+                passwordInput.focus();
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        function validateForm(username, password) {
+            let isValid = true;
+
+            if (username === "") {
+                setFieldError(usernameInput, usernameError, "กรุณากรอกชื่อผู้ใช้งาน");
+                isValid = false;
+            } else if (username.length < 3) {
+                setFieldError(usernameInput, usernameError, "ชื่อผู้ใช้งานต้องมีอย่างน้อย 3 ตัวอักษร");
+                isValid = false;
+            }
+
+            if (password === "") {
+                setFieldError(passwordInput, passwordError, "กรุณากรอกรหัสผ่าน");
+                isValid = false;
+            } else if (password.length < 8) {
+                setFieldError(passwordInput, passwordError, "รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function setFieldError(input, errorElement, message) {
+            input.setAttribute("aria-invalid", "true");
+            input.classList.add("border-rose-400");
+            errorElement.textContent = message;
+            errorElement.hidden = false;
+        }
+
+        function clearFieldError(input, errorElement) {
+            input.removeAttribute("aria-invalid");
+            input.classList.remove("border-rose-400");
+            errorElement.textContent = "";
+            errorElement.hidden = true;
+        }
+
+        function showAlert(message, type) {
+            const styles = {
+                error: ["border-rose-200", "bg-rose-50/90", "text-rose-700"],
+                success: ["border-emerald-200", "bg-emerald-50/90", "text-emerald-700"],
+                info: ["border-sky-200", "bg-sky-50/90", "text-sky-700"]
+            };
+
+            alertBox.className = "mt-6 rounded-2xl border px-4 py-3 text-sm";
+            alertBox.classList.add(...(styles[type] || styles.info));
+            alertMessage.textContent = message;
+            alertBox.hidden = false;
+        }
+
+        function clearAlert() {
+            alertBox.hidden = true;
+            alertMessage.textContent = "";
+        }
+
+        function setLoading(isLoading) {
+            loginButton.disabled = isLoading;
+            usernameInput.disabled = isLoading;
+            passwordInput.disabled = isLoading;
+            rememberInput.disabled = isLoading;
+            buttonLabel.textContent = isLoading ? "กำลังตรวจสอบ..." : "เข้าสู่ระบบ";
+            buttonArrow.classList.toggle("hidden", isLoading);
+            buttonSpinner.classList.toggle("hidden", !isLoading);
+        }
+
+        function saveRememberedUsername(username) {
+            if (rememberInput.checked) {
+                localStorage.setItem("connectpro.rememberedUsername", username);
+            } else {
+                localStorage.removeItem("connectpro.rememberedUsername");
+            }
+        }
+
+        async function readJsonResponse(response) {
+            const contentType = response.headers.get("content-type") || "";
+
+            if (!contentType.includes("application/json")) {
+                throw new Error("Login API ส่งข้อมูลกลับมาในรูปแบบที่ไม่ถูกต้อง");
+            }
+
+            return response.json();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ConnectPro session expired">
+    <meta name="theme-color" content="#eef5ff">
+
+    <title>Session Expired | ConnectPro</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "Noto Sans Thai", "Segoe UI", "sans-serif"]
+                    },
+                    colors: {
+                        brand: {
+                            50: "#eef7ff",
+                            100: "#d9edff",
+                            400: "#4da9ff",
+                            500: "#2388f5",
+                            600: "#176bd1",
+                            700: "#1755a3"
+                        }
+                    },
+                    boxShadow: {
+                        glass: "0 28px 70px rgba(46, 91, 156, 0.18)",
+                        soft: "0 14px 34px rgba(35, 136, 245, 0.16)"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background:
+                radial-gradient(circle at 10% 15%, rgba(100, 180, 255, 0.35), transparent 30%),
+                radial-gradient(circle at 90% 18%, rgba(164, 125, 255, 0.28), transparent 31%),
+                radial-gradient(circle at 75% 88%, rgba(75, 222, 180, 0.26), transparent 30%),
+                linear-gradient(135deg, #eff7ff 0%, #f7f2ff 50%, #ecfff9 100%);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.66);
+            border: 1px solid rgba(255, 255, 255, 0.86);
+            box-shadow: 0 28px 70px rgba(46, 91, 156, 0.18);
+            backdrop-filter: blur(26px);
+            -webkit-backdrop-filter: blur(26px);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.58);
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 9999px;
+            filter: blur(2px);
+            opacity: 0.78;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-two { animation-delay: -2.5s; }
+        .orb-three { animation-delay: -5s; }
+
+        .clock-ring {
+            box-shadow:
+                0 0 0 12px rgba(245, 158, 11, 0.08),
+                0 0 0 24px rgba(245, 158, 11, 0.04),
+                0 18px 40px rgba(217, 119, 6, 0.18);
+        }
+
+        .progress-bar {
+            transform-origin: left center;
+            transition: width 1s linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(0, -16px, 0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-slate-700 antialiased">
+    <div aria-hidden="true" class="orb left-[5%] top-[10%] h-44 w-44 bg-sky-300/45"></div>
+    <div aria-hidden="true" class="orb orb-two right-[7%] top-[14%] h-56 w-56 bg-violet-300/35"></div>
+    <div aria-hidden="true" class="orb orb-three bottom-[4%] right-[20%] h-48 w-48 bg-emerald-300/35"></div>
+
+    <header class="relative z-10 px-5 pt-5 sm:px-8 sm:pt-7">
+        <a href="login.html" class="inline-flex items-center gap-3 rounded-2xl px-2 py-2 text-brand-700 transition hover:bg-white/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-400/25" aria-label="ไปหน้าเข้าสู่ระบบ ConnectPro">
+            <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-violet-500 text-white shadow-soft">
+                <svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-current" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 4.75h-2A1.75 1.75 0 0 0 3.75 6.5v2c0 6.49 5.26 11.75 11.75 11.75h2a1.75 1.75 0 0 0 1.75-1.75v-1.21a1.75 1.75 0 0 0-1.2-1.66l-2.1-.7a1.75 1.75 0 0 0-1.86.5l-.54.65a1.2 1.2 0 0 1-1.43.31 10.18 10.18 0 0 1-4.5-4.5 1.2 1.2 0 0 1 .31-1.43l.65-.54a1.75 1.75 0 0 0 .5-1.86l-.7-2.1a1.75 1.75 0 0 0-1.66-1.2Z"/>
+                </svg>
+            </span>
+            <span>
+                <span class="block text-xl font-bold tracking-tight">ConnectPro</span>
+                <span class="block text-[10px] font-semibold tracking-[0.18em] text-slate-400">INTERNAL DIRECTORY</span>
+            </span>
+        </a>
+    </header>
+
+    <main class="relative z-10 flex min-h-[calc(100vh-96px)] items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
+        <section class="glass-panel w-full max-w-3xl overflow-hidden rounded-[2rem] p-6 text-center sm:p-10 lg:p-12" aria-labelledby="pageTitle">
+            <div class="mx-auto grid h-24 w-24 place-items-center rounded-[2rem] bg-gradient-to-br from-amber-400 to-orange-500 text-white clock-ring sm:h-28 sm:w-28">
+                <svg aria-hidden="true" viewBox="0 0 24 24" class="h-12 w-12 fill-none stroke-current sm:h-14 sm:w-14" stroke-width="1.7">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3.5 2M8 2h8"/>
+                </svg>
+            </div>
+
+            <div class="mt-9">
+                <div class="mx-auto inline-flex items-center gap-2 rounded-full border border-amber-200/90 bg-amber-50/85 px-4 py-2 text-sm font-semibold text-amber-700">
+                    <span class="h-2 w-2 rounded-full bg-amber-500 shadow-[0_0_0_5px_rgba(245,158,11,0.13)]"></span>
+                    Session Expired
+                </div>
+
+                <h1 id="pageTitle" class="mt-5 text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+                    Session หมดอายุแล้ว
+                </h1>
+
+                <p class="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-500 sm:text-base">
+                    ระบบออกจากบัญชีโดยอัตโนมัติเพื่อความปลอดภัย เนื่องจากไม่มีการใช้งานตามระยะเวลาที่กำหนด กรุณาเข้าสู่ระบบใหม่เพื่อดำเนินการต่อ
+                </p>
+            </div>
+
+            <div class="glass-card mx-auto mt-8 max-w-xl rounded-2xl p-4 sm:p-5">
+                <div class="flex items-center gap-4 text-left">
+                    <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-amber-100 text-amber-700">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3a9 9 0 1 0 9 9M12 7v5l3 2"/>
+                        </svg>
+                    </span>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-sm font-bold text-slate-700">กำลังนำไปหน้าเข้าสู่ระบบ</p>
+                        <p class="mt-1 text-xs leading-5 text-slate-500">
+                            ระบบจะเปลี่ยนหน้าอัตโนมัติภายใน <strong><span id="countdown" aria-live="polite">15</span> วินาที</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-4 h-2 overflow-hidden rounded-full bg-slate-200/70" aria-hidden="true">
+                    <div id="progressBar" class="progress-bar h-full w-full rounded-full bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400"></div>
+                </div>
+            </div>
+
+            <div class="mx-auto mt-8 grid max-w-xl gap-3 sm:grid-cols-2">
+                <button
+                    id="loginButton"
+                    type="button"
+                    class="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-brand-500 via-sky-500 to-violet-500 px-5 py-3.5 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-400/30"
+                >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/>
+                    </svg>
+                    เข้าสู่ระบบใหม่
+                </button>
+
+                <button
+                    id="stayButton"
+                    type="button"
+                    class="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200/80 bg-white/70 px-5 py-3.5 text-sm font-bold text-slate-600 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:text-brand-600 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-400/25"
+                >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-none stroke-current" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 6 6 18M6 6l12 12"/>
+                    </svg>
+                    ยกเลิกการนับถอยหลัง
+                </button>
+            </div>
+
+            <div id="cancelNotice" role="status" aria-live="polite" class="mx-auto mt-5 max-w-xl rounded-2xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-left text-sm text-sky-700" hidden>
+                ยกเลิกการเปลี่ยนหน้าอัตโนมัติแล้ว กรุณากดปุ่ม “เข้าสู่ระบบใหม่” เมื่อต้องการดำเนินการต่อ
+            </div>
+
+            <div class="mx-auto mt-7 max-w-xl rounded-2xl border border-white/80 bg-white/45 px-4 py-4 text-left">
+                <div class="flex items-start gap-3">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 shrink-0 fill-none stroke-brand-500" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/>
+                    </svg>
+                    <p class="text-xs leading-5 text-slate-500">
+                        ระบบล้างข้อมูล Session ฝั่ง Browser แล้ว แต่ยังคงชื่อผู้ใช้งานที่เลือก “จดจำชื่อผู้ใช้งาน” ไว้ โดยไม่เก็บรหัสผ่าน
+                    </p>
+                </div>
+            </div>
+
+            <footer class="mt-8 text-xs leading-5 text-slate-400">
+                หาก Session หมดอายุบ่อยผิดปกติ กรุณาติดต่อ IT Support
+            </footer>
+        </section>
+    </main>
+
+    <script>
+        "use strict";
+
+        const LOGIN_URL = "login.html";
+        const TOTAL_SECONDS = 15;
+
+        const countdownElement = document.getElementById("countdown");
+        const progressBar = document.getElementById("progressBar");
+        const loginButton = document.getElementById("loginButton");
+        const stayButton = document.getElementById("stayButton");
+        const cancelNotice = document.getElementById("cancelNotice");
+
+        let remainingSeconds = TOTAL_SECONDS;
+        let countdownTimer = null;
+
+        clearExpiredSessionData();
+        startCountdown();
+
+        loginButton.addEventListener("click", redirectToLogin);
+
+        stayButton.addEventListener("click", () => {
+            stopCountdown();
+            stayButton.disabled = true;
+            stayButton.classList.add("cursor-not-allowed", "opacity-60");
+            cancelNotice.hidden = false;
+        });
+
+        function clearExpiredSessionData() {
+            const rememberedUsername = localStorage.getItem(
+                "connectpro.rememberedUsername"
+            );
+
+            sessionStorage.clear();
+
+            if (rememberedUsername !== null) {
+                localStorage.setItem(
+                    "connectpro.rememberedUsername",
+                    rememberedUsername
+                );
+            }
+        }
+
+        function startCountdown() {
+            updateCountdownDisplay();
+
+            countdownTimer = window.setInterval(() => {
+                remainingSeconds -= 1;
+                updateCountdownDisplay();
+
+                if (remainingSeconds <= 0) {
+                    stopCountdown();
+                    redirectToLogin();
+                }
+            }, 1000);
+        }
+
+        function stopCountdown() {
+            if (countdownTimer !== null) {
+                window.clearInterval(countdownTimer);
+                countdownTimer = null;
+            }
+        }
+
+        function updateCountdownDisplay() {
+            countdownElement.textContent = String(
+                Math.max(remainingSeconds, 0)
+            );
+
+            const percentage = Math.max(
+                0,
+                (remainingSeconds / TOTAL_SECONDS) * 100
+            );
+
+            progressBar.style.width = `${percentage}%`;
+        }
+
+        function redirectToLogin() {
+            stopCountdown();
+            window.location.replace(LOGIN_URL);
+        }
+    </script>
+</body>
+</html>

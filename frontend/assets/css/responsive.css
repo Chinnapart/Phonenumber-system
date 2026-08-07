@@ -1,0 +1,870 @@
+/* ============================================================================
+   ConnectPro Responsive Stylesheet
+   File: frontend/assets/css/responsive.css
+   Load this file LAST.
+
+   Admin load order:
+   main.css -> glassmorphism.css -> components.css -> admin.css -> responsive.css
+
+   User load order:
+   main.css -> glassmorphism.css -> components.css -> user.css -> responsive.css
+   ============================================================================ */
+
+/* --------------------------------------------------------------------------
+   1. Responsive Tokens and Global Safeguards
+   -------------------------------------------------------------------------- */
+
+:root {
+    --cp-responsive-gutter: 1rem;
+    --cp-mobile-bottom-nav-height: 4.5rem;
+    --cp-safe-top: env(safe-area-inset-top, 0px);
+    --cp-safe-right: env(safe-area-inset-right, 0px);
+    --cp-safe-bottom: env(safe-area-inset-bottom, 0px);
+    --cp-safe-left: env(safe-area-inset-left, 0px);
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.cp-responsive-media,
+.cp-responsive-media img,
+.cp-responsive-media video,
+.cp-responsive-media iframe {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.cp-responsive-media img,
+.cp-responsive-media video {
+    height: auto;
+}
+
+.cp-responsive-table {
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cp-responsive-table::after {
+    display: block;
+    width: 1px;
+    height: 1px;
+    content: "";
+}
+
+.cp-only-mobile,
+.cp-only-tablet,
+.cp-only-desktop {
+    display: none !important;
+}
+
+.cp-responsive-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cp-space-3);
+}
+
+.cp-responsive-stack > * {
+    min-width: 0;
+}
+
+.cp-responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: var(--cp-space-4);
+}
+
+.cp-fluid-title {
+    font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem);
+}
+
+.cp-fluid-text {
+    font-size: clamp(0.875rem, 0.82rem + 0.2vw, 1rem);
+}
+
+/* --------------------------------------------------------------------------
+   2. Large Desktop: 1440px and Above
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1440px) {
+    :root {
+        --cp-responsive-gutter: 1.5rem;
+        --cp-content-max-width: 100rem;
+    }
+
+    .cp-only-desktop {
+        display: initial !important;
+    }
+
+    .cp-app-shell,
+    .cp-admin-layout,
+    .cp-user-layout {
+        gap: var(--cp-space-5);
+        padding: var(--cp-space-5);
+    }
+
+    .cp-admin-content,
+    .cp-user-content,
+    .cp-app-content {
+        padding-block: var(--cp-space-6);
+    }
+
+    .cp-summary-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3. Standard Desktop and Notebook: 1200px to 1439px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .cp-only-desktop {
+        display: initial !important;
+    }
+
+    :root {
+        --cp-sidebar-width: 15.5rem;
+        --cp-admin-sidebar-width: 15.5rem;
+        --cp-user-sidebar-width: 15rem;
+    }
+
+    .cp-app-shell,
+    .cp-admin-layout,
+    .cp-user-layout {
+        gap: var(--cp-space-4);
+        padding: var(--cp-space-4);
+    }
+
+    .cp-admin-page-grid,
+    .cp-user-page-grid {
+        grid-template-columns: minmax(0, 1fr) 18rem;
+    }
+
+    .cp-admin-page-grid--wide-aside {
+        grid-template-columns: minmax(0, 1fr) 21rem;
+    }
+
+    .cp-glass-topbar {
+        padding-inline: var(--cp-space-4);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   4. Tablet and Small Notebook: 768px to 1199px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    :root {
+        --cp-responsive-gutter: 1rem;
+    }
+
+    .cp-only-tablet {
+        display: initial !important;
+    }
+
+    .cp-app-shell,
+    .cp-admin-layout,
+    .cp-user-layout {
+        display: block;
+        padding: var(--cp-space-4);
+    }
+
+    .cp-app-main,
+    .cp-admin-main,
+    .cp-user-main {
+        width: 100%;
+    }
+
+    .cp-app-content,
+    .cp-admin-content,
+    .cp-user-content {
+        padding-top: var(--cp-space-4);
+    }
+
+    .cp-glass-topbar {
+        top: var(--cp-space-4);
+    }
+
+    .cp-page-header {
+        align-items: center;
+    }
+
+    .cp-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cp-admin-page-grid,
+    .cp-admin-page-grid--wide-aside,
+    .cp-user-page-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-admin-aside-column,
+    .cp-user-aside-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cp-admin-form-grid--three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cp-admin-widget-grid,
+    .cp-user-contact-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cp-contact-card-grid,
+    .cp-user-department-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cp-user-contact-row {
+        grid-template-columns: minmax(13rem, 1.25fr) minmax(8rem, 0.8fr) auto;
+    }
+
+    .cp-user-contact-row > :nth-child(3) {
+        display: none;
+    }
+
+    .cp-settings-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-settings-nav {
+        position: static;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+    }
+
+    .cp-settings-nav__link {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   5. Mobile: Up to 767px
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+    :root {
+        --cp-responsive-gutter: 0.75rem;
+        --cp-topbar-height: 4rem;
+    }
+
+    .cp-only-mobile {
+        display: initial !important;
+    }
+
+    .cp-hide-mobile {
+        display: none !important;
+    }
+
+    .cp-app-shell,
+    .cp-admin-layout,
+    .cp-user-layout {
+        display: block;
+        min-height: 100dvh;
+        padding:
+            calc(var(--cp-space-3) + var(--cp-safe-top))
+            calc(var(--cp-space-3) + var(--cp-safe-right))
+            calc(var(--cp-space-3) + var(--cp-safe-bottom))
+            calc(var(--cp-space-3) + var(--cp-safe-left));
+    }
+
+    .cp-app-main,
+    .cp-admin-main,
+    .cp-user-main {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .cp-container {
+        width: min(100% - 1.25rem, var(--cp-content-max-width));
+    }
+
+    .cp-app-content,
+    .cp-admin-content,
+    .cp-user-content {
+        width: 100%;
+        padding: var(--cp-space-3) 0;
+    }
+
+    .cp-glass-panel {
+        border-radius: var(--cp-radius-2xl);
+    }
+
+    .cp-glass-card,
+    .cp-glass-dashboard-card,
+    .cp-glass-section,
+    .cp-summary-card,
+    .cp-contact-card,
+    .cp-admin-widget,
+    .cp-user-department-card {
+        border-radius: var(--cp-radius-xl);
+    }
+
+    .cp-glass-topbar {
+        top: calc(var(--cp-space-3) + var(--cp-safe-top));
+        min-height: var(--cp-topbar-height);
+        flex-wrap: wrap;
+        gap: var(--cp-space-3);
+        padding: var(--cp-space-3);
+    }
+
+    .cp-topbar-search {
+        order: 10;
+        width: 100%;
+    }
+
+    .cp-page-header {
+        align-items: stretch;
+        flex-direction: column;
+        gap: var(--cp-space-4);
+        margin-bottom: var(--cp-space-5);
+    }
+
+    .cp-page-header__actions {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    }
+
+    .cp-page-header__actions .cp-button {
+        width: 100%;
+    }
+
+    .cp-page-header__title {
+        font-size: clamp(1.5rem, 8vw, 2rem);
+    }
+
+    .cp-toolbar,
+    .cp-admin-toolbar,
+    .cp-pagination {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .cp-toolbar__group,
+    .cp-admin-toolbar__left,
+    .cp-admin-toolbar__right {
+        width: 100%;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .cp-search-box,
+    .cp-filter-select,
+    .cp-toolbar .cp-select,
+    .cp-toolbar .cp-button,
+    .cp-admin-toolbar .cp-select,
+    .cp-admin-toolbar .cp-button {
+        width: 100%;
+    }
+
+    .cp-summary-grid,
+    .cp-admin-widget-grid,
+    .cp-admin-aside-column,
+    .cp-user-aside-column,
+    .cp-contact-card-grid,
+    .cp-user-department-grid,
+    .cp-favorite-grid,
+    .cp-import-results,
+    .cp-user-contact-details {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-summary-card {
+        min-height: 8.5rem;
+        padding: var(--cp-space-4);
+    }
+
+    .cp-glass-section__header,
+    .cp-glass-section__footer {
+        align-items: stretch;
+        flex-direction: column;
+        padding: var(--cp-space-4);
+    }
+
+    .cp-glass-section__body {
+        padding: var(--cp-space-4);
+    }
+
+    .cp-responsive-card-actions,
+    .cp-contact-card__actions,
+    .cp-user-contact-profile__actions,
+    .cp-dialog-actions,
+    .cp-admin-form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cp-responsive-card-actions .cp-button,
+    .cp-contact-card__actions .cp-button,
+    .cp-user-contact-profile__actions .cp-button,
+    .cp-dialog-actions .cp-button,
+    .cp-admin-form-actions .cp-button {
+        width: 100%;
+    }
+
+    .cp-user-welcome {
+        min-height: 11rem;
+        grid-template-columns: minmax(0, 1fr);
+        padding: var(--cp-space-6) var(--cp-space-5);
+        border-radius: var(--cp-radius-2xl);
+    }
+
+    .cp-user-welcome__visual {
+        display: none;
+    }
+
+    .cp-user-directory-search {
+        width: 100%;
+        margin-top: var(--cp-space-4);
+        border-radius: var(--cp-radius-xl);
+    }
+
+    .cp-user-directory-search__form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-user-directory-search__form .cp-button {
+        width: 100%;
+    }
+
+    .cp-user-contact-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--cp-space-3);
+    }
+
+    .cp-user-contact-row__label {
+        display: block;
+    }
+
+    .cp-user-contact-row__actions {
+        justify-content: flex-start;
+        padding-top: var(--cp-space-3);
+        border-top: 1px solid rgba(203, 213, 225, 0.48);
+    }
+
+    .cp-user-contact-profile {
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: center;
+        padding: var(--cp-space-5);
+        text-align: center;
+    }
+
+    .cp-user-contact-profile__meta,
+    .cp-user-contact-profile__actions {
+        justify-content: center;
+    }
+
+    .cp-admin-form-grid,
+    .cp-admin-form-grid--three {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-admin-form-section,
+    .cp-admin-widget {
+        padding: var(--cp-space-4);
+    }
+
+    .cp-admin-form-section__header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .cp-permission-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-permission-row__role {
+        text-align: left;
+    }
+
+    .cp-admin-form-actions {
+        position: static;
+    }
+
+    .cp-settings-nav {
+        position: static;
+        display: flex;
+        overflow-x: auto;
+        padding: var(--cp-space-2);
+        scroll-snap-type: x proximity;
+    }
+
+    .cp-settings-nav__link {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+
+    .cp-glass-modal {
+        width: 100%;
+        max-height: calc(100dvh - 1.5rem);
+        border-radius: var(--cp-radius-2xl);
+    }
+
+    .cp-glass-modal__header,
+    .cp-glass-modal__body,
+    .cp-glass-modal__footer {
+        padding: var(--cp-space-4);
+    }
+
+    .cp-toast-region {
+        top: calc(var(--cp-space-3) + var(--cp-safe-top));
+        right: calc(var(--cp-space-3) + var(--cp-safe-right));
+        left: calc(var(--cp-space-3) + var(--cp-safe-left));
+        width: auto;
+    }
+
+    .cp-toast {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        padding: var(--cp-space-3);
+    }
+
+    .cp-pagination__summary {
+        text-align: center;
+    }
+
+    .cp-pagination__controls {
+        max-width: 100%;
+        justify-content: center;
+        overflow-x: auto;
+        padding-bottom: 0.15rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   6. Small Mobile: Up to 479px
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 479px) {
+    :root {
+        --cp-responsive-gutter: 0.625rem;
+    }
+
+    .cp-app-shell,
+    .cp-admin-layout,
+    .cp-user-layout {
+        padding:
+            calc(0.625rem + var(--cp-safe-top))
+            calc(0.625rem + var(--cp-safe-right))
+            calc(0.625rem + var(--cp-safe-bottom))
+            calc(0.625rem + var(--cp-safe-left));
+    }
+
+    .cp-brand__tagline {
+        display: none;
+    }
+
+    .cp-brand__mark {
+        width: 2.6rem;
+        height: 2.6rem;
+    }
+
+    .cp-page-header__actions {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-user-welcome {
+        padding: var(--cp-space-5) var(--cp-space-4);
+    }
+
+    .cp-user-welcome__title {
+        font-size: 1.65rem;
+    }
+
+    .cp-user-welcome__description {
+        font-size: var(--cp-font-size-xs);
+    }
+
+    .cp-summary-card__value {
+        font-size: 1.8rem;
+    }
+
+    .cp-summary-card__icon {
+        width: 2.65rem;
+        height: 2.65rem;
+    }
+
+    .cp-filter-chip {
+        max-width: 100%;
+    }
+
+    .cp-filter-chip > span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .cp-user-contact-profile__avatar {
+        width: 4.75rem;
+        height: 4.75rem;
+    }
+
+    .cp-upload-zone {
+        min-height: 12rem;
+        padding: var(--cp-space-5) var(--cp-space-3);
+    }
+
+    .cp-dialog-title {
+        font-size: var(--cp-font-size-lg);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   7. Mobile Landscape and Short Viewports
+   -------------------------------------------------------------------------- */
+
+@media (max-height: 560px) and (orientation: landscape) {
+    .cp-glass-sidebar {
+        top: 0.5rem;
+        bottom: 0.5rem;
+        height: auto;
+    }
+
+    .cp-sidebar-brand {
+        padding: var(--cp-space-3) var(--cp-space-4);
+    }
+
+    .cp-sidebar-nav {
+        padding: var(--cp-space-3);
+    }
+
+    .cp-glass-modal {
+        max-height: calc(100dvh - 1rem);
+    }
+
+    .cp-user-welcome {
+        min-height: 9rem;
+        padding-block: var(--cp-space-4);
+    }
+
+    .cp-user-welcome__visual {
+        display: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8. Touch and Pointer Adaptation
+   -------------------------------------------------------------------------- */
+
+@media (hover: none) and (pointer: coarse) {
+    button,
+    [role="button"],
+    .cp-button,
+    .cp-icon-button,
+    .cp-sidebar-link,
+    .cp-pagination__button,
+    .cp-settings-nav__link {
+        min-height: 2.75rem;
+    }
+
+    .cp-icon-button,
+    .cp-favorite-button,
+    .cp-toast__close {
+        min-width: 2.75rem;
+    }
+
+    .cp-glass-hover:hover,
+    .cp-contact-card:hover,
+    .cp-user-contact-row:hover,
+    .cp-glass-dashboard-card:hover,
+    .cp-quick-action:hover {
+        transform: none;
+    }
+
+    .cp-glass-shine::after {
+        display: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   9. Sidebar and Mobile Overlay States
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1199px) {
+    .cp-glass-sidebar,
+    .cp-admin-sidebar,
+    .cp-user-sidebar {
+        position: fixed;
+        z-index: var(--cp-z-modal);
+        top: calc(var(--cp-space-3) + var(--cp-safe-top));
+        bottom: calc(var(--cp-space-3) + var(--cp-safe-bottom));
+        left: calc(var(--cp-space-3) + var(--cp-safe-left));
+        width: min(19rem, calc(100vw - 2rem));
+        height: auto;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateX(calc(-100% - 2rem));
+        transition:
+            transform var(--cp-duration-slow) var(--cp-ease-standard),
+            opacity var(--cp-duration-normal) var(--cp-ease-standard),
+            visibility var(--cp-duration-normal) var(--cp-ease-standard);
+    }
+
+    .cp-glass-sidebar.is-open,
+    .cp-admin-sidebar.is-open,
+    .cp-user-sidebar.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .cp-mobile-overlay {
+        position: fixed;
+        z-index: calc(var(--cp-z-modal) - 1);
+        inset: 0;
+        visibility: hidden;
+        opacity: 0;
+        background: rgba(15, 23, 42, 0.32);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        transition:
+            opacity var(--cp-duration-normal) var(--cp-ease-standard),
+            visibility var(--cp-duration-normal) var(--cp-ease-standard);
+    }
+
+    .cp-mobile-overlay.is-open {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   10. Optional Mobile Bottom Navigation
+   -------------------------------------------------------------------------- */
+
+.cp-mobile-bottom-nav {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .cp-mobile-bottom-nav {
+        position: fixed;
+        z-index: var(--cp-z-sticky);
+        right: calc(var(--cp-space-3) + var(--cp-safe-right));
+        bottom: calc(var(--cp-space-3) + var(--cp-safe-bottom));
+        left: calc(var(--cp-space-3) + var(--cp-safe-left));
+        display: grid;
+        min-height: var(--cp-mobile-bottom-nav-height);
+        grid-template-columns: repeat(var(--nav-items, 4), minmax(0, 1fr));
+        padding: 0.4rem;
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid var(--cp-glass-border-strong);
+        border-radius: var(--cp-radius-2xl);
+        box-shadow: var(--cp-glass-shadow-lg);
+        -webkit-backdrop-filter: blur(var(--cp-glass-blur-lg));
+        backdrop-filter: blur(var(--cp-glass-blur-lg));
+    }
+
+    body.has-mobile-bottom-nav .cp-user-content,
+    body.has-mobile-bottom-nav .cp-admin-content,
+    body.has-mobile-bottom-nav .cp-app-content {
+        padding-bottom: calc(
+            var(--cp-mobile-bottom-nav-height)
+            + var(--cp-space-6)
+            + var(--cp-safe-bottom)
+        );
+    }
+
+    .cp-mobile-bottom-nav__link {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.2rem;
+        padding: 0.4rem 0.25rem;
+        color: var(--cp-slate-500);
+        border-radius: var(--cp-radius-lg);
+        font-size: 0.625rem;
+        font-weight: 700;
+    }
+
+    .cp-mobile-bottom-nav__link svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .cp-mobile-bottom-nav__link[aria-current="page"],
+    .cp-mobile-bottom-nav__link.is-active {
+        color: var(--cp-brand-700);
+        background: rgba(219, 237, 255, 0.82);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   11. Accessibility, Motion, Transparency, and Print
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .cp-glass-sidebar,
+    .cp-admin-sidebar,
+    .cp-user-sidebar,
+    .cp-mobile-overlay {
+        transition: none !important;
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .cp-mobile-bottom-nav,
+    .cp-mobile-overlay,
+    .cp-user-directory-search {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+
+    .cp-mobile-bottom-nav,
+    .cp-user-directory-search {
+        background: rgba(255, 255, 255, 0.98);
+    }
+}
+
+@media print {
+    html,
+    body {
+        overflow: visible;
+    }
+
+    .cp-only-mobile,
+    .cp-only-tablet,
+    .cp-mobile-overlay,
+    .cp-mobile-bottom-nav,
+    .cp-responsive-no-print {
+        display: none !important;
+    }
+
+    .cp-app-shell,
+    .cp-admin-layout,
+    .cp-user-layout,
+    .cp-app-main,
+    .cp-admin-main,
+    .cp-user-main,
+    .cp-app-content,
+    .cp-admin-content,
+    .cp-user-content {
+        display: block;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .cp-responsive-table {
+        overflow: visible;
+    }
+}

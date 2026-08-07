@@ -1,0 +1,923 @@
+/* ============================================================================
+   ConnectPro Admin Stylesheet
+   File: frontend/assets/css/admin.css
+   Load order:
+   1. main.css
+   2. glassmorphism.css
+   3. components.css
+   4. admin.css
+   Purpose: Admin-only layouts and management components
+   ============================================================================ */
+
+/* --------------------------------------------------------------------------
+   1. Admin Theme Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+    --cp-admin-accent: #2388f5;
+    --cp-admin-accent-dark: #1755a3;
+    --cp-admin-violet: #8b5cf6;
+    --cp-admin-sidebar-width: 17rem;
+    --cp-admin-content-gap: 1.25rem;
+    --cp-admin-danger-surface: rgba(255, 228, 230, 0.72);
+    --cp-admin-warning-surface: rgba(254, 243, 199, 0.72);
+    --cp-admin-success-surface: rgba(209, 250, 229, 0.72);
+}
+
+/* --------------------------------------------------------------------------
+   2. Admin Application Layout
+   -------------------------------------------------------------------------- */
+
+.cp-admin-layout {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: var(--cp-admin-sidebar-width) minmax(0, 1fr);
+    gap: var(--cp-admin-content-gap);
+    padding: var(--cp-space-4);
+}
+
+.cp-admin-sidebar {
+    width: 100%;
+}
+
+.cp-admin-main {
+    min-width: 0;
+}
+
+.cp-admin-content {
+    width: 100%;
+    max-width: var(--cp-content-max-width);
+    margin-inline: auto;
+    padding: var(--cp-space-5) 0;
+}
+
+.cp-admin-page-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 21rem;
+    gap: var(--cp-space-5);
+    align-items: start;
+}
+
+.cp-admin-page-grid--wide-aside {
+    grid-template-columns: minmax(0, 1fr) 25rem;
+}
+
+.cp-admin-primary-column,
+.cp-admin-aside-column {
+    display: grid;
+    min-width: 0;
+    gap: var(--cp-space-5);
+}
+
+/* --------------------------------------------------------------------------
+   3. Admin Identity and Role Badge
+   -------------------------------------------------------------------------- */
+
+.cp-admin-profile {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: var(--cp-space-3);
+}
+
+.cp-admin-profile__content {
+    min-width: 0;
+}
+
+.cp-admin-profile__name,
+.cp-admin-profile__role {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cp-admin-profile__name {
+    color: var(--cp-slate-800);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 750;
+}
+
+.cp-admin-profile__role {
+    margin-top: 0.15rem;
+    color: var(--cp-admin-violet);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 700;
+}
+
+.cp-admin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.38rem 0.68rem;
+    color: #6d28d9;
+    background: rgba(237, 233, 254, 0.88);
+    border: 1px solid rgba(221, 214, 254, 0.95);
+    border-radius: var(--cp-radius-full);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 750;
+}
+
+.cp-admin-badge::before {
+    width: 0.45rem;
+    height: 0.45rem;
+    background: var(--cp-admin-violet);
+    border-radius: var(--cp-radius-full);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+    content: "";
+}
+
+/* --------------------------------------------------------------------------
+   4. Admin Sidebar Groups
+   -------------------------------------------------------------------------- */
+
+.cp-admin-nav-group {
+    display: grid;
+    gap: var(--cp-space-2);
+}
+
+.cp-admin-nav-group + .cp-admin-nav-group {
+    margin-top: var(--cp-space-5);
+    padding-top: var(--cp-space-5);
+    border-top: 1px solid rgba(203, 213, 225, 0.48);
+}
+
+.cp-admin-nav-group__label {
+    padding-inline: 0.85rem;
+    color: var(--cp-text-muted);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.cp-admin-nav-count {
+    display: inline-grid;
+    min-width: 1.35rem;
+    height: 1.35rem;
+    place-items: center;
+    margin-left: auto;
+    padding-inline: 0.35rem;
+    color: var(--cp-brand-700);
+    background: rgba(219, 237, 255, 0.78);
+    border-radius: var(--cp-radius-full);
+    font-size: 0.625rem;
+    font-weight: 800;
+}
+
+.cp-sidebar-link[aria-current="page"] .cp-admin-nav-count,
+.cp-sidebar-link.is-active .cp-admin-nav-count {
+    color: var(--cp-white);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   5. Management Toolbar and Bulk Actions
+   -------------------------------------------------------------------------- */
+
+.cp-admin-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cp-space-4);
+    padding: var(--cp-space-4);
+}
+
+.cp-admin-toolbar__left,
+.cp-admin-toolbar__right {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cp-space-3);
+}
+
+.cp-admin-toolbar__right {
+    justify-content: flex-end;
+}
+
+.cp-bulk-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cp-space-3);
+    padding: var(--cp-space-3) var(--cp-space-4);
+    color: var(--cp-brand-700);
+    background: rgba(219, 237, 255, 0.72);
+    border: 1px solid rgba(185, 220, 255, 0.92);
+    border-radius: var(--cp-radius-lg);
+}
+
+.cp-bulk-actions__count {
+    font-size: var(--cp-font-size-sm);
+    font-weight: 750;
+}
+
+.cp-bulk-actions__divider {
+    width: 1px;
+    height: 1.5rem;
+    background: rgba(77, 169, 255, 0.32);
+}
+
+/* --------------------------------------------------------------------------
+   6. Admin Data Table
+   -------------------------------------------------------------------------- */
+
+.cp-admin-table {
+    width: 100%;
+    min-width: 62rem;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.cp-admin-table th,
+.cp-admin-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(203, 213, 225, 0.48);
+}
+
+.cp-admin-table th {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    color: var(--cp-slate-500);
+    background: rgba(241, 245, 249, 0.9);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+}
+
+.cp-admin-table td {
+    color: var(--cp-slate-600);
+    background: rgba(255, 255, 255, 0.18);
+    font-size: var(--cp-font-size-sm);
+}
+
+.cp-admin-table tbody tr {
+    transition:
+        background-color var(--cp-duration-fast) var(--cp-ease-standard),
+        box-shadow var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-admin-table tbody tr:hover td {
+    background: rgba(238, 247, 255, 0.72);
+}
+
+.cp-admin-table tbody tr.is-selected td {
+    background: rgba(219, 237, 255, 0.78);
+}
+
+.cp-admin-table tbody tr.is-inactive td {
+    color: var(--cp-text-muted);
+    background: rgba(241, 245, 249, 0.44);
+}
+
+.cp-admin-table__checkbox {
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--cp-admin-accent);
+}
+
+.cp-admin-table__sortable {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    font: inherit;
+    text-transform: inherit;
+}
+
+.cp-admin-table__sortable:hover {
+    color: var(--cp-brand-700);
+}
+
+.cp-admin-table__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.35rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. Management Forms
+   -------------------------------------------------------------------------- */
+
+.cp-admin-form {
+    display: grid;
+    gap: var(--cp-space-5);
+}
+
+.cp-admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--cp-space-4);
+}
+
+.cp-admin-form-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cp-admin-form-grid__full {
+    grid-column: 1 / -1;
+}
+
+.cp-admin-form-section {
+    padding: var(--cp-space-5);
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: var(--cp-radius-xl);
+}
+
+.cp-admin-form-section__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--cp-space-4);
+    margin-bottom: var(--cp-space-5);
+    padding-bottom: var(--cp-space-4);
+    border-bottom: 1px solid rgba(203, 213, 225, 0.48);
+}
+
+.cp-admin-form-section__title {
+    margin-bottom: 0.3rem;
+    font-size: var(--cp-font-size-base);
+}
+
+.cp-admin-form-section__description {
+    margin-bottom: 0;
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+    line-height: 1.6;
+}
+
+.cp-admin-form-actions {
+    position: sticky;
+    z-index: var(--cp-z-sticky);
+    bottom: var(--cp-space-4);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--cp-space-3);
+    padding: var(--cp-space-4);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--cp-glass-border-strong);
+    border-radius: var(--cp-radius-xl);
+    box-shadow: var(--cp-glass-shadow-md);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-lg));
+    backdrop-filter: blur(var(--cp-glass-blur-lg));
+}
+
+/* --------------------------------------------------------------------------
+   8. Toggle and Permission Components
+   -------------------------------------------------------------------------- */
+
+.cp-admin-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--cp-space-3);
+    cursor: pointer;
+}
+
+.cp-admin-switch input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.cp-admin-switch__track {
+    position: relative;
+    width: 2.75rem;
+    height: 1.5rem;
+    flex: 0 0 auto;
+    background: var(--cp-slate-300);
+    border-radius: var(--cp-radius-full);
+    transition: background-color var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-admin-switch__track::after {
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    background: var(--cp-white);
+    border-radius: var(--cp-radius-full);
+    box-shadow: var(--cp-shadow-xs);
+    content: "";
+    transition: transform var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-admin-switch input:checked + .cp-admin-switch__track {
+    background: var(--cp-button-gradient);
+}
+
+.cp-admin-switch input:checked + .cp-admin-switch__track::after {
+    transform: translateX(1.25rem);
+}
+
+.cp-admin-switch input:focus-visible + .cp-admin-switch__track {
+    box-shadow: var(--cp-shadow-focus);
+}
+
+.cp-admin-switch__label {
+    color: var(--cp-slate-700);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 650;
+}
+
+.cp-permission-grid {
+    display: grid;
+    gap: var(--cp-space-3);
+}
+
+.cp-permission-row {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1fr) repeat(2, 6rem);
+    align-items: center;
+    gap: var(--cp-space-3);
+    padding: var(--cp-space-3) var(--cp-space-4);
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(203, 213, 225, 0.48);
+    border-radius: var(--cp-radius-lg);
+}
+
+.cp-permission-row__name {
+    color: var(--cp-slate-700);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 700;
+}
+
+.cp-permission-row__role {
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+    text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   9. Import and Export
+   -------------------------------------------------------------------------- */
+
+.cp-upload-zone {
+    display: grid;
+    min-height: 17rem;
+    place-items: center;
+    padding: var(--cp-space-8) var(--cp-space-5);
+    color: var(--cp-text-secondary);
+    background: rgba(238, 247, 255, 0.48);
+    border: 2px dashed rgba(77, 169, 255, 0.48);
+    border-radius: var(--cp-radius-2xl);
+    text-align: center;
+    transition:
+        color var(--cp-duration-normal) var(--cp-ease-standard),
+        background-color var(--cp-duration-normal) var(--cp-ease-standard),
+        border-color var(--cp-duration-normal) var(--cp-ease-standard),
+        transform var(--cp-duration-normal) var(--cp-ease-standard);
+}
+
+.cp-upload-zone:hover,
+.cp-upload-zone.is-dragover {
+    color: var(--cp-brand-700);
+    background: rgba(219, 237, 255, 0.7);
+    border-color: var(--cp-brand-400);
+    transform: translateY(-2px);
+}
+
+.cp-upload-zone__icon {
+    display: inline-grid;
+    width: 4.25rem;
+    height: 4.25rem;
+    place-items: center;
+    margin-inline: auto;
+    color: var(--cp-brand-600);
+    background: rgba(255, 255, 255, 0.72);
+    border-radius: var(--cp-radius-2xl);
+    box-shadow: var(--cp-shadow-sm);
+}
+
+.cp-upload-zone__title {
+    margin: var(--cp-space-4) 0 var(--cp-space-2);
+    color: var(--cp-slate-700);
+    font-size: var(--cp-font-size-lg);
+}
+
+.cp-upload-zone__description {
+    margin-bottom: var(--cp-space-4);
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-sm);
+}
+
+.cp-import-progress {
+    display: grid;
+    gap: var(--cp-space-3);
+}
+
+.cp-import-progress__track {
+    height: 0.65rem;
+    overflow: hidden;
+    background: rgba(226, 232, 240, 0.78);
+    border-radius: var(--cp-radius-full);
+}
+
+.cp-import-progress__bar {
+    width: var(--progress, 0%);
+    height: 100%;
+    background: var(--cp-button-gradient);
+    border-radius: inherit;
+    transition: width var(--cp-duration-slow) var(--cp-ease-standard);
+}
+
+.cp-import-results {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--cp-space-3);
+}
+
+.cp-import-result {
+    padding: var(--cp-space-4);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.46);
+    border: 1px solid rgba(203, 213, 225, 0.5);
+    border-radius: var(--cp-radius-lg);
+}
+
+.cp-import-result__value {
+    display: block;
+    color: var(--cp-slate-800);
+    font-size: var(--cp-font-size-xl);
+    font-weight: 800;
+}
+
+.cp-import-result__label {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+}
+
+/* --------------------------------------------------------------------------
+   10. Activity Log and Audit Trail
+   -------------------------------------------------------------------------- */
+
+.cp-audit-event {
+    display: grid;
+    grid-template-columns: 0.85rem minmax(0, 1fr);
+    gap: var(--cp-space-4);
+    padding: var(--cp-space-4) 0;
+}
+
+.cp-audit-event__rail {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.cp-audit-event__rail::after {
+    position: absolute;
+    top: 1rem;
+    bottom: calc(var(--cp-space-4) * -1);
+    width: 2px;
+    background: rgba(203, 213, 225, 0.62);
+    content: "";
+}
+
+.cp-audit-event:last-child .cp-audit-event__rail::after {
+    display: none;
+}
+
+.cp-audit-event__dot {
+    position: relative;
+    z-index: 1;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-top: 0.25rem;
+    background: var(--cp-info);
+    border: 2px solid var(--cp-white);
+    border-radius: var(--cp-radius-full);
+    box-shadow: 0 0 0 4px rgba(35, 136, 245, 0.13);
+}
+
+.cp-audit-event--success .cp-audit-event__dot {
+    background: var(--cp-success);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.13);
+}
+
+.cp-audit-event--failed .cp-audit-event__dot {
+    background: var(--cp-danger);
+    box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.13);
+}
+
+.cp-audit-event--denied .cp-audit-event__dot {
+    background: var(--cp-warning);
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.13);
+}
+
+.cp-audit-event__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cp-space-2);
+}
+
+.cp-audit-event__title {
+    margin-bottom: 0;
+    color: var(--cp-slate-700);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 750;
+}
+
+.cp-audit-event__time {
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+}
+
+.cp-audit-event__description {
+    margin: 0.35rem 0 0;
+    color: var(--cp-text-secondary);
+    font-size: var(--cp-font-size-xs);
+    line-height: 1.6;
+}
+
+.cp-audit-detail {
+    margin-top: var(--cp-space-3);
+    padding: var(--cp-space-3);
+    overflow-x: auto;
+    color: var(--cp-slate-600);
+    background: rgba(241, 245, 249, 0.66);
+    border: 1px solid rgba(203, 213, 225, 0.56);
+    border-radius: var(--cp-radius-md);
+    font-family: var(--cp-font-mono);
+    font-size: var(--cp-font-size-xs);
+    white-space: pre-wrap;
+}
+
+/* --------------------------------------------------------------------------
+   11. Settings
+   -------------------------------------------------------------------------- */
+
+.cp-settings-layout {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: var(--cp-space-5);
+    align-items: start;
+}
+
+.cp-settings-nav {
+    position: sticky;
+    top: calc(var(--cp-topbar-height) + (var(--cp-space-4) * 2));
+    display: grid;
+    gap: var(--cp-space-2);
+    padding: var(--cp-space-3);
+}
+
+.cp-settings-nav__link {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: var(--cp-space-3);
+    padding: 0.65rem 0.8rem;
+    color: var(--cp-slate-600);
+    border-radius: var(--cp-radius-md);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 650;
+}
+
+.cp-settings-nav__link:hover {
+    color: var(--cp-brand-700);
+    background: rgba(219, 237, 255, 0.58);
+}
+
+.cp-settings-nav__link[aria-current="page"],
+.cp-settings-nav__link.is-active {
+    color: var(--cp-brand-700);
+    background: rgba(219, 237, 255, 0.82);
+    box-shadow: var(--cp-shadow-xs);
+}
+
+.cp-settings-panel {
+    display: grid;
+    gap: var(--cp-space-5);
+}
+
+.cp-danger-zone {
+    padding: var(--cp-space-5);
+    background: var(--cp-admin-danger-surface);
+    border: 1px solid rgba(254, 205, 211, 0.95);
+    border-radius: var(--cp-radius-xl);
+}
+
+.cp-danger-zone__title {
+    color: #be123c;
+    font-size: var(--cp-font-size-base);
+}
+
+.cp-danger-zone__description {
+    margin-bottom: var(--cp-space-4);
+    color: #9f1239;
+    font-size: var(--cp-font-size-sm);
+    line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   12. Admin Dashboard Widgets
+   -------------------------------------------------------------------------- */
+
+.cp-admin-widget-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--cp-space-4);
+}
+
+.cp-admin-widget {
+    min-width: 0;
+    padding: var(--cp-space-5);
+}
+
+.cp-admin-widget__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cp-space-3);
+    margin-bottom: var(--cp-space-4);
+}
+
+.cp-admin-widget__title {
+    margin-bottom: 0;
+    font-size: var(--cp-font-size-base);
+}
+
+.cp-admin-widget__subtitle {
+    margin: 0.25rem 0 0;
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+}
+
+.cp-admin-system-status {
+    display: grid;
+    gap: var(--cp-space-3);
+}
+
+.cp-admin-system-status__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cp-space-3);
+    padding: var(--cp-space-3);
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(203, 213, 225, 0.46);
+    border-radius: var(--cp-radius-lg);
+}
+
+.cp-admin-system-status__name {
+    color: var(--cp-slate-700);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 650;
+}
+
+/* --------------------------------------------------------------------------
+   13. Responsive Rules
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1279px) {
+    .cp-admin-page-grid,
+    .cp-admin-page-grid--wide-aside {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-admin-aside-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1199px) {
+    .cp-admin-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-admin-sidebar {
+        width: min(19rem, calc(100vw - 2rem));
+    }
+
+    .cp-settings-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-settings-nav {
+        position: static;
+        display: flex;
+        overflow-x: auto;
+    }
+
+    .cp-settings-nav__link {
+        flex: 0 0 auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .cp-admin-layout {
+        gap: var(--cp-space-3);
+        padding: var(--cp-space-3);
+    }
+
+    .cp-admin-content {
+        padding: var(--cp-space-3) 0;
+    }
+
+    .cp-admin-toolbar,
+    .cp-admin-toolbar__left,
+    .cp-admin-toolbar__right,
+    .cp-bulk-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .cp-admin-toolbar__left,
+    .cp-admin-toolbar__right {
+        width: 100%;
+    }
+
+    .cp-admin-toolbar .cp-button,
+    .cp-bulk-actions .cp-button {
+        width: 100%;
+    }
+
+    .cp-bulk-actions__divider {
+        width: 100%;
+        height: 1px;
+    }
+
+    .cp-admin-form-grid,
+    .cp-admin-form-grid--three,
+    .cp-admin-aside-column,
+    .cp-admin-widget-grid,
+    .cp-import-results {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-admin-form-actions {
+        bottom: var(--cp-space-3);
+        flex-direction: column-reverse;
+    }
+
+    .cp-admin-form-actions .cp-button {
+        width: 100%;
+    }
+
+    .cp-permission-row {
+        grid-template-columns: minmax(0, 1fr) repeat(2, 4rem);
+        padding-inline: var(--cp-space-3);
+    }
+
+    .cp-upload-zone {
+        min-height: 14rem;
+        padding: var(--cp-space-6) var(--cp-space-4);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   14. Accessibility and Print
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .cp-admin-table tbody tr,
+    .cp-admin-switch__track,
+    .cp-admin-switch__track::after,
+    .cp-upload-zone,
+    .cp-import-progress__bar {
+        transition: none !important;
+    }
+}
+
+@media print {
+    .cp-admin-sidebar,
+    .cp-admin-toolbar,
+    .cp-bulk-actions,
+    .cp-admin-form-actions,
+    .cp-settings-nav,
+    .cp-admin-table__actions {
+        display: none !important;
+    }
+
+    .cp-admin-layout,
+    .cp-admin-page-grid,
+    .cp-admin-page-grid--wide-aside,
+    .cp-settings-layout {
+        display: block;
+        padding: 0;
+    }
+
+    .cp-admin-table {
+        min-width: 0;
+    }
+}

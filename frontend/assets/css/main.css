@@ -1,0 +1,874 @@
+/* ============================================================================
+   ConnectPro Main Stylesheet
+   File: frontend/assets/css/main.css
+   Purpose: Global design tokens, base styles, shared utilities, and accessibility
+   ============================================================================ */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+    color-scheme: light;
+
+    /* Brand colors */
+    --cp-brand-50: #eef7ff;
+    --cp-brand-100: #d9edff;
+    --cp-brand-200: #b9dcff;
+    --cp-brand-300: #87c3ff;
+    --cp-brand-400: #4da9ff;
+    --cp-brand-500: #2388f5;
+    --cp-brand-600: #176bd1;
+    --cp-brand-700: #1755a3;
+    --cp-brand-800: #184986;
+    --cp-brand-900: #193f6f;
+
+    /* Accent colors */
+    --cp-violet-400: #a78bfa;
+    --cp-violet-500: #8b5cf6;
+    --cp-emerald-400: #34d399;
+    --cp-emerald-500: #10b981;
+    --cp-amber-400: #fbbf24;
+    --cp-amber-500: #f59e0b;
+    --cp-orange-500: #f97316;
+    --cp-rose-500: #f43f5e;
+
+    /* Neutral colors */
+    --cp-white: #ffffff;
+    --cp-slate-50: #f8fafc;
+    --cp-slate-100: #f1f5f9;
+    --cp-slate-200: #e2e8f0;
+    --cp-slate-300: #cbd5e1;
+    --cp-slate-400: #94a3b8;
+    --cp-slate-500: #64748b;
+    --cp-slate-600: #475569;
+    --cp-slate-700: #334155;
+    --cp-slate-800: #1e293b;
+    --cp-slate-900: #0f172a;
+
+    /* Semantic colors */
+    --cp-success: #10b981;
+    --cp-warning: #f59e0b;
+    --cp-danger: #f43f5e;
+    --cp-info: #2388f5;
+    --cp-online: #10b981;
+    --cp-offline: #94a3b8;
+    --cp-unknown: #f59e0b;
+
+    /* Text */
+    --cp-text-primary: var(--cp-slate-800);
+    --cp-text-secondary: var(--cp-slate-600);
+    --cp-text-muted: var(--cp-slate-400);
+    --cp-text-inverse: var(--cp-white);
+
+    /* Surfaces */
+    --cp-page-background: #eff7ff;
+    --cp-surface: rgba(255, 255, 255, 0.72);
+    --cp-surface-strong: rgba(255, 255, 255, 0.9);
+    --cp-surface-soft: rgba(255, 255, 255, 0.55);
+    --cp-glass-border: rgba(255, 255, 255, 0.82);
+    --cp-control-border: rgba(161, 189, 224, 0.48);
+    --cp-divider: rgba(203, 213, 225, 0.7);
+
+    /* Gradients */
+    --cp-page-gradient:
+        radial-gradient(circle at 12% 18%, rgba(100, 180, 255, 0.35), transparent 30%),
+        radial-gradient(circle at 88% 20%, rgba(164, 125, 255, 0.27), transparent 31%),
+        radial-gradient(circle at 78% 84%, rgba(75, 222, 180, 0.28), transparent 30%),
+        linear-gradient(135deg, #eff7ff 0%, #f6f2ff 48%, #ecfff9 100%);
+    --cp-brand-gradient: linear-gradient(135deg, #176bd1 0%, #2388f5 48%, #8b5cf6 100%);
+    --cp-button-gradient: linear-gradient(90deg, #2388f5 0%, #0ea5e9 52%, #8b5cf6 100%);
+
+    /* Typography */
+    --cp-font-sans: "Inter", "Noto Sans Thai", "Segoe UI", Tahoma, Arial, sans-serif;
+    --cp-font-mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    --cp-font-size-xs: 0.75rem;
+    --cp-font-size-sm: 0.875rem;
+    --cp-font-size-base: 1rem;
+    --cp-font-size-lg: 1.125rem;
+    --cp-font-size-xl: 1.25rem;
+    --cp-font-size-2xl: 1.5rem;
+    --cp-font-size-3xl: 1.875rem;
+    --cp-font-size-4xl: 2.25rem;
+    --cp-line-height-normal: 1.5;
+    --cp-line-height-relaxed: 1.75;
+
+    /* Spacing */
+    --cp-space-1: 0.25rem;
+    --cp-space-2: 0.5rem;
+    --cp-space-3: 0.75rem;
+    --cp-space-4: 1rem;
+    --cp-space-5: 1.25rem;
+    --cp-space-6: 1.5rem;
+    --cp-space-8: 2rem;
+    --cp-space-10: 2.5rem;
+    --cp-space-12: 3rem;
+
+    /* Radius */
+    --cp-radius-sm: 0.5rem;
+    --cp-radius-md: 0.75rem;
+    --cp-radius-lg: 1rem;
+    --cp-radius-xl: 1.25rem;
+    --cp-radius-2xl: 1.5rem;
+    --cp-radius-3xl: 2rem;
+    --cp-radius-full: 9999px;
+
+    /* Shadows */
+    --cp-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+    --cp-shadow-sm: 0 6px 18px rgba(46, 91, 156, 0.08);
+    --cp-shadow-md: 0 14px 34px rgba(35, 136, 245, 0.14);
+    --cp-shadow-lg: 0 28px 70px rgba(46, 91, 156, 0.18);
+    --cp-shadow-focus: 0 0 0 4px rgba(77, 169, 255, 0.18);
+
+    /* Layout */
+    --cp-sidebar-width: 17rem;
+    --cp-topbar-height: 4.5rem;
+    --cp-content-max-width: 100rem;
+
+    /* Motion */
+    --cp-duration-fast: 150ms;
+    --cp-duration-normal: 220ms;
+    --cp-duration-slow: 350ms;
+    --cp-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+    /* Layer order */
+    --cp-z-base: 0;
+    --cp-z-dropdown: 20;
+    --cp-z-sticky: 30;
+    --cp-z-overlay: 40;
+    --cp-z-modal: 50;
+    --cp-z-toast: 60;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset and Base Styles
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 320px;
+    min-height: 100%;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--cp-text-primary);
+    background: var(--cp-page-gradient);
+    background-attachment: fixed;
+    font-family: var(--cp-font-sans);
+    font-size: var(--cp-font-size-base);
+    line-height: var(--cp-line-height-normal);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.cp-no-scroll {
+    overflow: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+    margin: 0;
+    color: inherit;
+    font: inherit;
+}
+
+button,
+[role="button"] {
+    cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+    cursor: not-allowed;
+}
+
+img,
+picture,
+svg,
+canvas {
+    display: block;
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--cp-text-primary);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+::selection {
+    color: var(--cp-white);
+    background: var(--cp-brand-500);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Accessibility
+   -------------------------------------------------------------------------- */
+
+:focus-visible {
+    outline: 3px solid rgba(77, 169, 255, 0.55);
+    outline-offset: 3px;
+}
+
+.cp-skip-link {
+    position: fixed;
+    top: var(--cp-space-3);
+    left: var(--cp-space-3);
+    z-index: var(--cp-z-toast);
+    padding: var(--cp-space-3) var(--cp-space-4);
+    color: var(--cp-white);
+    background: var(--cp-brand-700);
+    border-radius: var(--cp-radius-md);
+    box-shadow: var(--cp-shadow-md);
+    transform: translateY(-160%);
+    transition: transform var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-skip-link:focus {
+    transform: translateY(0);
+}
+
+.cp-sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Shared Page Background
+   -------------------------------------------------------------------------- */
+
+.cp-page-shell {
+    position: relative;
+    z-index: var(--cp-z-base);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.cp-background-orb {
+    position: fixed;
+    z-index: -1;
+    border-radius: var(--cp-radius-full);
+    filter: blur(2px);
+    opacity: 0.78;
+    pointer-events: none;
+    animation: cp-float 8s ease-in-out infinite;
+}
+
+.cp-background-orb--blue {
+    top: 10%;
+    left: 5%;
+    width: 11rem;
+    height: 11rem;
+    background: rgba(125, 211, 252, 0.45);
+}
+
+.cp-background-orb--violet {
+    top: 14%;
+    right: 7%;
+    width: 14rem;
+    height: 14rem;
+    background: rgba(196, 181, 253, 0.36);
+    animation-delay: -2.5s;
+}
+
+.cp-background-orb--green {
+    right: 20%;
+    bottom: 4%;
+    width: 12rem;
+    height: 12rem;
+    background: rgba(110, 231, 183, 0.34);
+    animation-delay: -5s;
+}
+
+/* --------------------------------------------------------------------------
+   5. Glass Surfaces
+   -------------------------------------------------------------------------- */
+
+.cp-glass-panel,
+.cp-glass-card,
+.cp-glass-control {
+    border: 1px solid var(--cp-glass-border);
+    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(22px);
+}
+
+.cp-glass-panel {
+    background: var(--cp-surface);
+    border-radius: var(--cp-radius-3xl);
+    box-shadow: var(--cp-shadow-lg);
+}
+
+.cp-glass-card {
+    background: var(--cp-surface-soft);
+    border-radius: var(--cp-radius-xl);
+    box-shadow: var(--cp-shadow-sm);
+}
+
+.cp-glass-control {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--cp-control-border);
+    border-radius: var(--cp-radius-lg);
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .cp-glass-panel,
+    .cp-glass-card,
+    .cp-glass-control {
+        background: rgba(255, 255, 255, 0.95);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   6. Shared Form Controls
+   -------------------------------------------------------------------------- */
+
+.cp-field {
+    display: grid;
+    gap: var(--cp-space-2);
+}
+
+.cp-label {
+    color: var(--cp-slate-700);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 650;
+}
+
+.cp-required {
+    color: var(--cp-danger);
+}
+
+.cp-input,
+.cp-select,
+.cp-textarea {
+    width: 100%;
+    color: var(--cp-text-primary);
+    background: rgba(255, 255, 255, 0.74);
+    border: 1px solid var(--cp-control-border);
+    border-radius: var(--cp-radius-lg);
+    box-shadow: var(--cp-shadow-xs);
+    transition:
+        border-color var(--cp-duration-fast) var(--cp-ease-standard),
+        box-shadow var(--cp-duration-fast) var(--cp-ease-standard),
+        background-color var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-input,
+.cp-select {
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+}
+
+.cp-textarea {
+    min-height: 7.5rem;
+    padding: 0.875rem 1rem;
+    resize: vertical;
+}
+
+.cp-input::placeholder,
+.cp-textarea::placeholder {
+    color: var(--cp-text-muted);
+    opacity: 1;
+}
+
+.cp-input:hover,
+.cp-select:hover,
+.cp-textarea:hover {
+    border-color: rgba(77, 169, 255, 0.58);
+}
+
+.cp-input:focus,
+.cp-select:focus,
+.cp-textarea:focus {
+    background: var(--cp-surface-strong);
+    border-color: var(--cp-brand-400);
+    box-shadow: var(--cp-shadow-focus);
+    outline: none;
+}
+
+.cp-input[aria-invalid="true"],
+.cp-select[aria-invalid="true"],
+.cp-textarea[aria-invalid="true"] {
+    border-color: var(--cp-danger);
+    box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.12);
+}
+
+.cp-input:disabled,
+.cp-select:disabled,
+.cp-textarea:disabled {
+    color: var(--cp-slate-400);
+    background: rgba(241, 245, 249, 0.8);
+    opacity: 0.72;
+}
+
+.cp-field-help,
+.cp-field-error {
+    margin: 0;
+    font-size: var(--cp-font-size-xs);
+    line-height: 1.5;
+}
+
+.cp-field-help {
+    color: var(--cp-text-muted);
+}
+
+.cp-field-error {
+    color: var(--cp-danger);
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   7. Shared Buttons
+   -------------------------------------------------------------------------- */
+
+.cp-button {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: var(--cp-space-2);
+    padding: 0.7rem 1.15rem;
+    border: 1px solid transparent;
+    border-radius: var(--cp-radius-lg);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: var(--cp-shadow-sm);
+    transition:
+        transform var(--cp-duration-fast) var(--cp-ease-standard),
+        box-shadow var(--cp-duration-fast) var(--cp-ease-standard),
+        border-color var(--cp-duration-fast) var(--cp-ease-standard),
+        background-color var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--cp-shadow-md);
+}
+
+.cp-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.cp-button:disabled {
+    opacity: 0.62;
+}
+
+.cp-button--primary {
+    color: var(--cp-white);
+    background: var(--cp-button-gradient);
+}
+
+.cp-button--secondary {
+    color: var(--cp-brand-700);
+    background: rgba(255, 255, 255, 0.76);
+    border-color: rgba(185, 220, 255, 0.9);
+}
+
+.cp-button--danger {
+    color: var(--cp-white);
+    background: linear-gradient(135deg, var(--cp-rose-500), var(--cp-orange-500));
+}
+
+.cp-button--ghost {
+    color: var(--cp-slate-600);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.cp-button--ghost:hover:not(:disabled) {
+    color: var(--cp-brand-700);
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: none;
+}
+
+.cp-icon-button {
+    display: inline-grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    padding: 0;
+    color: var(--cp-slate-500);
+    background: rgba(255, 255, 255, 0.68);
+    border: 1px solid var(--cp-glass-border);
+    border-radius: var(--cp-radius-lg);
+    transition:
+        color var(--cp-duration-fast) var(--cp-ease-standard),
+        background-color var(--cp-duration-fast) var(--cp-ease-standard),
+        transform var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-icon-button:hover:not(:disabled) {
+    color: var(--cp-brand-600);
+    background: var(--cp-white);
+    transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   8. Alerts and Status Badges
+   -------------------------------------------------------------------------- */
+
+.cp-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--cp-space-3);
+    padding: var(--cp-space-3) var(--cp-space-4);
+    border: 1px solid;
+    border-radius: var(--cp-radius-lg);
+    font-size: var(--cp-font-size-sm);
+    line-height: 1.6;
+}
+
+.cp-alert--success {
+    color: #047857;
+    background: rgba(236, 253, 245, 0.9);
+    border-color: #a7f3d0;
+}
+
+.cp-alert--error {
+    color: #be123c;
+    background: rgba(255, 241, 242, 0.92);
+    border-color: #fecdd3;
+}
+
+.cp-alert--warning {
+    color: #b45309;
+    background: rgba(255, 251, 235, 0.92);
+    border-color: #fde68a;
+}
+
+.cp-alert--info {
+    color: #0369a1;
+    background: rgba(240, 249, 255, 0.92);
+    border-color: #bae6fd;
+}
+
+.cp-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: var(--cp-radius-full);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.cp-status::before {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: currentColor;
+    border-radius: var(--cp-radius-full);
+    content: "";
+}
+
+.cp-status--online {
+    color: #047857;
+    background: #d1fae5;
+}
+
+.cp-status--offline {
+    color: #64748b;
+    background: #e2e8f0;
+}
+
+.cp-status--unknown {
+    color: #b45309;
+    background: #fef3c7;
+}
+
+.cp-status--inactive {
+    color: #be123c;
+    background: #ffe4e6;
+}
+
+/* --------------------------------------------------------------------------
+   9. Common Layout Helpers
+   -------------------------------------------------------------------------- */
+
+.cp-container {
+    width: min(100% - 2rem, var(--cp-content-max-width));
+    margin-inline: auto;
+}
+
+.cp-section {
+    padding-block: var(--cp-space-8);
+}
+
+.cp-stack {
+    display: flex;
+    flex-direction: column;
+}
+
+.cp-stack--2 { gap: var(--cp-space-2); }
+.cp-stack--3 { gap: var(--cp-space-3); }
+.cp-stack--4 { gap: var(--cp-space-4); }
+.cp-stack--6 { gap: var(--cp-space-6); }
+.cp-stack--8 { gap: var(--cp-space-8); }
+
+.cp-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cp-space-3);
+}
+
+.cp-grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--cp-space-4);
+}
+
+.cp-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--cp-divider);
+    border: 0;
+}
+
+.cp-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cp-muted {
+    color: var(--cp-text-muted);
+}
+
+.cp-text-danger {
+    color: var(--cp-danger);
+}
+
+.cp-text-success {
+    color: var(--cp-success);
+}
+
+/* --------------------------------------------------------------------------
+   10. Loading States
+   -------------------------------------------------------------------------- */
+
+.cp-spinner {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: currentColor;
+    border-radius: var(--cp-radius-full);
+    animation: cp-spin 0.8s linear infinite;
+}
+
+.cp-skeleton {
+    min-height: 1rem;
+    overflow: hidden;
+    background: linear-gradient(
+        90deg,
+        rgba(226, 232, 240, 0.72) 25%,
+        rgba(248, 250, 252, 0.95) 50%,
+        rgba(226, 232, 240, 0.72) 75%
+    );
+    background-size: 200% 100%;
+    border-radius: var(--cp-radius-md);
+    animation: cp-shimmer 1.4s infinite linear;
+}
+
+/* --------------------------------------------------------------------------
+   11. Scrollbar
+   -------------------------------------------------------------------------- */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(77, 169, 255, 0.6) rgba(226, 232, 240, 0.5);
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(226, 232, 240, 0.5);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--cp-brand-400), var(--cp-violet-400));
+    border: 2px solid rgba(248, 250, 252, 0.85);
+    border-radius: var(--cp-radius-full);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--cp-brand-500), var(--cp-violet-500));
+}
+
+/* --------------------------------------------------------------------------
+   12. Animations
+   -------------------------------------------------------------------------- */
+
+@keyframes cp-float {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, -16px, 0);
+    }
+}
+
+@keyframes cp-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes cp-shimmer {
+    from {
+        background-position: 200% 0;
+    }
+    to {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes cp-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cp-animate-in {
+    animation: cp-fade-in var(--cp-duration-slow) var(--cp-ease-standard) both;
+}
+
+/* --------------------------------------------------------------------------
+   13. Responsive Rules
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+    :root {
+        --cp-topbar-height: 4rem;
+    }
+
+    .cp-container {
+        width: min(100% - 1.25rem, var(--cp-content-max-width));
+    }
+
+    .cp-section {
+        padding-block: var(--cp-space-6);
+    }
+
+    .cp-button--mobile-full {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    :root {
+        --cp-sidebar-width: 15rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   14. User Preferences and Print
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-contrast: more) {
+    :root {
+        --cp-control-border: rgba(51, 65, 85, 0.75);
+        --cp-glass-border: rgba(100, 116, 139, 0.55);
+        --cp-text-muted: var(--cp-slate-600);
+    }
+}
+
+@media print {
+    body {
+        color: #000000;
+        background: #ffffff !important;
+    }
+
+    .cp-background-orb,
+    .cp-no-print {
+        display: none !important;
+    }
+
+    .cp-glass-panel,
+    .cp-glass-card {
+        background: #ffffff;
+        border: 1px solid #d1d5db;
+        box-shadow: none;
+    }
+}

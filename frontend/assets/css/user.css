@@ -1,0 +1,815 @@
+/* ============================================================================
+   ConnectPro General User Stylesheet
+   File: frontend/assets/css/user.css
+   Load order:
+   1. main.css
+   2. glassmorphism.css
+   3. components.css
+   4. user.css
+   Purpose: Read-only user dashboard, directory, department, and contact detail
+   ============================================================================ */
+
+/* --------------------------------------------------------------------------
+   1. User Theme Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+    --cp-user-accent: #2388f5;
+    --cp-user-accent-dark: #1755a3;
+    --cp-user-green: #10b981;
+    --cp-user-sidebar-width: 16rem;
+    --cp-user-content-gap: 1.25rem;
+    --cp-user-highlight: rgba(219, 237, 255, 0.72);
+    --cp-user-readonly: rgba(241, 245, 249, 0.72);
+}
+
+/* --------------------------------------------------------------------------
+   2. User Application Layout
+   -------------------------------------------------------------------------- */
+
+.cp-user-layout {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: var(--cp-user-sidebar-width) minmax(0, 1fr);
+    gap: var(--cp-user-content-gap);
+    padding: var(--cp-space-4);
+}
+
+.cp-user-sidebar {
+    width: 100%;
+}
+
+.cp-user-main {
+    min-width: 0;
+}
+
+.cp-user-content {
+    width: 100%;
+    max-width: var(--cp-content-max-width);
+    margin-inline: auto;
+    padding: var(--cp-space-5) 0;
+}
+
+.cp-user-page-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    gap: var(--cp-space-5);
+    align-items: start;
+}
+
+.cp-user-primary-column,
+.cp-user-aside-column {
+    display: grid;
+    min-width: 0;
+    gap: var(--cp-space-5);
+}
+
+/* --------------------------------------------------------------------------
+   3. User Profile and Role
+   -------------------------------------------------------------------------- */
+
+.cp-user-profile {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: var(--cp-space-3);
+}
+
+.cp-user-profile__content {
+    min-width: 0;
+}
+
+.cp-user-profile__name,
+.cp-user-profile__role {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cp-user-profile__name {
+    color: var(--cp-slate-800);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 750;
+}
+
+.cp-user-profile__role {
+    margin-top: 0.15rem;
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+}
+
+.cp-user-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.38rem 0.68rem;
+    color: #0369a1;
+    background: rgba(224, 242, 254, 0.86);
+    border: 1px solid rgba(186, 230, 253, 0.95);
+    border-radius: var(--cp-radius-full);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 750;
+}
+
+.cp-user-badge::before {
+    width: 0.45rem;
+    height: 0.45rem;
+    background: var(--cp-user-accent);
+    border-radius: var(--cp-radius-full);
+    box-shadow: 0 0 0 4px rgba(35, 136, 245, 0.12);
+    content: "";
+}
+
+/* --------------------------------------------------------------------------
+   4. User Sidebar
+   -------------------------------------------------------------------------- */
+
+.cp-user-nav-group {
+    display: grid;
+    gap: var(--cp-space-2);
+}
+
+.cp-user-nav-group__label {
+    padding-inline: 0.85rem;
+    color: var(--cp-text-muted);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.cp-user-sidebar-footer {
+    margin-top: auto;
+    padding: var(--cp-space-4);
+    border-top: 1px solid rgba(203, 213, 225, 0.48);
+}
+
+.cp-user-help-card {
+    padding: var(--cp-space-4);
+    color: var(--cp-slate-600);
+    background: rgba(219, 237, 255, 0.55);
+    border: 1px solid rgba(185, 220, 255, 0.76);
+    border-radius: var(--cp-radius-xl);
+    font-size: var(--cp-font-size-xs);
+    line-height: 1.6;
+}
+
+.cp-user-help-card__title {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--cp-brand-700);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 750;
+}
+
+/* --------------------------------------------------------------------------
+   5. Welcome Banner
+   -------------------------------------------------------------------------- */
+
+.cp-user-welcome {
+    position: relative;
+    min-height: 11rem;
+    overflow: hidden;
+    padding: clamp(1.4rem, 4vw, 2rem);
+    color: var(--cp-white);
+    background: var(--cp-brand-gradient);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--cp-radius-3xl);
+    box-shadow: var(--cp-glass-shadow-lg);
+}
+
+.cp-user-welcome::before,
+.cp-user-welcome::after {
+    position: absolute;
+    border-radius: var(--cp-radius-full);
+    pointer-events: none;
+    content: "";
+}
+
+.cp-user-welcome::before {
+    top: -5rem;
+    right: -3rem;
+    width: 14rem;
+    height: 14rem;
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.cp-user-welcome::after {
+    right: 22%;
+    bottom: -6rem;
+    width: 12rem;
+    height: 12rem;
+    background: rgba(52, 211, 153, 0.18);
+}
+
+.cp-user-welcome__content {
+    position: relative;
+    z-index: 1;
+    max-width: 42rem;
+}
+
+.cp-user-welcome__eyebrow {
+    margin-bottom: var(--cp-space-2);
+    color: rgba(255, 255, 255, 0.74);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.cp-user-welcome__title {
+    margin-bottom: var(--cp-space-3);
+    color: var(--cp-white);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    letter-spacing: -0.035em;
+}
+
+.cp-user-welcome__description {
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--cp-font-size-sm);
+    line-height: var(--cp-line-height-relaxed);
+}
+
+/* --------------------------------------------------------------------------
+   6. Directory Search and Filters
+   -------------------------------------------------------------------------- */
+
+.cp-user-directory-search {
+    display: grid;
+    grid-template-columns: minmax(14rem, 1fr) repeat(2, minmax(9rem, 12rem));
+    gap: var(--cp-space-3);
+    padding: var(--cp-space-4);
+}
+
+.cp-user-search-hint {
+    display: flex;
+    align-items: center;
+    gap: var(--cp-space-2);
+    margin-top: var(--cp-space-3);
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+}
+
+.cp-user-search-hint kbd {
+    padding: 0.18rem 0.42rem;
+    color: var(--cp-slate-600);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(203, 213, 225, 0.72);
+    border-bottom-width: 2px;
+    border-radius: var(--cp-radius-sm);
+    font-family: var(--cp-font-sans);
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   7. Read-only Contact Directory
+   -------------------------------------------------------------------------- */
+
+.cp-user-contact-table {
+    width: 100%;
+    min-width: 52rem;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.cp-user-contact-table th,
+.cp-user-contact-table td {
+    padding: 0.95rem 1rem;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(203, 213, 225, 0.46);
+}
+
+.cp-user-contact-table th {
+    color: var(--cp-slate-500);
+    background: rgba(241, 245, 249, 0.62);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+}
+
+.cp-user-contact-table td {
+    color: var(--cp-slate-600);
+    background: rgba(255, 255, 255, 0.16);
+    font-size: var(--cp-font-size-sm);
+}
+
+.cp-user-contact-table tbody tr {
+    cursor: pointer;
+    transition:
+        background-color var(--cp-duration-fast) var(--cp-ease-standard),
+        transform var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-user-contact-table tbody tr:hover td,
+.cp-user-contact-table tbody tr:focus-within td {
+    background: rgba(238, 247, 255, 0.72);
+}
+
+.cp-user-contact-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.cp-user-contact-actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.35rem;
+}
+
+.cp-user-contact-action {
+    display: inline-grid;
+    width: 2.35rem;
+    height: 2.35rem;
+    place-items: center;
+    padding: 0;
+    color: var(--cp-slate-500);
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(203, 213, 225, 0.64);
+    border-radius: var(--cp-radius-md);
+}
+
+.cp-user-contact-action:hover {
+    color: var(--cp-brand-700);
+    background: var(--cp-white);
+    border-color: var(--cp-brand-300);
+}
+
+.cp-user-contact-action--call:hover {
+    color: #047857;
+    background: rgba(209, 250, 229, 0.82);
+    border-color: rgba(167, 243, 208, 0.95);
+}
+
+/* --------------------------------------------------------------------------
+   8. User Contact Cards
+   -------------------------------------------------------------------------- */
+
+.cp-user-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: var(--cp-space-4);
+}
+
+.cp-user-contact-card {
+    position: relative;
+    display: flex;
+    min-height: 18rem;
+    flex-direction: column;
+    overflow: hidden;
+    padding: var(--cp-space-5);
+}
+
+.cp-user-contact-card__status {
+    position: absolute;
+    top: var(--cp-space-4);
+    right: var(--cp-space-4);
+}
+
+.cp-user-contact-card__person {
+    display: grid;
+    justify-items: center;
+    padding-top: var(--cp-space-3);
+    text-align: center;
+}
+
+.cp-user-contact-card__person .cp-glass-avatar {
+    width: 4.25rem;
+    height: 4.25rem;
+    font-size: var(--cp-font-size-lg);
+}
+
+.cp-user-contact-card__name {
+    margin: var(--cp-space-4) 0 0.3rem;
+    font-size: var(--cp-font-size-base);
+}
+
+.cp-user-contact-card__position {
+    margin-bottom: 0;
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+}
+
+.cp-user-contact-card__meta {
+    display: grid;
+    gap: var(--cp-space-3);
+    margin-top: var(--cp-space-5);
+}
+
+.cp-user-contact-card__row {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: var(--cp-space-3);
+    color: var(--cp-text-secondary);
+    font-size: var(--cp-font-size-sm);
+}
+
+.cp-user-contact-card__row svg {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    color: var(--cp-brand-500);
+}
+
+.cp-user-contact-card__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--cp-space-2);
+    margin-top: auto;
+    padding-top: var(--cp-space-5);
+}
+
+/* --------------------------------------------------------------------------
+   9. Contact Detail
+   -------------------------------------------------------------------------- */
+
+.cp-user-contact-detail {
+    display: grid;
+    grid-template-columns: 17rem minmax(0, 1fr);
+    gap: var(--cp-space-5);
+}
+
+.cp-user-contact-detail__profile {
+    display: grid;
+    align-content: start;
+    justify-items: center;
+    padding: var(--cp-space-6);
+    text-align: center;
+}
+
+.cp-user-contact-detail__profile .cp-glass-avatar {
+    width: 7rem;
+    height: 7rem;
+    font-size: var(--cp-font-size-2xl);
+}
+
+.cp-user-contact-detail__name {
+    margin: var(--cp-space-5) 0 0.35rem;
+    font-size: var(--cp-font-size-xl);
+}
+
+.cp-user-contact-detail__position {
+    margin-bottom: var(--cp-space-4);
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-sm);
+}
+
+.cp-user-contact-detail__content {
+    display: grid;
+    gap: var(--cp-space-5);
+}
+
+.cp-user-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--cp-space-4);
+}
+
+.cp-user-detail-item {
+    min-width: 0;
+    padding: var(--cp-space-4);
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(203, 213, 225, 0.48);
+    border-radius: var(--cp-radius-lg);
+}
+
+.cp-user-detail-item__label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 700;
+}
+
+.cp-user-detail-item__value {
+    display: block;
+    overflow-wrap: anywhere;
+    color: var(--cp-slate-700);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 650;
+}
+
+.cp-user-private-value {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--cp-space-2);
+    color: var(--cp-text-muted);
+    font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   10. Department Browser
+   -------------------------------------------------------------------------- */
+
+.cp-user-department-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+    gap: var(--cp-space-4);
+}
+
+.cp-user-department-card {
+    position: relative;
+    display: flex;
+    min-height: 9rem;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: var(--cp-space-5);
+    color: var(--cp-slate-700);
+}
+
+.cp-user-department-card::after {
+    position: absolute;
+    top: -2.75rem;
+    right: -2.75rem;
+    width: 7.5rem;
+    height: 7.5rem;
+    background: color-mix(in srgb, var(--department-color, var(--cp-brand-500)) 15%, transparent);
+    border-radius: var(--cp-radius-full);
+    content: "";
+}
+
+.cp-user-department-card__header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--cp-space-3);
+}
+
+.cp-user-department-card__name {
+    margin-bottom: 0;
+    font-size: var(--cp-font-size-base);
+}
+
+.cp-user-department-card__code {
+    color: var(--cp-text-muted);
+    font-family: var(--cp-font-mono);
+    font-size: 0.68rem;
+}
+
+.cp-user-department-card__footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cp-space-3);
+    margin-top: var(--cp-space-5);
+}
+
+.cp-user-department-card__count {
+    color: var(--cp-text-secondary);
+    font-size: var(--cp-font-size-xs);
+}
+
+.cp-user-department-card__link {
+    color: var(--cp-brand-600);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 750;
+}
+
+/* --------------------------------------------------------------------------
+   11. Department Overview and Directory Widgets
+   -------------------------------------------------------------------------- */
+
+.cp-user-widget {
+    min-width: 0;
+    padding: var(--cp-space-5);
+}
+
+.cp-user-widget__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cp-space-3);
+    margin-bottom: var(--cp-space-4);
+}
+
+.cp-user-widget__title {
+    margin-bottom: 0;
+    font-size: var(--cp-font-size-base);
+}
+
+.cp-user-widget__link {
+    color: var(--cp-brand-600);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 750;
+}
+
+.cp-user-department-list {
+    display: grid;
+    gap: var(--cp-space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cp-user-department-list__item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--cp-space-3);
+}
+
+.cp-user-department-list__name {
+    overflow: hidden;
+    color: var(--cp-slate-600);
+    font-size: var(--cp-font-size-xs);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cp-user-department-list__count {
+    color: var(--cp-text-muted);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   12. Privacy and Read-only States
+   -------------------------------------------------------------------------- */
+
+.cp-user-readonly-note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--cp-space-3);
+    padding: var(--cp-space-3) var(--cp-space-4);
+    color: var(--cp-slate-600);
+    background: var(--cp-user-readonly);
+    border: 1px solid rgba(203, 213, 225, 0.7);
+    border-radius: var(--cp-radius-lg);
+    font-size: var(--cp-font-size-xs);
+    line-height: 1.6;
+}
+
+.cp-user-readonly-note svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: 0 0 auto;
+    color: var(--cp-brand-500);
+}
+
+[data-admin-only],
+.cp-admin-only {
+    display: none !important;
+}
+
+.cp-user-disabled-action {
+    opacity: 0.48;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   13. Mobile Contact List
+   -------------------------------------------------------------------------- */
+
+.cp-user-mobile-list {
+    display: none;
+    gap: var(--cp-space-3);
+}
+
+.cp-user-mobile-item {
+    padding: var(--cp-space-4);
+}
+
+.cp-user-mobile-item__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--cp-space-3);
+}
+
+.cp-user-mobile-item__meta {
+    display: grid;
+    gap: var(--cp-space-2);
+    margin-top: var(--cp-space-4);
+    color: var(--cp-text-secondary);
+    font-size: var(--cp-font-size-xs);
+}
+
+.cp-user-mobile-item__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--cp-space-2);
+    margin-top: var(--cp-space-4);
+    padding-top: var(--cp-space-3);
+    border-top: 1px solid rgba(203, 213, 225, 0.48);
+}
+
+/* --------------------------------------------------------------------------
+   14. Responsive Rules
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1279px) {
+    .cp-user-page-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-user-aside-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1199px) {
+    .cp-user-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-user-sidebar {
+        width: min(19rem, calc(100vw - 2rem));
+    }
+}
+
+@media (max-width: 767px) {
+    .cp-user-layout {
+        gap: var(--cp-space-3);
+        padding: var(--cp-space-3);
+    }
+
+    .cp-user-content {
+        padding: var(--cp-space-3) 0;
+    }
+
+    .cp-user-directory-search,
+    .cp-user-aside-column,
+    .cp-user-contact-detail,
+    .cp-user-detail-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cp-user-directory-search {
+        padding: var(--cp-space-3);
+    }
+
+    .cp-user-welcome {
+        min-height: 10rem;
+        border-radius: var(--cp-radius-2xl);
+    }
+
+    .cp-user-contact-table-wrap {
+        display: none;
+    }
+
+    .cp-user-mobile-list {
+        display: grid;
+    }
+
+    .cp-user-contact-detail__profile {
+        padding: var(--cp-space-5);
+    }
+
+    .cp-user-contact-detail__profile .cp-glass-avatar {
+        width: 5.75rem;
+        height: 5.75rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   15. Fallbacks, Accessibility, and Print
+   -------------------------------------------------------------------------- */
+
+@supports not (background: color-mix(in srgb, red, white)) {
+    .cp-user-department-card::after {
+        background: rgba(35, 136, 245, 0.12);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cp-user-contact-table tbody tr,
+    .cp-user-contact-action,
+    .cp-user-department-card {
+        transition: none !important;
+    }
+}
+
+@media print {
+    .cp-user-sidebar,
+    .cp-user-directory-search,
+    .cp-user-contact-actions,
+    .cp-user-contact-card__actions,
+    .cp-user-mobile-item__actions,
+    .cp-user-search-hint {
+        display: none !important;
+    }
+
+    .cp-user-layout,
+    .cp-user-page-grid,
+    .cp-user-contact-detail {
+        display: block;
+        padding: 0;
+    }
+
+    .cp-user-contact-table {
+        min-width: 0;
+    }
+}
+'''

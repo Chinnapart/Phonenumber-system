@@ -1,0 +1,771 @@
+/* ============================================================================
+   ConnectPro Glassmorphism Stylesheet
+   File: frontend/assets/css/glassmorphism.css
+   Dependency: main.css must be loaded first
+   Purpose: Glass surfaces, panels, cards, overlays, menus, and visual effects
+   ============================================================================ */
+
+/* --------------------------------------------------------------------------
+   1. Glass Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+    --cp-glass-blur-sm: 10px;
+    --cp-glass-blur-md: 18px;
+    --cp-glass-blur-lg: 26px;
+    --cp-glass-blur-xl: 34px;
+
+    --cp-glass-white-35: rgba(255, 255, 255, 0.35);
+    --cp-glass-white-48: rgba(255, 255, 255, 0.48);
+    --cp-glass-white-58: rgba(255, 255, 255, 0.58);
+    --cp-glass-white-68: rgba(255, 255, 255, 0.68);
+    --cp-glass-white-78: rgba(255, 255, 255, 0.78);
+    --cp-glass-white-88: rgba(255, 255, 255, 0.88);
+
+    --cp-glass-border-soft: rgba(255, 255, 255, 0.58);
+    --cp-glass-border-normal: rgba(255, 255, 255, 0.78);
+    --cp-glass-border-strong: rgba(255, 255, 255, 0.94);
+    --cp-glass-inner-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+
+    --cp-glass-shadow-sm:
+        0 8px 24px rgba(42, 82, 142, 0.08),
+        var(--cp-glass-inner-highlight);
+    --cp-glass-shadow-md:
+        0 16px 42px rgba(42, 82, 142, 0.12),
+        var(--cp-glass-inner-highlight);
+    --cp-glass-shadow-lg:
+        0 28px 72px rgba(42, 82, 142, 0.17),
+        var(--cp-glass-inner-highlight);
+
+    --cp-glass-blue: rgba(219, 239, 255, 0.58);
+    --cp-glass-violet: rgba(237, 229, 255, 0.56);
+    --cp-glass-green: rgba(220, 252, 239, 0.56);
+    --cp-glass-amber: rgba(255, 247, 214, 0.62);
+    --cp-glass-rose: rgba(255, 228, 233, 0.56);
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Glass Surface
+   -------------------------------------------------------------------------- */
+
+.cp-glass {
+    position: relative;
+    isolation: isolate;
+    background: var(--cp-glass-white-58);
+    border: 1px solid var(--cp-glass-border-normal);
+    box-shadow: var(--cp-glass-shadow-md);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-md)) saturate(145%);
+    backdrop-filter: blur(var(--cp-glass-blur-md)) saturate(145%);
+}
+
+.cp-glass::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.44),
+        rgba(255, 255, 255, 0.08) 52%,
+        rgba(193, 221, 255, 0.12)
+    );
+    pointer-events: none;
+    content: "";
+}
+
+.cp-glass--subtle {
+    background: var(--cp-glass-white-35);
+    border-color: var(--cp-glass-border-soft);
+    box-shadow: var(--cp-glass-shadow-sm);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-sm)) saturate(125%);
+    backdrop-filter: blur(var(--cp-glass-blur-sm)) saturate(125%);
+}
+
+.cp-glass--strong {
+    background: var(--cp-glass-white-78);
+    border-color: var(--cp-glass-border-strong);
+    box-shadow: var(--cp-glass-shadow-lg);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-lg)) saturate(160%);
+    backdrop-filter: blur(var(--cp-glass-blur-lg)) saturate(160%);
+}
+
+.cp-glass--solid {
+    background: var(--cp-glass-white-88);
+    border-color: var(--cp-glass-border-strong);
+    box-shadow: var(--cp-glass-shadow-md);
+}
+
+/* --------------------------------------------------------------------------
+   3. Colored Glass Variants
+   -------------------------------------------------------------------------- */
+
+.cp-glass--blue {
+    background: var(--cp-glass-blue);
+    border-color: rgba(186, 230, 253, 0.76);
+}
+
+.cp-glass--violet {
+    background: var(--cp-glass-violet);
+    border-color: rgba(221, 214, 254, 0.78);
+}
+
+.cp-glass--green {
+    background: var(--cp-glass-green);
+    border-color: rgba(167, 243, 208, 0.74);
+}
+
+.cp-glass--amber {
+    background: var(--cp-glass-amber);
+    border-color: rgba(253, 230, 138, 0.76);
+}
+
+.cp-glass--rose {
+    background: var(--cp-glass-rose);
+    border-color: rgba(254, 205, 211, 0.78);
+}
+
+/* --------------------------------------------------------------------------
+   4. Application Shell
+   -------------------------------------------------------------------------- */
+
+.cp-app-shell {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: var(--cp-sidebar-width) minmax(0, 1fr);
+    gap: var(--cp-space-4);
+    padding: var(--cp-space-4);
+}
+
+.cp-app-main {
+    min-width: 0;
+    padding: 0;
+}
+
+.cp-app-content {
+    width: 100%;
+    max-width: var(--cp-content-max-width);
+    margin-inline: auto;
+    padding: var(--cp-space-5);
+}
+
+/* --------------------------------------------------------------------------
+   5. Sidebar Glass
+   -------------------------------------------------------------------------- */
+
+.cp-glass-sidebar {
+    position: sticky;
+    top: var(--cp-space-4);
+    display: flex;
+    height: calc(100vh - (var(--cp-space-4) * 2));
+    flex-direction: column;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid var(--cp-glass-border-normal);
+    border-radius: var(--cp-radius-3xl);
+    box-shadow: var(--cp-glass-shadow-lg);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-lg)) saturate(150%);
+    backdrop-filter: blur(var(--cp-glass-blur-lg)) saturate(150%);
+}
+
+.cp-glass-sidebar::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 20% 5%, rgba(77, 169, 255, 0.18), transparent 34%),
+        radial-gradient(circle at 92% 86%, rgba(139, 92, 246, 0.13), transparent 36%);
+    pointer-events: none;
+    content: "";
+}
+
+.cp-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--cp-space-3);
+    padding: var(--cp-space-6);
+    border-bottom: 1px solid rgba(203, 213, 225, 0.42);
+}
+
+.cp-sidebar-nav {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--cp-space-2);
+    overflow-y: auto;
+    padding: var(--cp-space-4);
+}
+
+.cp-sidebar-link {
+    position: relative;
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: var(--cp-space-3);
+    padding: 0.75rem 0.9rem;
+    color: var(--cp-slate-600);
+    border: 1px solid transparent;
+    border-radius: var(--cp-radius-lg);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 650;
+    transition:
+        color var(--cp-duration-fast) var(--cp-ease-standard),
+        background-color var(--cp-duration-fast) var(--cp-ease-standard),
+        border-color var(--cp-duration-fast) var(--cp-ease-standard),
+        transform var(--cp-duration-fast) var(--cp-ease-standard),
+        box-shadow var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-sidebar-link:hover {
+    color: var(--cp-brand-700);
+    background: rgba(255, 255, 255, 0.68);
+    border-color: rgba(185, 220, 255, 0.7);
+    box-shadow: var(--cp-glass-shadow-sm);
+    transform: translateX(3px);
+}
+
+.cp-sidebar-link[aria-current="page"],
+.cp-sidebar-link.is-active {
+    color: var(--cp-white);
+    background: var(--cp-button-gradient);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 12px 26px rgba(35, 136, 245, 0.22);
+}
+
+.cp-sidebar-link[aria-current="page"]::after,
+.cp-sidebar-link.is-active::after {
+    position: absolute;
+    right: 0.75rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    background: var(--cp-white);
+    border-radius: var(--cp-radius-full);
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.16);
+    content: "";
+}
+
+/* --------------------------------------------------------------------------
+   6. Topbar Glass
+   -------------------------------------------------------------------------- */
+
+.cp-glass-topbar {
+    position: sticky;
+    top: var(--cp-space-4);
+    z-index: var(--cp-z-sticky);
+    display: flex;
+    min-height: var(--cp-topbar-height);
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cp-space-4);
+    padding: var(--cp-space-3) var(--cp-space-5);
+    background: rgba(255, 255, 255, 0.64);
+    border: 1px solid var(--cp-glass-border-normal);
+    border-radius: var(--cp-radius-2xl);
+    box-shadow: var(--cp-glass-shadow-md);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-lg)) saturate(150%);
+    backdrop-filter: blur(var(--cp-glass-blur-lg)) saturate(150%);
+}
+
+.cp-topbar-search {
+    display: flex;
+    width: min(100%, 34rem);
+    align-items: center;
+    gap: var(--cp-space-3);
+    min-height: 2.85rem;
+    padding-inline: var(--cp-space-4);
+    background: rgba(255, 255, 255, 0.56);
+    border: 1px solid rgba(185, 220, 255, 0.58);
+    border-radius: var(--cp-radius-full);
+    transition:
+        background-color var(--cp-duration-fast) var(--cp-ease-standard),
+        border-color var(--cp-duration-fast) var(--cp-ease-standard),
+        box-shadow var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-topbar-search:focus-within {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--cp-brand-400);
+    box-shadow: var(--cp-shadow-focus);
+}
+
+.cp-topbar-search input {
+    width: 100%;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. Dashboard and Content Cards
+   -------------------------------------------------------------------------- */
+
+.cp-glass-dashboard-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    padding: var(--cp-space-5);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--cp-glass-border-normal);
+    border-radius: var(--cp-radius-2xl);
+    box-shadow: var(--cp-glass-shadow-md);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-md)) saturate(145%);
+    backdrop-filter: blur(var(--cp-glass-blur-md)) saturate(145%);
+    transition:
+        transform var(--cp-duration-normal) var(--cp-ease-standard),
+        box-shadow var(--cp-duration-normal) var(--cp-ease-standard),
+        border-color var(--cp-duration-normal) var(--cp-ease-standard);
+}
+
+.cp-glass-dashboard-card::before {
+    position: absolute;
+    top: -3rem;
+    right: -3rem;
+    width: 8rem;
+    height: 8rem;
+    background: rgba(77, 169, 255, 0.12);
+    border-radius: var(--cp-radius-full);
+    content: "";
+}
+
+.cp-glass-dashboard-card:hover {
+    border-color: rgba(185, 220, 255, 0.94);
+    box-shadow: var(--cp-glass-shadow-lg);
+    transform: translateY(-4px);
+}
+
+.cp-glass-section {
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid var(--cp-glass-border-normal);
+    border-radius: var(--cp-radius-2xl);
+    box-shadow: var(--cp-glass-shadow-md);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-md)) saturate(140%);
+    backdrop-filter: blur(var(--cp-glass-blur-md)) saturate(140%);
+}
+
+.cp-glass-section__header,
+.cp-glass-section__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cp-space-4);
+    padding: var(--cp-space-4) var(--cp-space-5);
+}
+
+.cp-glass-section__header {
+    border-bottom: 1px solid rgba(203, 213, 225, 0.48);
+}
+
+.cp-glass-section__footer {
+    border-top: 1px solid rgba(203, 213, 225, 0.48);
+}
+
+.cp-glass-section__body {
+    padding: var(--cp-space-5);
+}
+
+/* --------------------------------------------------------------------------
+   8. Glass Table
+   -------------------------------------------------------------------------- */
+
+.cp-glass-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: var(--cp-radius-xl);
+}
+
+.cp-glass-table {
+    width: 100%;
+    min-width: 48rem;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.cp-glass-table th,
+.cp-glass-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(203, 213, 225, 0.46);
+}
+
+.cp-glass-table th {
+    color: var(--cp-slate-500);
+    background: rgba(241, 245, 249, 0.48);
+    font-size: var(--cp-font-size-xs);
+    font-weight: 750;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.cp-glass-table td {
+    color: var(--cp-slate-600);
+    background: rgba(255, 255, 255, 0.2);
+    font-size: var(--cp-font-size-sm);
+}
+
+.cp-glass-table tbody tr {
+    transition:
+        background-color var(--cp-duration-fast) var(--cp-ease-standard),
+        transform var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-glass-table tbody tr:hover td {
+    background: rgba(238, 247, 255, 0.68);
+}
+
+.cp-glass-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   9. Dropdowns, Popovers, and Tooltips
+   -------------------------------------------------------------------------- */
+
+.cp-glass-dropdown,
+.cp-glass-popover {
+    z-index: var(--cp-z-dropdown);
+    min-width: 13rem;
+    padding: var(--cp-space-2);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--cp-glass-border-strong);
+    border-radius: var(--cp-radius-xl);
+    box-shadow: var(--cp-glass-shadow-lg);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-lg)) saturate(160%);
+    backdrop-filter: blur(var(--cp-glass-blur-lg)) saturate(160%);
+}
+
+.cp-glass-dropdown__item {
+    display: flex;
+    width: 100%;
+    min-height: 2.6rem;
+    align-items: center;
+    gap: var(--cp-space-3);
+    padding: 0.65rem 0.75rem;
+    color: var(--cp-slate-600);
+    background: transparent;
+    border: 0;
+    border-radius: var(--cp-radius-md);
+    font-size: var(--cp-font-size-sm);
+    text-align: left;
+    transition:
+        color var(--cp-duration-fast) var(--cp-ease-standard),
+        background-color var(--cp-duration-fast) var(--cp-ease-standard);
+}
+
+.cp-glass-dropdown__item:hover,
+.cp-glass-dropdown__item:focus-visible {
+    color: var(--cp-brand-700);
+    background: rgba(217, 237, 255, 0.72);
+}
+
+.cp-glass-tooltip {
+    max-width: 16rem;
+    padding: 0.48rem 0.7rem;
+    color: var(--cp-white);
+    background: rgba(15, 23, 42, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--cp-radius-md);
+    box-shadow: var(--cp-shadow-md);
+    font-size: var(--cp-font-size-xs);
+    line-height: 1.45;
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-sm));
+    backdrop-filter: blur(var(--cp-glass-blur-sm));
+}
+
+/* --------------------------------------------------------------------------
+   10. Modal and Overlay
+   -------------------------------------------------------------------------- */
+
+.cp-glass-overlay {
+    position: fixed;
+    z-index: var(--cp-z-overlay);
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: var(--cp-space-4);
+    background: rgba(15, 23, 42, 0.28);
+    -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
+}
+
+.cp-glass-modal {
+    position: relative;
+    z-index: var(--cp-z-modal);
+    width: min(100%, 42rem);
+    max-height: min(90vh, 52rem);
+    overflow: auto;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--cp-glass-border-strong);
+    border-radius: var(--cp-radius-3xl);
+    box-shadow: 0 36px 100px rgba(15, 23, 42, 0.24);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-xl)) saturate(170%);
+    backdrop-filter: blur(var(--cp-glass-blur-xl)) saturate(170%);
+    animation: cp-glass-modal-in var(--cp-duration-slow) var(--cp-ease-standard) both;
+}
+
+.cp-glass-modal__header,
+.cp-glass-modal__body,
+.cp-glass-modal__footer {
+    padding: var(--cp-space-5) var(--cp-space-6);
+}
+
+.cp-glass-modal__header {
+    border-bottom: 1px solid rgba(203, 213, 225, 0.52);
+}
+
+.cp-glass-modal__footer {
+    border-top: 1px solid rgba(203, 213, 225, 0.52);
+}
+
+/* --------------------------------------------------------------------------
+   11. Avatar and Icon Glass
+   -------------------------------------------------------------------------- */
+
+.cp-glass-icon {
+    display: inline-grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: 0 0 auto;
+    place-items: center;
+    color: var(--cp-brand-600);
+    background: rgba(255, 255, 255, 0.64);
+    border: 1px solid var(--cp-glass-border-strong);
+    border-radius: var(--cp-radius-lg);
+    box-shadow: var(--cp-glass-shadow-sm);
+    -webkit-backdrop-filter: blur(var(--cp-glass-blur-sm));
+    backdrop-filter: blur(var(--cp-glass-blur-sm));
+}
+
+.cp-glass-avatar {
+    position: relative;
+    display: inline-grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: 0 0 auto;
+    place-items: center;
+    overflow: hidden;
+    color: var(--cp-brand-700);
+    background: linear-gradient(135deg, var(--cp-brand-100), #ede9fe);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: var(--cp-radius-full);
+    box-shadow: var(--cp-glass-shadow-sm);
+    font-size: var(--cp-font-size-sm);
+    font-weight: 750;
+}
+
+.cp-glass-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cp-glass-avatar__status {
+    position: absolute;
+    right: -0.08rem;
+    bottom: -0.08rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    background: var(--cp-online);
+    border: 2px solid var(--cp-white);
+    border-radius: var(--cp-radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   12. Interactive Effects
+   -------------------------------------------------------------------------- */
+
+.cp-glass-hover {
+    transition:
+        transform var(--cp-duration-normal) var(--cp-ease-standard),
+        box-shadow var(--cp-duration-normal) var(--cp-ease-standard),
+        border-color var(--cp-duration-normal) var(--cp-ease-standard),
+        background-color var(--cp-duration-normal) var(--cp-ease-standard);
+}
+
+.cp-glass-hover:hover {
+    background-color: rgba(255, 255, 255, 0.76);
+    border-color: var(--cp-glass-border-strong);
+    box-shadow: var(--cp-glass-shadow-lg);
+    transform: translateY(-3px);
+}
+
+.cp-glass-press:active {
+    transform: scale(0.985);
+}
+
+.cp-glass-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.cp-glass-shine::after {
+    position: absolute;
+    top: -140%;
+    left: -50%;
+    width: 32%;
+    height: 360%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.5),
+        transparent
+    );
+    opacity: 0;
+    pointer-events: none;
+    content: "";
+    transform: rotate(18deg);
+    transition: left 650ms ease, opacity 180ms ease;
+}
+
+.cp-glass-shine:hover::after {
+    left: 125%;
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   13. Responsive Behavior
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1199px) {
+    .cp-app-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .cp-glass-sidebar {
+        position: fixed;
+        z-index: var(--cp-z-modal);
+        top: var(--cp-space-3);
+        bottom: var(--cp-space-3);
+        left: var(--cp-space-3);
+        width: min(19rem, calc(100vw - 2rem));
+        height: auto;
+        transform: translateX(calc(-100% - 2rem));
+        transition: transform var(--cp-duration-slow) var(--cp-ease-standard);
+    }
+
+    .cp-glass-sidebar.is-open {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 767px) {
+    .cp-app-shell {
+        gap: var(--cp-space-3);
+        padding: var(--cp-space-3);
+    }
+
+    .cp-app-content {
+        padding: var(--cp-space-3) 0;
+    }
+
+    .cp-glass-topbar {
+        top: var(--cp-space-3);
+        padding: var(--cp-space-3);
+        border-radius: var(--cp-radius-xl);
+    }
+
+    .cp-topbar-search {
+        width: 100%;
+    }
+
+    .cp-glass-dashboard-card,
+    .cp-glass-section__body {
+        padding: var(--cp-space-4);
+    }
+
+    .cp-glass-modal {
+        max-height: calc(100vh - 1.5rem);
+        border-radius: var(--cp-radius-2xl);
+    }
+
+    .cp-glass-modal__header,
+    .cp-glass-modal__body,
+    .cp-glass-modal__footer {
+        padding: var(--cp-space-4);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   14. Browser Fallback, Accessibility, and Print
+   -------------------------------------------------------------------------- */
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .cp-glass,
+    .cp-glass--subtle,
+    .cp-glass--strong,
+    .cp-glass-sidebar,
+    .cp-glass-topbar,
+    .cp-glass-dashboard-card,
+    .cp-glass-section,
+    .cp-glass-dropdown,
+    .cp-glass-popover,
+    .cp-glass-modal {
+        background: rgba(255, 255, 255, 0.96);
+    }
+
+    .cp-glass-overlay {
+        background: rgba(15, 23, 42, 0.56);
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .cp-glass,
+    .cp-glass--subtle,
+    .cp-glass--strong,
+    .cp-glass-sidebar,
+    .cp-glass-topbar,
+    .cp-glass-dashboard-card,
+    .cp-glass-section,
+    .cp-glass-dropdown,
+    .cp-glass-popover,
+    .cp-glass-modal {
+        background: rgba(255, 255, 255, 0.96);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cp-glass-modal,
+    .cp-glass-hover,
+    .cp-sidebar-link,
+    .cp-glass-shine::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media print {
+    .cp-glass,
+    .cp-glass-sidebar,
+    .cp-glass-topbar,
+    .cp-glass-dashboard-card,
+    .cp-glass-section {
+        background: #ffffff !important;
+        border: 1px solid #d1d5db !important;
+        box-shadow: none !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+
+    .cp-glass-overlay,
+    .cp-glass-modal,
+    .cp-glass-dropdown,
+    .cp-glass-popover,
+    .cp-glass-tooltip {
+        display: none !important;
+    }
+}
+
+@keyframes cp-glass-modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
