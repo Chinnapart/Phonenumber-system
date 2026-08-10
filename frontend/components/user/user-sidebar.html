@@ -1,0 +1,270 @@
+<!--
+    ConnectPro User Sidebar
+    File: frontend/components/user/user-sidebar.html
+
+    Compatible JavaScript:
+    - assets/js/core/auth.js
+    - assets/js/core/components.js
+    - assets/js/core/notifications.js
+    - assets/js/core/permissions.js
+    - assets/js/user/dashboard.js
+-->
+
+<aside
+    id="userSidebar"
+    class="cp-sidebar cp-user-sidebar cp-glass-panel"
+    data-user-sidebar
+    aria-label="เมนูผู้ใช้งาน"
+    aria-hidden="false"
+>
+    <header class="cp-sidebar__header">
+        <a
+            class="cp-sidebar__brand"
+            href="/connectpro/frontend/pages/user/dashboard.html"
+            aria-label="ConnectPro User Dashboard"
+        >
+            <span class="cp-sidebar__brand-mark" aria-hidden="true">CP</span>
+            <span class="cp-sidebar__brand-content">
+                <strong>ConnectPro</strong>
+                <small>Contact Directory</small>
+            </span>
+        </a>
+
+        <button
+            type="button"
+            class="cp-icon-button cp-only-mobile"
+            data-sidebar-close
+            aria-label="ปิดเมนูหลัก"
+        >
+            <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                aria-hidden="true"
+            >
+                <path d="m6 6 12 12M18 6 6 18"></path>
+            </svg>
+        </button>
+    </header>
+
+    <div class="cp-sidebar__body">
+        <nav class="cp-sidebar-nav" aria-label="เมนูสมุดรายชื่อ">
+            <section class="cp-sidebar-nav__section">
+                <h2 class="cp-sidebar-nav__heading">ภาพรวม</h2>
+
+                <a
+                    class="cp-sidebar-nav__item"
+                    href="/connectpro/frontend/pages/user/dashboard.html"
+                    data-nav-key="user-dashboard"
+                    data-permission="dashboard.view"
+                >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+            </section>
+
+            <section class="cp-sidebar-nav__section">
+                <h2 class="cp-sidebar-nav__heading">สมุดรายชื่อ</h2>
+
+                <a
+                    class="cp-sidebar-nav__item"
+                    href="/connectpro/frontend/pages/user/contacts.html"
+                    data-nav-key="user-contacts"
+                    data-permission="contacts.view"
+                >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="9" cy="8" r="4"></circle>
+                        <path d="M2 21a7 7 0 0 1 14 0"></path>
+                        <path d="M17 8h5"></path>
+                    </svg>
+                    <span>ค้นหาผู้ติดต่อ</span>
+                    <span
+                        class="cp-sidebar-nav__badge"
+                        data-sidebar-count="contacts"
+                        aria-label="0 รายชื่อ"
+                        hidden
+                    >0</span>
+                </a>
+
+                <a
+                    class="cp-sidebar-nav__item"
+                    href="/connectpro/frontend/pages/user/departments.html"
+                    data-nav-key="user-departments"
+                    data-permission="departments.view"
+                >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 21V7l9-4 9 4v14"></path>
+                        <path d="M8 10h2M14 10h2M8 14h2M14 14h2M10 21v-3h4v3"></path>
+                    </svg>
+                    <span>รายชื่อแผนก</span>
+                    <span
+                        class="cp-sidebar-nav__badge"
+                        data-sidebar-count="departments"
+                        aria-label="0 แผนก"
+                        hidden
+                    >0</span>
+                </a>
+            </section>
+
+            <section class="cp-sidebar-nav__section">
+                <h2 class="cp-sidebar-nav__heading">รายการส่วนตัว</h2>
+
+                <a
+                    class="cp-sidebar-nav__item"
+                    href="/connectpro/frontend/pages/user/contacts.html?favorite_only=1"
+                    data-nav-key="user-favorites"
+                    data-user-feature="favorites"
+                >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"></path>
+                    </svg>
+                    <span>รายการโปรด</span>
+                    <span
+                        class="cp-sidebar-nav__badge"
+                        data-sidebar-count="favorites"
+                        aria-label="0 รายการโปรด"
+                        hidden
+                    >0</span>
+                </a>
+
+                <a
+                    class="cp-sidebar-nav__item"
+                    href="/connectpro/frontend/pages/user/contacts.html?sort=recent"
+                    data-nav-key="user-recent"
+                    data-user-feature="recently-viewed"
+                >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 7v5l3 2"></path>
+                    </svg>
+                    <span>ดูล่าสุด</span>
+                </a>
+
+                <a
+                    class="cp-sidebar-nav__item"
+                    href="/connectpro/frontend/pages/user/notifications.html"
+                    data-nav-key="user-notifications"
+                    data-user-feature="notifications"
+                >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                        <path d="M10 21h4"></path>
+                    </svg>
+                    <span>การแจ้งเตือน</span>
+                    <span
+                        class="cp-sidebar-nav__badge cp-sidebar-nav__badge--danger"
+                        data-notification-count
+                        aria-label="ไม่มีการแจ้งเตือนที่ยังไม่ได้อ่าน"
+                        hidden
+                    >0</span>
+                </a>
+            </section>
+
+            <section class="cp-sidebar-nav__section">
+                <h2 class="cp-sidebar-nav__heading">บัญชี</h2>
+
+                <a
+                    class="cp-sidebar-nav__item"
+                    href="/connectpro/frontend/pages/user/profile.html"
+                    data-nav-key="user-profile"
+                >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21a8 8 0 0 1 16 0"></path>
+                    </svg>
+                    <span>โปรไฟล์ของฉัน</span>
+                </a>
+
+                <a
+                    class="cp-sidebar-nav__item"
+                    href="/connectpro/frontend/pages/user/settings.html"
+                    data-nav-key="user-settings"
+                    data-user-feature="settings"
+                >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.8-1L14.4 3h-4l-.4 3.1a7 7 0 0 0-1.8 1l-2.4-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.4-1a7 7 0 0 0 1.8 1l.4 3.1h4l.4-3.1a7 7 0 0 0 1.8-1l2.4 1 2-3.4-2-1.5a7 7 0 0 0 .1-1Z"></path>
+                    </svg>
+                    <span>ตั้งค่าส่วนตัว</span>
+                </a>
+            </section>
+
+            <section
+                class="cp-sidebar-nav__section"
+                data-role="admin"
+                hidden
+            >
+                <h2 class="cp-sidebar-nav__heading">ผู้ดูแลระบบ</h2>
+
+                <a
+                    class="cp-sidebar-nav__item cp-sidebar-nav__item--admin"
+                    href="/connectpro/frontend/pages/admin/dashboard.html"
+                    data-nav-key="admin-dashboard"
+                    data-role="admin"
+                >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z"></path>
+                        <path d="M9 12h6M12 9v6"></path>
+                    </svg>
+                    <span>ไปหน้า Admin</span>
+                </a>
+            </section>
+        </nav>
+    </div>
+
+    <footer class="cp-sidebar__footer">
+        <a
+            class="cp-sidebar-user"
+            href="/connectpro/frontend/pages/user/profile.html"
+            aria-label="เปิดโปรไฟล์ผู้ใช้งาน"
+        >
+            <span
+                class="cp-glass-avatar cp-sidebar-user__avatar"
+                data-user-initials
+                aria-hidden="true"
+            >?</span>
+
+            <span class="cp-sidebar-user__identity">
+                <strong data-user-field="displayName">ผู้ใช้งาน</strong>
+                <small data-user-field="departmentName">ไม่ระบุแผนก</small>
+            </span>
+
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
+        </a>
+
+        <button
+            type="button"
+            class="cp-button cp-button--text cp-sidebar__logout"
+            data-logout
+        >
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 17l5-5-5-5"></path>
+                <path d="M15 12H3"></path>
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+            </svg>
+            <span>ออกจากระบบ</span>
+        </button>
+
+        <p class="cp-sidebar__version">
+            ConnectPro <span data-app-version>v1.0.0</span>
+        </p>
+    </footer>
+</aside>
+
+<div
+    class="cp-sidebar-backdrop"
+    data-sidebar-backdrop
+    aria-hidden="true"
+    hidden
+></div>

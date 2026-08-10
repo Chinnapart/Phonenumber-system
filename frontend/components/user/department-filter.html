@@ -1,0 +1,345 @@
+<!--
+    ConnectPro User Department Filter
+    File: frontend/components/user/department-filter.html
+
+    Compatible JavaScript:
+    - assets/js/core/components.js
+    - assets/js/user/departments.js
+-->
+
+<section
+    class="cp-department-filter cp-glass-panel"
+    data-department-filter
+    aria-labelledby="departmentFilterHeading"
+>
+    <header class="cp-department-filter__header">
+        <div>
+            <p class="cp-department-filter__eyebrow">Department Directory</p>
+            <h2 id="departmentFilterHeading">ค้นหาและกรองแผนก</h2>
+            <p>ค้นหาแผนกตามชื่อ รหัส สถานที่ หรือจำนวนผู้ติดต่อ</p>
+        </div>
+
+        <button
+            type="button"
+            class="cp-button cp-button--text cp-button--small"
+            data-department-filter-clear
+            disabled
+        >
+            ล้างตัวกรอง
+        </button>
+    </header>
+
+    <form
+        class="cp-department-filter__form"
+        data-department-filter-form
+        role="search"
+        novalidate
+    >
+        <div class="cp-department-filter__primary">
+            <label class="cp-search-input" for="departmentFilterSearchInput">
+                <span class="cp-search-input__icon" aria-hidden="true">
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="21"
+                        height="21"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                        <path d="m16 16 5 5"></path>
+                    </svg>
+                </span>
+
+                <span class="cp-visually-hidden">ค้นหาแผนก</span>
+                <input
+                    id="departmentFilterSearchInput"
+                    class="cp-input cp-search-input__control"
+                    type="search"
+                    name="search"
+                    maxlength="150"
+                    autocomplete="off"
+                    enterkeyhint="search"
+                    placeholder="ค้นหาชื่อหรือรหัสแผนก..."
+                    aria-describedby="departmentFilterHelp departmentFilterStatus"
+                    data-department-filter-search
+                >
+
+                <button
+                    type="button"
+                    class="cp-search-input__clear cp-icon-button"
+                    data-department-filter-search-clear
+                    aria-label="ล้างคำค้นหาแผนก"
+                    hidden
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="17"
+                        height="17"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        aria-hidden="true"
+                    >
+                        <path d="m6 6 12 12M18 6 6 18"></path>
+                    </svg>
+                </button>
+            </label>
+
+            <button
+                type="submit"
+                class="cp-button cp-button--primary"
+                data-department-filter-submit
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                    <path d="m16 16 5 5"></path>
+                </svg>
+                <span>ค้นหา</span>
+            </button>
+
+            <button
+                type="button"
+                class="cp-button cp-button--secondary"
+                data-department-filter-toggle
+                aria-expanded="false"
+                aria-controls="departmentAdvancedFilters"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M4 6h16M7 12h10M10 18h4"></path>
+                </svg>
+                <span>ตัวกรอง</span>
+                <span
+                    class="cp-filter-count"
+                    data-department-filter-count
+                    aria-label="ไม่มีตัวกรองที่ใช้งาน"
+                    hidden
+                >0</span>
+            </button>
+        </div>
+
+        <small id="departmentFilterHelp" class="cp-form-help">
+            กด Enter เพื่อค้นหา หรือเปิดตัวกรองเพื่อจำกัดผลลัพธ์
+        </small>
+
+        <div
+            id="departmentAdvancedFilters"
+            class="cp-department-filter__advanced"
+            data-department-filter-advanced
+            hidden
+        >
+            <label class="cp-form-group">
+                <span class="cp-form-label">สถานที่</span>
+                <select
+                    class="cp-select"
+                    name="location_id"
+                    data-department-filter-location
+                >
+                    <option value="">ทุกสถานที่</option>
+                </select>
+            </label>
+
+            <label class="cp-form-group">
+                <span class="cp-form-label">สถานะ</span>
+                <select
+                    class="cp-select"
+                    name="status"
+                    data-department-filter-status
+                >
+                    <option value="active" selected>Active</option>
+                    <option value="">ทุกสถานะ</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </label>
+
+            <label class="cp-form-group">
+                <span class="cp-form-label">จำนวนผู้ติดต่อ</span>
+                <select
+                    class="cp-select"
+                    name="contact_range"
+                    data-department-filter-contact-range
+                >
+                    <option value="">ไม่จำกัด</option>
+                    <option value="empty">ไม่มีผู้ติดต่อ</option>
+                    <option value="1-10">1-10 รายชื่อ</option>
+                    <option value="11-50">11-50 รายชื่อ</option>
+                    <option value="51-100">51-100 รายชื่อ</option>
+                    <option value="101+">มากกว่า 100 รายชื่อ</option>
+                </select>
+            </label>
+
+            <label class="cp-form-group">
+                <span class="cp-form-label">เรียงลำดับ</span>
+                <select
+                    class="cp-select"
+                    name="sort"
+                    data-department-filter-sort
+                >
+                    <option value="sort_order">ลำดับที่กำหนด</option>
+                    <option value="name_asc">ชื่อ A-Z</option>
+                    <option value="name_desc">ชื่อ Z-A</option>
+                    <option value="contacts_desc">ผู้ติดต่อมากไปน้อย</option>
+                    <option value="contacts_asc">ผู้ติดต่อน้อยไปมาก</option>
+                    <option value="updated_desc">อัปเดตล่าสุด</option>
+                </select>
+            </label>
+
+            <label class="cp-switch">
+                <input
+                    type="checkbox"
+                    name="has_contacts"
+                    value="1"
+                    data-department-filter-has-contacts
+                >
+                <span class="cp-switch__track" aria-hidden="true"></span>
+                <span class="cp-switch__label">เฉพาะแผนกที่มีผู้ติดต่อ</span>
+            </label>
+
+            <div class="cp-department-filter__actions">
+                <button
+                    type="button"
+                    class="cp-button cp-button--text"
+                    data-department-filter-reset
+                >
+                    รีเซ็ตตัวกรอง
+                </button>
+
+                <button
+                    type="submit"
+                    class="cp-button cp-button--primary"
+                    data-department-filter-apply
+                >
+                    ใช้ตัวกรอง
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div
+        class="cp-department-filter__active"
+        data-department-filter-active
+        aria-label="ตัวกรองแผนกที่ใช้งาน"
+        hidden
+    >
+        <span class="cp-department-filter__active-label">ตัวกรอง:</span>
+        <div data-department-filter-chips></div>
+    </div>
+
+    <div
+        class="cp-department-filter__loading"
+        data-department-filter-loading
+        role="status"
+        aria-live="polite"
+        hidden
+    >
+        <span class="cp-spinner cp-spinner--small" aria-hidden="true"></span>
+        <span>กำลังค้นหาแผนก...</span>
+    </div>
+
+    <div
+        class="cp-alert cp-alert--danger"
+        data-department-filter-error
+        role="alert"
+        aria-live="assertive"
+        hidden
+    ></div>
+
+    <div
+        id="departmentFilterStatus"
+        class="cp-visually-hidden"
+        data-department-filter-live-region
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+    <footer class="cp-department-filter__footer">
+        <span aria-live="polite">
+            พบ <strong data-department-filter-result-count>0</strong> แผนก
+        </span>
+
+        <div
+            class="cp-view-switcher"
+            data-department-view-switcher
+            role="group"
+            aria-label="รูปแบบการแสดงแผนก"
+        >
+            <button
+                type="button"
+                class="cp-icon-button is-active"
+                data-department-view="grid"
+                aria-label="แสดงแบบการ์ด"
+                aria-pressed="true"
+            >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                    <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                    <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                    <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                </svg>
+            </button>
+
+            <button
+                type="button"
+                class="cp-icon-button"
+                data-department-view="list"
+                aria-label="แสดงแบบรายการ"
+                aria-pressed="false"
+            >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M8 6h13M8 12h13M8 18h13"></path>
+                    <path d="M3 6h.01M3 12h.01M3 18h.01"></path>
+                </svg>
+            </button>
+        </div>
+    </footer>
+</section>
+
+<!-- Active department filter chip -->
+<template id="departmentFilterChipTemplate">
+    <button
+        type="button"
+        class="cp-filter-chip"
+        data-department-filter-chip
+        data-filter-name=""
+        data-filter-value=""
+    >
+        <span data-filter-chip-label>ตัวกรอง</span>
+        <svg
+            viewBox="0 0 24 24"
+            width="14"
+            height="14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+        >
+            <path d="m6 6 12 12M18 6 6 18"></path>
+        </svg>
+        <span class="cp-visually-hidden">นำตัวกรองนี้ออก</span>
+    </button>
+</template>

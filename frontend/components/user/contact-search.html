@@ -1,0 +1,347 @@
+<!--
+    ConnectPro User Contact Search
+    File: frontend/components/user/contact-search.html
+
+    Compatible JavaScript:
+    - assets/js/core/components.js
+    - assets/js/user/contacts.js
+    - assets/js/user/dashboard.js
+-->
+
+<section
+    class="cp-contact-search cp-glass-panel"
+    data-contact-search
+    aria-labelledby="contactSearchHeading"
+>
+    <header class="cp-contact-search__header">
+        <div>
+            <p class="cp-contact-search__eyebrow">Contact Directory</p>
+            <h2 id="contactSearchHeading">ค้นหาผู้ติดต่อ</h2>
+            <p>ค้นหาด้วยชื่อ รหัสพนักงาน เบอร์ต่อ อีเมล หรือ IP Address</p>
+        </div>
+
+        <button
+            type="button"
+            class="cp-button cp-button--text cp-button--small"
+            data-contact-search-clear
+            disabled
+        >
+            ล้างการค้นหา
+        </button>
+    </header>
+
+    <form
+        class="cp-contact-search__form"
+        data-contact-search-form
+        role="search"
+        novalidate
+    >
+        <div class="cp-contact-search__primary">
+            <label class="cp-search-input" for="contactSearchInput">
+                <span class="cp-search-input__icon" aria-hidden="true">
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="21"
+                        height="21"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                        <path d="m16 16 5 5"></path>
+                    </svg>
+                </span>
+
+                <span class="cp-visually-hidden">คำค้นหาผู้ติดต่อ</span>
+                <input
+                    id="contactSearchInput"
+                    class="cp-input cp-search-input__control"
+                    type="search"
+                    name="search"
+                    autocomplete="off"
+                    enterkeyhint="search"
+                    maxlength="150"
+                    placeholder="ค้นหาชื่อ รหัสพนักงาน เบอร์ต่อ อีเมล หรือ IP..."
+                    aria-describedby="contactSearchHelp contactSearchStatus"
+                    data-contact-search-input
+                >
+
+                <button
+                    type="button"
+                    class="cp-search-input__clear cp-icon-button"
+                    data-contact-search-input-clear
+                    aria-label="ล้างคำค้นหา"
+                    hidden
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="17"
+                        height="17"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        aria-hidden="true"
+                    >
+                        <path d="m6 6 12 12M18 6 6 18"></path>
+                    </svg>
+                </button>
+            </label>
+
+            <button
+                type="submit"
+                class="cp-button cp-button--primary cp-contact-search__submit"
+                data-contact-search-submit
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                    <path d="m16 16 5 5"></path>
+                </svg>
+                <span>ค้นหา</span>
+            </button>
+
+            <button
+                type="button"
+                class="cp-button cp-button--secondary cp-contact-search__filter-toggle"
+                data-contact-search-filter-toggle
+                aria-expanded="false"
+                aria-controls="contactSearchAdvancedFilters"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M4 6h16M7 12h10M10 18h4"></path>
+                </svg>
+                <span>ตัวกรอง</span>
+                <span
+                    class="cp-filter-count"
+                    data-contact-search-filter-count
+                    aria-label="ไม่มีตัวกรองที่ใช้งาน"
+                    hidden
+                >0</span>
+            </button>
+        </div>
+
+        <small id="contactSearchHelp" class="cp-form-help">
+            กด Enter เพื่อค้นหา หรือใช้ตัวกรองเพื่อจำกัดผลลัพธ์
+        </small>
+
+        <div
+            id="contactSearchAdvancedFilters"
+            class="cp-contact-search__filters"
+            data-contact-search-filters
+            hidden
+        >
+            <label class="cp-form-group">
+                <span class="cp-form-label">แผนก</span>
+                <select
+                    class="cp-select"
+                    name="department_id"
+                    data-contact-search-department
+                >
+                    <option value="">ทุกแผนก</option>
+                </select>
+            </label>
+
+            <label class="cp-form-group">
+                <span class="cp-form-label">สถานที่</span>
+                <select
+                    class="cp-select"
+                    name="location_id"
+                    data-contact-search-location
+                >
+                    <option value="">ทุกสถานที่</option>
+                </select>
+            </label>
+
+            <label class="cp-form-group">
+                <span class="cp-form-label">สถานะ</span>
+                <select
+                    class="cp-select"
+                    name="status"
+                    data-contact-search-status
+                >
+                    <option value="active" selected>Active</option>
+                    <option value="">ทุกสถานะ</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </label>
+
+            <label class="cp-form-group">
+                <span class="cp-form-label">เรียงลำดับ</span>
+                <select
+                    class="cp-select"
+                    name="sort"
+                    data-contact-search-sort
+                >
+                    <option value="name_asc">ชื่อ A-Z</option>
+                    <option value="name_desc">ชื่อ Z-A</option>
+                    <option value="department">แผนก</option>
+                    <option value="recent">ดูล่าสุด</option>
+                    <option value="updated_desc">อัปเดตล่าสุด</option>
+                </select>
+            </label>
+
+            <label class="cp-switch cp-contact-search__favorite-filter">
+                <input
+                    type="checkbox"
+                    name="favorite_only"
+                    value="1"
+                    data-contact-search-favorite
+                >
+                <span class="cp-switch__track" aria-hidden="true"></span>
+                <span class="cp-switch__label">เฉพาะรายการโปรด</span>
+            </label>
+
+            <div class="cp-contact-search__filter-actions">
+                <button
+                    type="button"
+                    class="cp-button cp-button--text"
+                    data-contact-search-reset-filters
+                >
+                    รีเซ็ตตัวกรอง
+                </button>
+
+                <button
+                    type="submit"
+                    class="cp-button cp-button--primary"
+                    data-contact-search-apply
+                >
+                    ใช้ตัวกรอง
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div
+        class="cp-contact-search__loading"
+        data-contact-search-loading
+        role="status"
+        aria-live="polite"
+        hidden
+    >
+        <span class="cp-spinner cp-spinner--small" aria-hidden="true"></span>
+        <span>กำลังค้นหาผู้ติดต่อ...</span>
+    </div>
+
+    <div
+        class="cp-alert cp-alert--danger"
+        data-contact-search-error
+        role="alert"
+        aria-live="assertive"
+        hidden
+    ></div>
+
+    <div
+        class="cp-contact-search__status cp-visually-hidden"
+        id="contactSearchStatus"
+        data-contact-search-live-region
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+    <div
+        class="cp-contact-search__active-filters"
+        data-contact-search-active-filters
+        aria-label="ตัวกรองที่ใช้งาน"
+        hidden
+    >
+        <span class="cp-contact-search__active-label">ตัวกรอง:</span>
+        <div data-contact-search-filter-chips></div>
+    </div>
+
+    <div
+        class="cp-contact-search__recent"
+        data-contact-search-recent
+        hidden
+    >
+        <div class="cp-contact-search__recent-header">
+            <h3>การค้นหาล่าสุด</h3>
+            <button
+                type="button"
+                class="cp-button cp-button--text cp-button--small"
+                data-contact-search-clear-recent
+            >
+                ล้างประวัติ
+            </button>
+        </div>
+
+        <div
+            class="cp-contact-search__recent-list"
+            data-contact-search-recent-list
+        ></div>
+    </div>
+</section>
+
+<!-- Active filter chip -->
+<template id="contactSearchFilterChipTemplate">
+    <button
+        type="button"
+        class="cp-filter-chip"
+        data-contact-search-filter-chip
+        data-filter-name=""
+        data-filter-value=""
+    >
+        <span data-filter-chip-label>ตัวกรอง</span>
+        <svg
+            viewBox="0 0 24 24"
+            width="14"
+            height="14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+        >
+            <path d="m6 6 12 12M18 6 6 18"></path>
+        </svg>
+        <span class="cp-visually-hidden">นำตัวกรองนี้ออก</span>
+    </button>
+</template>
+
+<!-- Recent search suggestion -->
+<template id="contactRecentSearchItemTemplate">
+    <button
+        type="button"
+        class="cp-search-suggestion"
+        data-contact-recent-search-item
+        data-search-value=""
+    >
+        <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 2"></path>
+        </svg>
+        <span data-recent-search-label>คำค้นหา</span>
+    </button>
+</template>
