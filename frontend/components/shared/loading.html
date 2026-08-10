@@ -1,0 +1,181 @@
+<!--
+    ConnectPro Shared Loading States
+    File: frontend/components/shared/loading.html
+
+    Usage:
+    1. Load this file once into the page.
+    2. Clone the required template with JavaScript.
+    3. Toggle the hidden attribute and aria-busy state as needed.
+-->
+
+<!-- Full-page loading overlay -->
+<template id="pageLoadingTemplate">
+    <div
+        class="cp-loading-overlay"
+        data-loading-overlay
+        role="status"
+        aria-live="polite"
+        aria-label="กำลังโหลดข้อมูล"
+    >
+        <div class="cp-loading-overlay__backdrop" aria-hidden="true"></div>
+
+        <div class="cp-loading-overlay__content cp-glass-panel">
+            <span class="cp-spinner cp-spinner--large" aria-hidden="true"></span>
+
+            <div class="cp-loading-overlay__message">
+                <strong data-loading-title>กำลังโหลดข้อมูล</strong>
+                <span data-loading-message>กรุณารอสักครู่...</span>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Inline loading indicator -->
+<template id="inlineLoadingTemplate">
+    <div
+        class="cp-inline-loading"
+        data-inline-loading
+        role="status"
+        aria-live="polite"
+    >
+        <span class="cp-spinner" aria-hidden="true"></span>
+        <span data-loading-message>กำลังโหลด...</span>
+    </div>
+</template>
+
+<!-- Button loading content -->
+<template id="buttonLoadingTemplate">
+    <span class="cp-button-loading" data-button-loading role="status">
+        <span class="cp-spinner cp-spinner--small" aria-hidden="true"></span>
+        <span data-loading-message>กำลังดำเนินการ...</span>
+    </span>
+</template>
+
+<!-- Dashboard card skeleton -->
+<template id="dashboardCardSkeletonTemplate">
+    <article
+        class="cp-dashboard-card cp-glass-panel cp-skeleton-card"
+        data-skeleton-card
+        aria-hidden="true"
+    >
+        <div class="cp-skeleton cp-skeleton--icon"></div>
+        <div class="cp-skeleton cp-skeleton--label"></div>
+        <div class="cp-skeleton cp-skeleton--value"></div>
+        <div class="cp-skeleton cp-skeleton--text"></div>
+    </article>
+</template>
+
+<!-- Contact card skeleton -->
+<template id="contactCardSkeletonTemplate">
+    <article
+        class="cp-contact-card cp-skeleton-card"
+        data-skeleton-card
+        aria-hidden="true"
+    >
+        <div class="cp-contact-card__header">
+            <div class="cp-contact-card__identity">
+                <div class="cp-skeleton cp-skeleton--avatar"></div>
+
+                <div class="cp-skeleton-stack">
+                    <div class="cp-skeleton cp-skeleton--title"></div>
+                    <div class="cp-skeleton cp-skeleton--text cp-skeleton--short"></div>
+                </div>
+            </div>
+
+            <div class="cp-skeleton cp-skeleton--icon"></div>
+        </div>
+
+        <div class="cp-contact-card__details">
+            <div class="cp-skeleton cp-skeleton--text"></div>
+            <div class="cp-skeleton cp-skeleton--text"></div>
+            <div class="cp-skeleton cp-skeleton--text cp-skeleton--short"></div>
+        </div>
+
+        <div class="cp-contact-card__actions">
+            <div class="cp-skeleton cp-skeleton--button"></div>
+            <div class="cp-skeleton cp-skeleton--button"></div>
+        </div>
+    </article>
+</template>
+
+<!-- Table row skeleton -->
+<template id="tableRowSkeletonTemplate">
+    <tr class="cp-skeleton-row" data-skeleton-row aria-hidden="true">
+        <td><span class="cp-skeleton cp-skeleton--text cp-skeleton--short"></span></td>
+        <td>
+            <div class="cp-skeleton-stack">
+                <span class="cp-skeleton cp-skeleton--title"></span>
+                <span class="cp-skeleton cp-skeleton--text cp-skeleton--short"></span>
+            </div>
+        </td>
+        <td><span class="cp-skeleton cp-skeleton--text cp-skeleton--short"></span></td>
+        <td><span class="cp-skeleton cp-skeleton--text"></span></td>
+        <td><span class="cp-skeleton cp-skeleton--text"></span></td>
+        <td><span class="cp-skeleton cp-skeleton--badge"></span></td>
+        <td><span class="cp-skeleton cp-skeleton--button"></span></td>
+    </tr>
+</template>
+
+<!-- List skeleton container -->
+<template id="listLoadingTemplate">
+    <section
+        class="cp-list-loading"
+        data-list-loading
+        role="status"
+        aria-live="polite"
+        aria-label="กำลังโหลดรายการ"
+    >
+        <span class="cp-visually-hidden">กำลังโหลดรายการ กรุณารอสักครู่</span>
+
+        <div class="cp-list-loading__items" aria-hidden="true">
+            <div class="cp-skeleton cp-skeleton--list-item"></div>
+            <div class="cp-skeleton cp-skeleton--list-item"></div>
+            <div class="cp-skeleton cp-skeleton--list-item"></div>
+            <div class="cp-skeleton cp-skeleton--list-item"></div>
+        </div>
+    </section>
+</template>
+
+<!-- Determinate progress -->
+<template id="progressLoadingTemplate">
+    <section
+        class="cp-progress-loading cp-glass-panel"
+        data-progress-loading
+        role="status"
+        aria-live="polite"
+    >
+        <div class="cp-progress-loading__header">
+            <strong data-loading-title>กำลังดำเนินการ</strong>
+            <span data-progress-value>0%</span>
+        </div>
+
+        <div
+            class="cp-progress"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            data-progress-track
+        >
+            <span
+                class="cp-progress__bar"
+                data-progress-bar
+                style="width: 0%"
+            ></span>
+        </div>
+
+        <p data-loading-message>กรุณาอย่าปิดหน้าต่างนี้...</p>
+    </section>
+</template>
+
+<!-- Static fallback that can be used without cloning a template -->
+<div
+    class="cp-inline-loading"
+    data-shared-loading
+    role="status"
+    aria-live="polite"
+    hidden
+>
+    <span class="cp-spinner" aria-hidden="true"></span>
+    <span data-loading-message>กำลังโหลด...</span>
+</div>

@@ -1,0 +1,334 @@
+<!--
+    ConnectPro Shared Topbar
+    File: frontend/components/shared/topbar.html
+
+    Required JavaScript:
+    - assets/js/core/auth.js
+    - assets/js/core/components.js
+    - assets/js/core/notifications.js
+-->
+
+<header class="cp-topbar cp-glass-panel" data-shared-topbar>
+    <div class="cp-topbar__start">
+        <button
+            type="button"
+            class="cp-icon-button cp-only-mobile"
+            data-sidebar-toggle="mainSidebar"
+            aria-controls="mainSidebar"
+            aria-expanded="false"
+            aria-label="เปิดเมนูหลัก"
+        >
+            <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                aria-hidden="true"
+            >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+
+        <a
+            class="cp-topbar__brand cp-only-mobile"
+            href="/connectpro/frontend/pages/user/dashboard.html"
+            aria-label="ConnectPro หน้าหลัก"
+        >
+            <span class="cp-topbar__brand-mark" aria-hidden="true">CP</span>
+            <span class="cp-topbar__brand-name">ConnectPro</span>
+        </a>
+
+        <div class="cp-topbar__heading">
+            <nav class="cp-breadcrumb" aria-label="เส้นทางหน้าเว็บ">
+                <a href="/connectpro/frontend/pages/user/dashboard.html">
+                    หน้าหลัก
+                </a>
+                <span aria-hidden="true">/</span>
+                <span data-page-breadcrumb aria-current="page">Dashboard</span>
+            </nav>
+
+            <h1 class="cp-topbar__title" data-page-title>Dashboard</h1>
+        </div>
+    </div>
+
+    <div class="cp-topbar__actions">
+        <form
+            class="cp-topbar-search"
+            role="search"
+            data-global-search-form
+        >
+            <label class="cp-visually-hidden" for="globalSearchInput">
+                ค้นหาผู้ติดต่อ
+            </label>
+
+            <svg
+                class="cp-topbar-search__icon"
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+            >
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m20 20-3.5-3.5"></path>
+            </svg>
+
+            <input
+                id="globalSearchInput"
+                class="cp-topbar-search__input"
+                type="search"
+                name="search"
+                placeholder="ค้นหาชื่อ เบอร์ต่อ หรือแผนก..."
+                autocomplete="off"
+                data-global-search
+            >
+
+            <kbd class="cp-topbar-search__shortcut" aria-hidden="true">
+                Ctrl K
+            </kbd>
+        </form>
+
+        <div class="cp-dropdown" data-dropdown>
+            <button
+                type="button"
+                class="cp-icon-button cp-notification-button"
+                data-dropdown-toggle="notificationMenu"
+                aria-controls="notificationMenu"
+                aria-expanded="false"
+                aria-label="เปิดการแจ้งเตือน"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    width="21"
+                    height="21"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                    <path d="M10 21h4"></path>
+                </svg>
+
+                <span
+                    class="cp-notification-badge"
+                    data-notification-count
+                    aria-label="ไม่มีการแจ้งเตือนที่ยังไม่อ่าน"
+                    hidden
+                >0</span>
+            </button>
+
+            <section
+                id="notificationMenu"
+                class="cp-dropdown-menu cp-notification-menu"
+                aria-label="การแจ้งเตือน"
+                hidden
+            >
+                <header class="cp-notification-menu__header">
+                    <div>
+                        <h2>การแจ้งเตือน</h2>
+                        <p>รายการล่าสุดจาก ConnectPro</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="cp-button cp-button--text cp-button--small"
+                        data-notification-read-all
+                    >
+                        อ่านทั้งหมด
+                    </button>
+                </header>
+
+                <div
+                    class="cp-notification-menu__loading"
+                    data-notification-loading
+                    role="status"
+                    hidden
+                >
+                    <span class="cp-spinner" aria-hidden="true"></span>
+                    <span>กำลังโหลดการแจ้งเตือน...</span>
+                </div>
+
+                <div
+                    class="cp-notification-menu__list"
+                    data-notification-list
+                    aria-live="polite"
+                ></div>
+
+                <div
+                    class="cp-notification-menu__empty"
+                    data-notification-empty
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="34"
+                        height="34"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        aria-hidden="true"
+                    >
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                        <path d="M10 21h4"></path>
+                    </svg>
+                    <p>ยังไม่มีการแจ้งเตือน</p>
+                </div>
+
+                <footer class="cp-notification-menu__footer">
+                    <a href="/connectpro/frontend/pages/user/notifications.html">
+                        ดูการแจ้งเตือนทั้งหมด
+                    </a>
+                </footer>
+            </section>
+        </div>
+
+        <div class="cp-dropdown" data-dropdown>
+            <button
+                type="button"
+                class="cp-topbar-profile"
+                data-dropdown-toggle="profileMenu"
+                aria-controls="profileMenu"
+                aria-expanded="false"
+            >
+                <span
+                    class="cp-glass-avatar cp-topbar-profile__avatar"
+                    data-user-initials
+                    aria-hidden="true"
+                >?</span>
+
+                <span class="cp-topbar-profile__identity">
+                    <strong data-user-field="displayName">ผู้ใช้งาน</strong>
+                    <small data-user-field="departmentName">-</small>
+                </span>
+
+                <svg
+                    class="cp-topbar-profile__chevron"
+                    viewBox="0 0 24 24"
+                    width="17"
+                    height="17"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                >
+                    <path d="m6 9 6 6 6-6"></path>
+                </svg>
+            </button>
+
+            <div
+                id="profileMenu"
+                class="cp-dropdown-menu cp-profile-menu"
+                role="menu"
+                hidden
+            >
+                <div class="cp-profile-menu__summary">
+                    <span
+                        class="cp-glass-avatar"
+                        data-user-initials
+                        aria-hidden="true"
+                    >?</span>
+                    <div>
+                        <strong data-user-field="displayName">ผู้ใช้งาน</strong>
+                        <small data-user-field="username">-</small>
+                    </div>
+                </div>
+
+                <div class="cp-dropdown-menu__divider" role="separator"></div>
+
+                <a
+                    class="cp-dropdown-menu__item"
+                    href="/connectpro/frontend/pages/user/profile.html"
+                    role="menuitem"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                    >
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21a8 8 0 0 1 16 0"></path>
+                    </svg>
+                    <span>ข้อมูลส่วนตัว</span>
+                </a>
+
+                <a
+                    class="cp-dropdown-menu__item"
+                    href="/connectpro/frontend/pages/user/settings.html"
+                    role="menuitem"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                    >
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21h-4v-.1A1.7 1.7 0 0 0 8.6 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-.6-1 1.7 1.7 0 0 0-1.1-.4H3v-4h.1A1.7 1.7 0 0 0 4.6 8.6a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-.6 1.7 1.7 0 0 0 .4-1.1V3h4v.1A1.7 1.7 0 0 0 15.4 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9c.1.4.3.7.6 1 .3.3.7.4 1.1.4h.1v4h-.1a1.7 1.7 0 0 0-1.7.6Z"></path>
+                    </svg>
+                    <span>การตั้งค่าส่วนตัว</span>
+                </a>
+
+                <a
+                    class="cp-dropdown-menu__item"
+                    href="/connectpro/frontend/pages/admin/dashboard.html"
+                    role="menuitem"
+                    data-role="admin"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                    >
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>หน้าจัดการระบบ</span>
+                </a>
+
+                <div class="cp-dropdown-menu__divider" role="separator"></div>
+
+                <button
+                    type="button"
+                    class="cp-dropdown-menu__item cp-dropdown-menu__item--danger"
+                    role="menuitem"
+                    data-logout
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                    >
+                        <path d="M10 17l5-5-5-5"></path>
+                        <path d="M15 12H3"></path>
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                    </svg>
+                    <span>ออกจากระบบ</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

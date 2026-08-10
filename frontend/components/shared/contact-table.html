@@ -1,0 +1,129 @@
+<!--
+    ConnectPro Shared Contact Table
+    File: frontend/components/shared/contact-table.html
+
+    Compatible JavaScript:
+    - assets/js/admin/contacts.js
+    - assets/js/user/contacts.js
+-->
+
+<section class="cp-contact-directory" data-contact-table-component>
+    <div class="cp-contact-directory__status">
+        <div
+            class="cp-contact-directory__loading"
+            data-contacts-loading
+            role="status"
+            aria-live="polite"
+            hidden
+        >
+            <span class="cp-spinner" aria-hidden="true"></span>
+            <span>กำลังโหลดรายชื่อผู้ติดต่อ...</span>
+        </div>
+
+        <div
+            class="cp-alert cp-alert--danger"
+            data-contacts-error
+            role="alert"
+            hidden
+        ></div>
+    </div>
+
+    <div class="cp-contact-directory__summary">
+        <p>
+            พบทั้งหมด
+            <strong data-contacts-total>0</strong>
+            รายชื่อ
+        </p>
+
+        <span data-contacts-page-summary aria-live="polite">
+            0-0 จาก 0
+        </span>
+    </div>
+
+    <div class="cp-table-container cp-only-desktop">
+        <table class="cp-table cp-contact-table">
+            <caption class="cp-visually-hidden">
+                รายชื่อผู้ติดต่อภายในองค์กร
+            </caption>
+
+            <thead>
+                <tr>
+                    <th scope="col">รหัสพนักงาน</th>
+                    <th scope="col">ชื่อผู้ติดต่อ</th>
+                    <th scope="col">เบอร์ต่อ</th>
+                    <th scope="col">แผนก</th>
+                    <th scope="col">สถานที่</th>
+                    <th
+                        scope="col"
+                        data-role="admin"
+                        data-contact-admin-column="status"
+                    >
+                        สถานะ
+                    </th>
+                    <th scope="col" class="cp-table__actions-column">
+                        จัดการ
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody data-contacts-table-body></tbody>
+        </table>
+    </div>
+
+    <div
+        class="cp-contact-card-list cp-only-mobile"
+        data-contacts-list
+        data-contacts-card-list
+        aria-live="polite"
+    ></div>
+
+    <div
+        class="cp-empty-state"
+        data-contacts-empty
+        hidden
+    >
+        <div class="cp-empty-state__icon" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="42"
+                height="42"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="10" cy="8" r="4"></circle>
+                <path d="M3 21a7 7 0 0 1 14 0"></path>
+                <circle cx="18" cy="17" r="3"></circle>
+                <path d="m20.2 19.2 1.8 1.8"></path>
+            </svg>
+        </div>
+
+        <h2>ไม่พบรายชื่อผู้ติดต่อ</h2>
+        <p>
+            ลองเปลี่ยนคำค้นหา ตัวกรอง หรือรีเซ็ตเงื่อนไขแล้วค้นหาอีกครั้ง
+        </p>
+
+        <button
+            type="button"
+            class="cp-button cp-button--secondary"
+            data-contacts-reset
+        >
+            รีเซ็ตตัวกรอง
+        </button>
+    </div>
+
+    <footer class="cp-contact-directory__footer">
+        <span class="cp-contact-directory__page-info">
+            <span class="cp-only-desktop">แสดงรายการ</span>
+            <strong data-contacts-page-summary>0-0 จาก 0</strong>
+        </span>
+
+        <nav
+            class="cp-pagination"
+            data-contacts-pagination
+            aria-label="เปลี่ยนหน้ารายชื่อผู้ติดต่อ"
+        ></nav>
+    </footer>
+</section>

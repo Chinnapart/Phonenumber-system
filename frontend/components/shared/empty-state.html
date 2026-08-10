@@ -1,0 +1,390 @@
+<!--
+    ConnectPro Shared Empty States
+    File: frontend/components/shared/empty-state.html
+
+    Usage:
+    1. Load this component file once.
+    2. Clone the required template.
+    3. Update title, message, and action attributes when needed.
+-->
+
+<!-- Generic empty state -->
+<template id="emptyStateTemplate">
+    <section
+        class="cp-empty-state cp-glass-panel"
+        data-empty-state
+        role="status"
+        aria-live="polite"
+    >
+        <div class="cp-empty-state__icon" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="48"
+                height="48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M4 6h16v12H4z"></path>
+                <path d="M8 10h8M8 14h5"></path>
+            </svg>
+        </div>
+
+        <div class="cp-empty-state__content">
+            <h2 data-empty-state-title>ยังไม่มีข้อมูล</h2>
+            <p data-empty-state-message>
+                ข้อมูลจะแสดงในส่วนนี้เมื่อมีรายการในระบบ
+            </p>
+        </div>
+
+        <div class="cp-empty-state__actions" data-empty-state-actions hidden>
+            <button
+                type="button"
+                class="cp-button cp-button--primary"
+                data-empty-state-primary-action
+            >
+                เริ่มต้นใช้งาน
+            </button>
+
+            <button
+                type="button"
+                class="cp-button cp-button--secondary"
+                data-empty-state-secondary-action
+                hidden
+            >
+                กลับหน้าหลัก
+            </button>
+        </div>
+    </section>
+</template>
+
+<!-- No search results -->
+<template id="searchEmptyStateTemplate">
+    <section
+        class="cp-empty-state cp-glass-panel"
+        data-search-empty-state
+        role="status"
+        aria-live="polite"
+    >
+        <div class="cp-empty-state__icon cp-empty-state__icon--search" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="48"
+                height="48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                <path d="m16 16 5 5"></path>
+                <path d="M8 9h5M8 12h3"></path>
+            </svg>
+        </div>
+
+        <div class="cp-empty-state__content">
+            <h2 data-empty-state-title>ไม่พบผลการค้นหา</h2>
+            <p data-empty-state-message>
+                ลองเปลี่ยนคำค้นหา ตัวกรอง หรือรีเซ็ตเงื่อนไขแล้วค้นหาอีกครั้ง
+            </p>
+            <p class="cp-empty-state__query" data-empty-state-query hidden>
+                คำค้นหา: <strong data-empty-state-query-value></strong>
+            </p>
+        </div>
+
+        <div class="cp-empty-state__actions">
+            <button
+                type="button"
+                class="cp-button cp-button--secondary"
+                data-empty-state-reset
+                data-contacts-reset
+                data-departments-reset
+                data-users-reset
+                data-activity-log-reset
+            >
+                รีเซ็ตตัวกรอง
+            </button>
+        </div>
+    </section>
+</template>
+
+<!-- No contacts -->
+<template id="contactsEmptyStateTemplate">
+    <section
+        class="cp-empty-state cp-glass-panel"
+        data-contacts-empty
+        role="status"
+        aria-live="polite"
+    >
+        <div class="cp-empty-state__icon cp-empty-state__icon--contacts" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="48"
+                height="48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="9" cy="8" r="4"></circle>
+                <path d="M2 21a7 7 0 0 1 14 0"></path>
+                <path d="M17 9h5M19.5 6.5v5"></path>
+            </svg>
+        </div>
+
+        <div class="cp-empty-state__content">
+            <h2>ยังไม่มีรายชื่อผู้ติดต่อ</h2>
+            <p>
+                เพิ่มผู้ติดต่อใหม่ หรือนำเข้าข้อมูลเพื่อเริ่มใช้งานสมุดรายชื่อ
+            </p>
+        </div>
+
+        <div class="cp-empty-state__actions" data-role="admin">
+            <button
+                type="button"
+                class="cp-button cp-button--primary"
+                data-contact-add
+                data-permission="contacts.create"
+            >
+                เพิ่มผู้ติดต่อ
+            </button>
+
+            <a
+                class="cp-button cp-button--secondary"
+                href="/connectpro/frontend/pages/admin/import-export.html"
+                data-permission="contacts.import"
+            >
+                นำเข้าข้อมูล
+            </a>
+        </div>
+    </section>
+</template>
+
+<!-- No departments -->
+<template id="departmentsEmptyStateTemplate">
+    <section
+        class="cp-empty-state cp-glass-panel"
+        data-departments-empty
+        role="status"
+        aria-live="polite"
+    >
+        <div class="cp-empty-state__icon cp-empty-state__icon--departments" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="48"
+                height="48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M3 21V7l9-4 9 4v14"></path>
+                <path d="M8 10h2M14 10h2M8 14h2M14 14h2M10 21v-3h4v3"></path>
+            </svg>
+        </div>
+
+        <div class="cp-empty-state__content">
+            <h2>ยังไม่มีข้อมูลแผนก</h2>
+            <p>ข้อมูลแผนกจะแสดงเมื่อมีการเพิ่มและเปิดใช้งานในระบบ</p>
+        </div>
+
+        <div class="cp-empty-state__actions" data-role="admin">
+            <button
+                type="button"
+                class="cp-button cp-button--primary"
+                data-department-add
+                data-permission="departments.create"
+            >
+                เพิ่มแผนก
+            </button>
+        </div>
+    </section>
+</template>
+
+<!-- No favorites -->
+<template id="favoritesEmptyStateTemplate">
+    <section
+        class="cp-empty-state cp-glass-panel"
+        data-dashboard-favorites-empty
+        data-favorites-empty
+        role="status"
+        aria-live="polite"
+    >
+        <div class="cp-empty-state__icon cp-empty-state__icon--favorite" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="48"
+                height="48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"></path>
+            </svg>
+        </div>
+
+        <div class="cp-empty-state__content">
+            <h2>ยังไม่มีรายการโปรด</h2>
+            <p>กดสัญลักษณ์ดาวที่ผู้ติดต่อเพื่อบันทึกรายการที่ใช้บ่อย</p>
+        </div>
+
+        <div class="cp-empty-state__actions">
+            <a
+                class="cp-button cp-button--primary"
+                href="/connectpro/frontend/pages/user/contacts.html"
+            >
+                ค้นหาผู้ติดต่อ
+            </a>
+        </div>
+    </section>
+</template>
+
+<!-- No notifications -->
+<template id="notificationsEmptyStateTemplate">
+    <section
+        class="cp-empty-state cp-empty-state--compact"
+        data-notification-empty
+        role="status"
+        aria-live="polite"
+    >
+        <div class="cp-empty-state__icon" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="40"
+                height="40"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                <path d="M10 21h4"></path>
+            </svg>
+        </div>
+
+        <div class="cp-empty-state__content">
+            <h2>ยังไม่มีการแจ้งเตือน</h2>
+            <p>รายการแจ้งเตือนใหม่จะแสดงที่นี่</p>
+        </div>
+    </section>
+</template>
+
+<!-- Error state with retry -->
+<template id="errorEmptyStateTemplate">
+    <section
+        class="cp-empty-state cp-glass-panel cp-empty-state--error"
+        data-error-empty-state
+        role="alert"
+    >
+        <div class="cp-empty-state__icon cp-empty-state__icon--error" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="48"
+                height="48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M12 3 2.5 20h19L12 3Z"></path>
+                <path d="M12 9v5M12 17h.01"></path>
+            </svg>
+        </div>
+
+        <div class="cp-empty-state__content">
+            <h2 data-empty-state-title>โหลดข้อมูลไม่สำเร็จ</h2>
+            <p data-empty-state-message>
+                เกิดข้อผิดพลาดระหว่างโหลดข้อมูล กรุณาลองใหม่อีกครั้ง
+            </p>
+        </div>
+
+        <div class="cp-empty-state__actions">
+            <button
+                type="button"
+                class="cp-button cp-button--primary"
+                data-empty-state-retry
+            >
+                ลองใหม่
+            </button>
+        </div>
+    </section>
+</template>
+
+<!-- Access denied state -->
+<template id="accessDeniedEmptyStateTemplate">
+    <section
+        class="cp-empty-state cp-glass-panel cp-empty-state--warning"
+        data-access-denied-empty-state
+        role="alert"
+    >
+        <div class="cp-empty-state__icon cp-empty-state__icon--warning" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="48"
+                height="48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                <circle cx="12" cy="15" r="1"></circle>
+            </svg>
+        </div>
+
+        <div class="cp-empty-state__content">
+            <h2>ไม่มีสิทธิ์เข้าถึงข้อมูล</h2>
+            <p>บัญชีปัจจุบันไม่มีสิทธิ์ใช้งานส่วนนี้ กรุณาติดต่อผู้ดูแลระบบ</p>
+        </div>
+
+        <div class="cp-empty-state__actions">
+            <a
+                class="cp-button cp-button--primary"
+                href="/connectpro/frontend/pages/user/dashboard.html"
+            >
+                กลับหน้า Dashboard
+            </a>
+        </div>
+    </section>
+</template>
+
+<!-- Static fallback for modules that toggle a hidden element directly -->
+<section
+    class="cp-empty-state cp-glass-panel"
+    data-shared-empty-state
+    role="status"
+    aria-live="polite"
+    hidden
+>
+    <div class="cp-empty-state__icon" aria-hidden="true">
+        <svg
+            viewBox="0 0 24 24"
+            width="44"
+            height="44"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path d="M4 6h16v12H4z"></path>
+            <path d="M8 10h8M8 14h5"></path>
+        </svg>
+    </div>
+
+    <div class="cp-empty-state__content">
+        <h2 data-empty-state-title>ยังไม่มีข้อมูล</h2>
+        <p data-empty-state-message>ข้อมูลจะแสดงในส่วนนี้เมื่อมีรายการในระบบ</p>
+    </div>
+</section>

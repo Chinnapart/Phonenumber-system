@@ -1,0 +1,125 @@
+<!--
+    ConnectPro Shared Pagination
+    File: frontend/components/shared/pagination.html
+
+    The page JavaScript should render page buttons inside:
+    - [data-pagination]
+
+    Optional aliases supported by existing modules:
+    - [data-contacts-pagination]
+    - [data-departments-pagination]
+    - [data-users-pagination]
+    - [data-activity-log-pagination]
+-->
+
+<footer
+    class="cp-pagination-shell cp-glass-panel"
+    data-pagination-component
+    aria-label="การแบ่งหน้ารายการ"
+>
+    <div class="cp-pagination-shell__summary">
+        <span class="cp-pagination-shell__label">แสดงรายการ</span>
+
+        <strong
+            data-pagination-summary
+            data-contacts-page-summary
+            data-departments-page-summary
+            data-users-page-summary
+            data-activity-log-page-summary
+            aria-live="polite"
+        >
+            0-0 จาก 0
+        </strong>
+    </div>
+
+    <div class="cp-pagination-shell__controls">
+        <label class="cp-pagination-shell__page-size">
+            <span>รายการต่อหน้า</span>
+
+            <select
+                class="cp-select cp-select--small"
+                data-pagination-page-size
+                aria-label="จำนวนรายการต่อหน้า"
+            >
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </label>
+
+        <nav
+            class="cp-pagination"
+            data-pagination
+            data-contacts-pagination
+            data-departments-pagination
+            data-users-pagination
+            data-activity-log-pagination
+            aria-label="เปลี่ยนหน้า"
+        >
+            <button
+                type="button"
+                class="cp-pagination__button"
+                data-page="1"
+                data-pagination-previous
+                aria-label="ไปหน้าก่อนหน้า"
+                disabled
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    width="17"
+                    height="17"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="m15 18-6-6 6-6"></path>
+                </svg>
+                <span class="cp-only-desktop">ก่อนหน้า</span>
+            </button>
+
+            <span
+                class="cp-pagination__pages"
+                data-pagination-pages
+                aria-live="polite"
+            >
+                <button
+                    type="button"
+                    class="cp-pagination__button"
+                    data-page="1"
+                    aria-current="page"
+                >
+                    1
+                </button>
+            </span>
+
+            <button
+                type="button"
+                class="cp-pagination__button"
+                data-page="1"
+                data-pagination-next
+                aria-label="ไปหน้าถัดไป"
+                disabled
+            >
+                <span class="cp-only-desktop">ถัดไป</span>
+                <svg
+                    viewBox="0 0 24 24"
+                    width="17"
+                    height="17"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="m9 18 6-6-6-6"></path>
+                </svg>
+            </button>
+        </nav>
+    </div>
+</footer>

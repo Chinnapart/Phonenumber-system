@@ -1,0 +1,282 @@
+<!--
+    ConnectPro Shared Dashboard Cards
+    File: frontend/components/shared/dashboard-card.html
+
+    Compatible JavaScript:
+    - assets/js/admin/dashboard.js
+    - assets/js/user/dashboard.js
+-->
+
+<section
+    class="cp-dashboard-stats"
+    data-dashboard-card-component
+    aria-label="ข้อมูลสรุป Dashboard"
+>
+    <article class="cp-dashboard-card cp-glass-panel cp-dashboard-card--primary">
+        <div class="cp-dashboard-card__header">
+            <span class="cp-dashboard-card__icon" aria-hidden="true">
+                <svg
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="9" cy="8" r="4"></circle>
+                    <path d="M2 21a7 7 0 0 1 14 0"></path>
+                    <path d="M17 8h5M19.5 5.5v5"></path>
+                </svg>
+            </span>
+
+            <span class="cp-dashboard-card__trend" data-stat-trend="total-contacts" hidden>
+                <span data-stat-trend-value="total-contacts">0%</span>
+            </span>
+        </div>
+
+        <div class="cp-dashboard-card__content">
+            <span class="cp-dashboard-card__label">ผู้ติดต่อทั้งหมด</span>
+            <strong
+                class="cp-dashboard-card__value"
+                data-stat="total-contacts"
+                aria-live="polite"
+            >0</strong>
+            <small class="cp-dashboard-card__description">
+                รายชื่อผู้ติดต่อในระบบ
+            </small>
+        </div>
+
+        <a
+            class="cp-dashboard-card__link"
+            href="/connectpro/frontend/pages/user/contacts.html"
+        >
+            <span>ดูรายชื่อทั้งหมด</span>
+            <span aria-hidden="true">→</span>
+        </a>
+    </article>
+
+    <article class="cp-dashboard-card cp-glass-panel cp-dashboard-card--success">
+        <div class="cp-dashboard-card__header">
+            <span class="cp-dashboard-card__icon" aria-hidden="true">
+                <svg
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="m8 12 2.5 2.5L16 9"></path>
+                </svg>
+            </span>
+
+            <span class="cp-dashboard-card__trend" data-stat-trend="active-contacts" hidden>
+                <span data-stat-trend-value="active-contacts">0%</span>
+            </span>
+        </div>
+
+        <div class="cp-dashboard-card__content">
+            <span class="cp-dashboard-card__label">ผู้ติดต่อที่ใช้งาน</span>
+            <strong
+                class="cp-dashboard-card__value"
+                data-stat="active-contacts"
+                aria-live="polite"
+            >0</strong>
+            <small class="cp-dashboard-card__description">
+                รายชื่อที่มีสถานะ Active
+            </small>
+        </div>
+
+        <a
+            class="cp-dashboard-card__link"
+            href="/connectpro/frontend/pages/admin/contacts.html?status=active"
+            data-role="admin"
+        >
+            <span>ดูรายการ Active</span>
+            <span aria-hidden="true">→</span>
+        </a>
+    </article>
+
+    <article class="cp-dashboard-card cp-glass-panel cp-dashboard-card--info">
+        <div class="cp-dashboard-card__header">
+            <span class="cp-dashboard-card__icon" aria-hidden="true">
+                <svg
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M3 21V7l9-4 9 4v14"></path>
+                    <path d="M8 10h2M14 10h2M8 14h2M14 14h2M10 21v-3h4v3"></path>
+                </svg>
+            </span>
+
+            <span class="cp-dashboard-card__trend" data-stat-trend="total-departments" hidden>
+                <span data-stat-trend-value="total-departments">0%</span>
+            </span>
+        </div>
+
+        <div class="cp-dashboard-card__content">
+            <span class="cp-dashboard-card__label">แผนกทั้งหมด</span>
+            <strong
+                class="cp-dashboard-card__value"
+                data-stat="total-departments"
+                aria-live="polite"
+            >0</strong>
+            <small class="cp-dashboard-card__description">
+                แผนกที่เปิดใช้งานในระบบ
+            </small>
+        </div>
+
+        <a
+            class="cp-dashboard-card__link"
+            href="/connectpro/frontend/pages/user/departments.html"
+        >
+            <span>ดูรายการแผนก</span>
+            <span aria-hidden="true">→</span>
+        </a>
+    </article>
+
+    <article
+        class="cp-dashboard-card cp-glass-panel cp-dashboard-card--warning"
+        data-role="admin"
+    >
+        <div class="cp-dashboard-card__header">
+            <span class="cp-dashboard-card__icon" aria-hidden="true">
+                <svg
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 21a8 8 0 0 1 16 0"></path>
+                    <path d="M18 4h4M20 2v4"></path>
+                </svg>
+            </span>
+
+            <span class="cp-dashboard-card__trend" data-stat-trend="total-users" hidden>
+                <span data-stat-trend-value="total-users">0%</span>
+            </span>
+        </div>
+
+        <div class="cp-dashboard-card__content">
+            <span class="cp-dashboard-card__label">ผู้ใช้งานระบบ</span>
+            <strong
+                class="cp-dashboard-card__value"
+                data-stat="total-users"
+                aria-live="polite"
+            >0</strong>
+            <small class="cp-dashboard-card__description">
+                บัญชีผู้ใช้ทั้งหมด
+            </small>
+        </div>
+
+        <a
+            class="cp-dashboard-card__link"
+            href="/connectpro/frontend/pages/admin/user-management.html"
+            data-permission="users.view"
+        >
+            <span>จัดการผู้ใช้งาน</span>
+            <span aria-hidden="true">→</span>
+        </a>
+    </article>
+
+    <article
+        class="cp-dashboard-card cp-glass-panel cp-dashboard-card--favorite"
+        data-role="user"
+    >
+        <div class="cp-dashboard-card__header">
+            <span class="cp-dashboard-card__icon" aria-hidden="true">
+                <svg
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"></path>
+                </svg>
+            </span>
+        </div>
+
+        <div class="cp-dashboard-card__content">
+            <span class="cp-dashboard-card__label">รายการโปรด</span>
+            <strong
+                class="cp-dashboard-card__value"
+                data-stat="favorite-contacts"
+                aria-live="polite"
+            >0</strong>
+            <small class="cp-dashboard-card__description">
+                ผู้ติดต่อที่บันทึกไว้
+            </small>
+        </div>
+
+        <a
+            class="cp-dashboard-card__link"
+            href="/connectpro/frontend/pages/user/contacts.html?favorite_only=1"
+        >
+            <span>ดูรายการโปรด</span>
+            <span aria-hidden="true">→</span>
+        </a>
+    </article>
+
+    <article
+        class="cp-dashboard-card cp-glass-panel cp-dashboard-card--recent"
+        data-role="user"
+    >
+        <div class="cp-dashboard-card__header">
+            <span class="cp-dashboard-card__icon" aria-hidden="true">
+                <svg
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                </svg>
+            </span>
+        </div>
+
+        <div class="cp-dashboard-card__content">
+            <span class="cp-dashboard-card__label">ดูล่าสุด</span>
+            <strong
+                class="cp-dashboard-card__value"
+                data-stat="recently-viewed"
+                aria-live="polite"
+            >0</strong>
+            <small class="cp-dashboard-card__description">
+                ผู้ติดต่อที่เปิดดูล่าสุด
+            </small>
+        </div>
+
+        <a
+            class="cp-dashboard-card__link"
+            href="/connectpro/frontend/pages/user/contacts.html?sort=recent"
+        >
+            <span>ดูประวัติล่าสุด</span>
+            <span aria-hidden="true">→</span>
+        </a>
+    </article>
+</section>
