@@ -1,0 +1,227 @@
+<!--
+    ConnectPro Admin Quick Actions
+    File: frontend/components/admin/quick-actions.html
+
+    Compatible JavaScript:
+    - assets/js/core/components.js
+    - assets/js/core/permissions.js
+    - assets/js/admin/dashboard.js
+-->
+
+<section
+    class="cp-quick-actions cp-glass-panel"
+    data-quick-actions
+    aria-labelledby="quickActionsHeading"
+>
+    <header class="cp-quick-actions__header">
+        <div>
+            <p class="cp-quick-actions__eyebrow">Admin Tools</p>
+            <h2 id="quickActionsHeading">ดำเนินการด่วน</h2>
+            <p>เข้าถึงงานที่ใช้บ่อยโดยไม่ต้องเปลี่ยนผ่านหลายหน้า</p>
+        </div>
+
+        <button
+            type="button"
+            class="cp-icon-button"
+            data-quick-actions-refresh
+            aria-label="รีเฟรชข้อมูลทางลัด"
+            title="รีเฟรช"
+        >
+            <svg
+                viewBox="0 0 24 24"
+                width="19"
+                height="19"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="M20 7v5h-5"></path>
+                <path d="M4 17v-5h5"></path>
+                <path d="M6.1 9A7 7 0 0 1 18.5 6.5L20 8"></path>
+                <path d="M17.9 15A7 7 0 0 1 5.5 17.5L4 16"></path>
+            </svg>
+        </button>
+    </header>
+
+    <div
+        class="cp-quick-actions__loading"
+        data-quick-actions-loading
+        role="status"
+        aria-live="polite"
+        hidden
+    >
+        <span class="cp-spinner" aria-hidden="true"></span>
+        <span>กำลังโหลดเครื่องมือด่วน...</span>
+    </div>
+
+    <div
+        class="cp-alert cp-alert--danger"
+        data-quick-actions-error
+        role="alert"
+        hidden
+    ></div>
+
+    <div class="cp-quick-actions__grid" data-quick-actions-grid>
+        <button
+            type="button"
+            class="cp-quick-action cp-quick-action--primary"
+            data-quick-action="add-contact"
+            data-permission="contacts.create"
+        >
+            <span class="cp-quick-action__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="8" r="4"></circle>
+                    <path d="M2 21a7 7 0 0 1 14 0"></path>
+                    <path d="M17 8h5M19.5 5.5v5"></path>
+                </svg>
+            </span>
+            <span class="cp-quick-action__content">
+                <strong>เพิ่มผู้ติดต่อ</strong>
+                <small>สร้างรายชื่อผู้ติดต่อใหม่</small>
+            </span>
+            <span class="cp-quick-action__arrow" aria-hidden="true">→</span>
+        </button>
+
+        <button
+            type="button"
+            class="cp-quick-action cp-quick-action--info"
+            data-quick-action="add-department"
+            data-permission="departments.create"
+        >
+            <span class="cp-quick-action__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21V7l9-4 9 4v14"></path>
+                    <path d="M8 10h2M14 10h2M8 14h2M14 14h2"></path>
+                    <path d="M12 17v4M10 19h4"></path>
+                </svg>
+            </span>
+            <span class="cp-quick-action__content">
+                <strong>เพิ่มแผนก</strong>
+                <small>สร้างและกำหนดข้อมูลแผนก</small>
+            </span>
+            <span class="cp-quick-action__arrow" aria-hidden="true">→</span>
+        </button>
+
+        <button
+            type="button"
+            class="cp-quick-action cp-quick-action--success"
+            data-quick-action="add-user"
+            data-permission="users.create"
+        >
+            <span class="cp-quick-action__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="8" r="4"></circle>
+                    <path d="M2 21a7 7 0 0 1 14 0"></path>
+                    <path d="M18 8h4M20 6v4"></path>
+                </svg>
+            </span>
+            <span class="cp-quick-action__content">
+                <strong>เพิ่มผู้ใช้งาน</strong>
+                <small>สร้างบัญชีและกำหนดสิทธิ์</small>
+            </span>
+            <span class="cp-quick-action__arrow" aria-hidden="true">→</span>
+        </button>
+
+        <a
+            class="cp-quick-action cp-quick-action--warning"
+            href="/connectpro/frontend/pages/admin/import-export.html?action=import"
+            data-quick-action="import-contacts"
+            data-permission="contacts.import"
+        >
+            <span class="cp-quick-action__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v12"></path>
+                    <path d="m7 10 5 5 5-5"></path>
+                    <path d="M5 21h14"></path>
+                </svg>
+            </span>
+            <span class="cp-quick-action__content">
+                <strong>นำเข้าผู้ติดต่อ</strong>
+                <small>อัปโหลดข้อมูลจาก Excel หรือ CSV</small>
+            </span>
+            <span class="cp-quick-action__arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a
+            class="cp-quick-action cp-quick-action--secondary"
+            href="/connectpro/frontend/pages/admin/import-export.html?action=export"
+            data-quick-action="export-contacts"
+            data-permission="contacts.export"
+        >
+            <span class="cp-quick-action__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 21V9"></path>
+                    <path d="m7 14 5-5 5 5"></path>
+                    <path d="M5 3h14"></path>
+                </svg>
+            </span>
+            <span class="cp-quick-action__content">
+                <strong>ส่งออกข้อมูล</strong>
+                <small>ดาวน์โหลดข้อมูลสำหรับรายงาน</small>
+            </span>
+            <span class="cp-quick-action__arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a
+            class="cp-quick-action cp-quick-action--neutral"
+            href="/connectpro/frontend/pages/admin/activity-log.html"
+            data-quick-action="view-activity-log"
+            data-permission="activity_logs.view"
+        >
+            <span class="cp-quick-action__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                </svg>
+            </span>
+            <span class="cp-quick-action__content">
+                <strong>ตรวจสอบกิจกรรม</strong>
+                <small>ดูประวัติการใช้งานล่าสุด</small>
+            </span>
+            <span
+                class="cp-quick-action__badge"
+                data-quick-action-count="activity-log"
+                aria-label="0 รายการใหม่"
+                hidden
+            >0</span>
+        </a>
+
+        <a
+            class="cp-quick-action cp-quick-action--neutral"
+            href="/connectpro/frontend/pages/admin/settings.html"
+            data-quick-action="system-settings"
+            data-permission="settings.view"
+        >
+            <span class="cp-quick-action__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.8-1L14.4 3h-4l-.4 3.1a7 7 0 0 0-1.8 1l-2.4-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.4-1a7 7 0 0 0 1.8 1l.4 3.1h4l.4-3.1a7 7 0 0 0 1.8-1l2.4 1 2-3.4-2-1.5a7 7 0 0 0 .1-1Z"></path>
+                </svg>
+            </span>
+            <span class="cp-quick-action__content">
+                <strong>ตั้งค่าระบบ</strong>
+                <small>จัดการค่าพื้นฐานของ ConnectPro</small>
+            </span>
+            <span class="cp-quick-action__arrow" aria-hidden="true">→</span>
+        </a>
+    </div>
+
+    <div
+        class="cp-empty-state cp-empty-state--compact"
+        data-quick-actions-empty
+        role="status"
+        hidden
+    >
+        <div class="cp-empty-state__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            </svg>
+        </div>
+        <h3>ไม่มีเครื่องมือที่สามารถใช้งานได้</h3>
+        <p>บัญชีปัจจุบันไม่มี Permission สำหรับรายการดำเนินการด่วน</p>
+    </div>
+</section>

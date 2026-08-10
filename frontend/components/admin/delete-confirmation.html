@@ -1,0 +1,212 @@
+<!--
+  ConnectPro Admin Delete Confirmation
+  File: frontend/components/admin/delete-confirmation.html
+  Compatible with components.js, permissions.js, contacts.js,
+  departments.js, and user-management.js.
+-->
+
+<template id="deleteConfirmationTemplate">
+  <section class="cp-delete-confirmation" data-delete-confirmation
+    role="alertdialog" aria-modal="true"
+    aria-labelledby="deleteConfirmationTitle"
+    aria-describedby="deleteConfirmationMessage">
+
+    <div class="cp-delete-confirmation__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="52" height="52" fill="none"
+        stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M12 3 2.5 20h19L12 3Z"></path>
+        <path d="M12 9v5M12 17h.01"></path>
+      </svg>
+    </div>
+
+    <div class="cp-delete-confirmation__content">
+      <p class="cp-delete-confirmation__eyebrow">ยืนยันการลบ</p>
+      <h2 id="deleteConfirmationTitle" data-delete-title>
+        ต้องการลบรายการนี้หรือไม่
+      </h2>
+      <p id="deleteConfirmationMessage" data-delete-message>
+        การดำเนินการนี้ไม่สามารถย้อนกลับได้
+      </p>
+
+      <div class="cp-delete-confirmation__target">
+        <span data-delete-target-label>รายการที่เลือก</span>
+        <strong data-delete-target-name>-</strong>
+        <small data-delete-target-meta hidden></small>
+      </div>
+
+      <div class="cp-alert cp-alert--warning" data-delete-impact role="status">
+        <strong>ผลกระทบ:</strong>
+        <span data-delete-impact-message>
+          ข้อมูลรายการนี้จะถูกลบออกจากระบบ
+        </span>
+      </div>
+
+      <div class="cp-alert cp-alert--danger" data-delete-error
+        role="alert" aria-live="assertive" hidden></div>
+    </div>
+
+    <div class="cp-delete-confirmation__verify"
+      data-delete-verification hidden>
+      <label class="cp-form-group">
+        <span class="cp-form-label">
+          พิมพ์ <strong data-delete-confirmation-text>DELETE</strong> เพื่อยืนยัน
+        </span>
+        <input class="cp-input" type="text" name="delete_confirmation"
+          autocomplete="off" spellcheck="false"
+          data-delete-confirmation-input
+          aria-describedby="deleteConfirmationHelp">
+        <small id="deleteConfirmationHelp" class="cp-form-help">
+          ปุ่มลบจะเปิดใช้งานเมื่อข้อความตรงกันเท่านั้น
+        </small>
+      </label>
+    </div>
+
+    <label class="cp-delete-confirmation__acknowledgement"
+      data-delete-acknowledgement hidden>
+      <input type="checkbox" data-delete-acknowledgement-input>
+      <span>รับทราบว่าการลบข้อมูลไม่สามารถย้อนกลับได้</span>
+    </label>
+
+    <div class="cp-delete-confirmation__loading" data-delete-loading
+      role="status" aria-live="polite" hidden>
+      <span class="cp-spinner" aria-hidden="true"></span>
+      <span data-delete-loading-message>กำลังลบข้อมูล...</span>
+    </div>
+
+    <footer class="cp-delete-confirmation__actions">
+      <button type="button" class="cp-button cp-button--secondary"
+        data-modal-close data-delete-cancel>ยกเลิก</button>
+      <button type="button" class="cp-button cp-button--danger"
+        data-delete-confirm>
+        <span data-delete-confirm-label>ลบรายการ</span>
+      </button>
+    </footer>
+  </section>
+</template>
+
+<template id="deleteContactConfirmationTemplate">
+  <section class="cp-delete-confirmation" data-delete-confirmation
+    data-delete-entity="contact" data-required-permission="contacts.delete"
+    role="alertdialog" aria-modal="true"
+    aria-labelledby="deleteContactTitle"
+    aria-describedby="deleteContactMessage">
+    <div class="cp-delete-confirmation__icon" aria-hidden="true">!</div>
+    <div class="cp-delete-confirmation__content">
+      <p class="cp-delete-confirmation__eyebrow">ลบผู้ติดต่อ</p>
+      <h2 id="deleteContactTitle">ยืนยันการลบผู้ติดต่อ</h2>
+      <p id="deleteContactMessage">
+        ผู้ติดต่อจะถูกนำออกจากสมุดรายชื่อและรายการโปรด
+      </p>
+      <div class="cp-delete-confirmation__target">
+        <span>ผู้ติดต่อ</span>
+        <strong data-delete-target-name>-</strong>
+        <small data-delete-target-meta>รหัสพนักงาน: -</small>
+      </div>
+      <div class="cp-alert cp-alert--warning" data-delete-impact role="status">
+        Activity Log จะยังคงอยู่เพื่อการตรวจสอบย้อนหลัง
+      </div>
+      <div class="cp-alert cp-alert--danger" data-delete-error
+        role="alert" aria-live="assertive" hidden></div>
+    </div>
+    <div class="cp-delete-confirmation__loading" data-delete-loading
+      role="status" aria-live="polite" hidden>
+      <span class="cp-spinner" aria-hidden="true"></span>
+      <span>กำลังลบผู้ติดต่อ...</span>
+    </div>
+    <footer class="cp-delete-confirmation__actions">
+      <button type="button" class="cp-button cp-button--secondary"
+        data-modal-close data-delete-cancel>ยกเลิก</button>
+      <button type="button" class="cp-button cp-button--danger"
+        data-delete-confirm data-permission="contacts.delete">ลบผู้ติดต่อ</button>
+    </footer>
+  </section>
+</template>
+
+<template id="deleteDepartmentConfirmationTemplate">
+  <section class="cp-delete-confirmation" data-delete-confirmation
+    data-delete-entity="department"
+    data-required-permission="departments.delete"
+    role="alertdialog" aria-modal="true"
+    aria-labelledby="deleteDepartmentTitle"
+    aria-describedby="deleteDepartmentMessage">
+    <div class="cp-delete-confirmation__icon" aria-hidden="true">!</div>
+    <div class="cp-delete-confirmation__content">
+      <p class="cp-delete-confirmation__eyebrow">ลบแผนก</p>
+      <h2 id="deleteDepartmentTitle">ยืนยันการลบแผนก</h2>
+      <p id="deleteDepartmentMessage">
+        ต้องย้ายหรือลบผู้ติดต่อทั้งหมดในแผนกก่อนดำเนินการ
+      </p>
+      <div class="cp-delete-confirmation__target">
+        <span>แผนก</span>
+        <strong data-delete-target-name>-</strong>
+        <small data-delete-target-meta>ผู้ติดต่อ 0 รายชื่อ</small>
+      </div>
+      <div class="cp-alert cp-alert--danger" data-delete-impact role="alert">
+        หากยังมีผู้ติดต่อในแผนก ระบบจะไม่อนุญาตให้ลบ
+      </div>
+      <div class="cp-alert cp-alert--danger" data-delete-error
+        role="alert" aria-live="assertive" hidden></div>
+    </div>
+    <div class="cp-delete-confirmation__loading" data-delete-loading
+      role="status" aria-live="polite" hidden>
+      <span class="cp-spinner" aria-hidden="true"></span>
+      <span>กำลังลบแผนก...</span>
+    </div>
+    <footer class="cp-delete-confirmation__actions">
+      <button type="button" class="cp-button cp-button--secondary"
+        data-modal-close data-delete-cancel>ยกเลิก</button>
+      <button type="button" class="cp-button cp-button--danger"
+        data-delete-confirm data-permission="departments.delete">ลบแผนก</button>
+    </footer>
+  </section>
+</template>
+
+<template id="deleteUserConfirmationTemplate">
+  <section class="cp-delete-confirmation" data-delete-confirmation
+    data-delete-entity="user" data-required-permission="users.delete"
+    role="alertdialog" aria-modal="true"
+    aria-labelledby="deleteUserTitle" aria-describedby="deleteUserMessage">
+    <div class="cp-delete-confirmation__icon" aria-hidden="true">!</div>
+    <div class="cp-delete-confirmation__content">
+      <p class="cp-delete-confirmation__eyebrow">ลบบัญชีผู้ใช้</p>
+      <h2 id="deleteUserTitle">ยืนยันการลบบัญชีผู้ใช้</h2>
+      <p id="deleteUserMessage">
+        ผู้ใช้จะไม่สามารถเข้าสู่ระบบหรือเข้าถึงข้อมูลได้อีก
+      </p>
+      <div class="cp-delete-confirmation__target">
+        <span>บัญชีผู้ใช้</span>
+        <strong data-delete-target-name>-</strong>
+        <small data-delete-target-meta>Username: -</small>
+      </div>
+      <div class="cp-alert cp-alert--danger" data-delete-impact role="alert">
+        ห้ามลบบัญชีผู้ดูแลระบบบัญชีสุดท้าย
+      </div>
+      <div class="cp-alert cp-alert--danger" data-delete-error
+        role="alert" aria-live="assertive" hidden></div>
+    </div>
+    <div class="cp-delete-confirmation__verify" data-delete-verification>
+      <label class="cp-form-group">
+        <span class="cp-form-label">
+          พิมพ์ <strong data-delete-confirmation-text>DELETE</strong> เพื่อยืนยัน
+        </span>
+        <input class="cp-input" type="text" name="delete_confirmation"
+          autocomplete="off" spellcheck="false"
+          data-delete-confirmation-input required>
+      </label>
+    </div>
+    <div class="cp-delete-confirmation__loading" data-delete-loading
+      role="status" aria-live="polite" hidden>
+      <span class="cp-spinner" aria-hidden="true"></span>
+      <span>กำลังลบบัญชีผู้ใช้...</span>
+    </div>
+    <footer class="cp-delete-confirmation__actions">
+      <button type="button" class="cp-button cp-button--secondary"
+        data-modal-close data-delete-cancel>ยกเลิก</button>
+      <button type="button" class="cp-button cp-button--danger"
+        data-delete-confirm data-permission="users.delete" disabled>
+        ลบบัญชีผู้ใช้
+      </button>
+    </footer>
+  </section>
+</template>

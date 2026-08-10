@@ -1,0 +1,356 @@
+<!--
+    ConnectPro Admin Contact Form Modal
+    File: frontend/components/admin/contact-form-modal.html
+
+    Compatible JavaScript:
+    - assets/js/core/components.js
+    - assets/js/core/permissions.js
+    - assets/js/admin/contacts.js
+-->
+
+<template id="contactFormTemplate">
+    <div class="cp-contact-form-modal" data-contact-form-modal>
+        <div
+            class="cp-alert cp-alert--danger"
+            data-contact-form-error
+            role="alert"
+            aria-live="assertive"
+            hidden
+        ></div>
+
+        <form
+            class="cp-admin-form-grid cp-contact-form"
+            data-contact-form
+            novalidate
+        >
+            <input type="hidden" name="id" value="">
+
+            <section
+                class="cp-form-section cp-form-section--full"
+                aria-labelledby="contactIdentityHeading"
+            >
+                <header class="cp-form-section__header">
+                    <div>
+                        <h3 id="contactIdentityHeading">ข้อมูลพนักงาน</h3>
+                        <p>กรอกข้อมูลระบุตัวตนและตำแหน่งของผู้ติดต่อ</p>
+                    </div>
+                    <span class="cp-badge cp-badge--info">
+                        ช่องที่มี * จำเป็นต้องกรอก
+                    </span>
+                </header>
+
+                <div class="cp-form-section__grid">
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">
+                            รหัสพนักงาน <span aria-hidden="true">*</span>
+                        </span>
+                        <input
+                            class="cp-input"
+                            type="text"
+                            name="employee_code"
+                            maxlength="50"
+                            autocomplete="off"
+                            placeholder="เช่น 10001234"
+                            aria-describedby="employeeCodeHelp employeeCodeError"
+                            required
+                        >
+                        <small id="employeeCodeHelp" class="cp-form-help">
+                            รหัสพนักงานต้องไม่ซ้ำกับข้อมูลที่มีอยู่
+                        </small>
+                        <small
+                            id="employeeCodeError"
+                            class="cp-form-error"
+                            data-field-error="employee_code"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">
+                            ชื่อที่แสดง <span aria-hidden="true">*</span>
+                        </span>
+                        <input
+                            class="cp-input"
+                            type="text"
+                            name="display_name"
+                            minlength="2"
+                            maxlength="150"
+                            autocomplete="name"
+                            placeholder="ชื่อและนามสกุล"
+                            aria-describedby="displayNameError"
+                            required
+                        >
+                        <small
+                            id="displayNameError"
+                            class="cp-form-error"
+                            data-field-error="display_name"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">ตำแหน่ง</span>
+                        <input
+                            class="cp-input"
+                            type="text"
+                            name="position"
+                            maxlength="150"
+                            autocomplete="organization-title"
+                            placeholder="เช่น Technician 2"
+                            aria-describedby="positionError"
+                        >
+                        <small
+                            id="positionError"
+                            class="cp-form-error"
+                            data-field-error="position"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">
+                            แผนก <span aria-hidden="true">*</span>
+                        </span>
+                        <select
+                            class="cp-select"
+                            name="department_id"
+                            data-contact-department-select
+                            aria-describedby="departmentError"
+                            required
+                        >
+                            <option value="">กรุณาเลือกแผนก</option>
+                        </select>
+                        <small
+                            id="departmentError"
+                            class="cp-form-error"
+                            data-field-error="department_id"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">
+                            สถานที่ <span aria-hidden="true">*</span>
+                        </span>
+                        <select
+                            class="cp-select"
+                            name="location_id"
+                            data-contact-location-select
+                            aria-describedby="locationError"
+                            required
+                        >
+                            <option value="">กรุณาเลือกสถานที่</option>
+                        </select>
+                        <small
+                            id="locationError"
+                            class="cp-form-error"
+                            data-field-error="location_id"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">สถานะข้อมูล</span>
+                        <select
+                            class="cp-select"
+                            name="status"
+                            data-contact-status-select
+                            aria-describedby="statusError"
+                            required
+                        >
+                            <option value="active" selected>Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                        <small
+                            id="statusError"
+                            class="cp-form-error"
+                            data-field-error="status"
+                            hidden
+                        ></small>
+                    </label>
+                </div>
+            </section>
+
+            <section
+                class="cp-form-section cp-form-section--full"
+                aria-labelledby="contactCommunicationHeading"
+            >
+                <header class="cp-form-section__header">
+                    <div>
+                        <h3 id="contactCommunicationHeading">ข้อมูลการติดต่อ</h3>
+                        <p>ข้อมูลที่ใช้ค้นหา ติดต่อ และคัดลอกจากสมุดรายชื่อ</p>
+                    </div>
+                </header>
+
+                <div class="cp-form-section__grid">
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">
+                            เบอร์ต่อ <span aria-hidden="true">*</span>
+                        </span>
+                        <input
+                            class="cp-input"
+                            type="text"
+                            name="extension_number"
+                            inputmode="numeric"
+                            maxlength="20"
+                            autocomplete="off"
+                            placeholder="เช่น 1234"
+                            pattern="[0-9+#*()\-]{1,20}"
+                            aria-describedby="extensionHelp extensionError"
+                            required
+                        >
+                        <small id="extensionHelp" class="cp-form-help">
+                            รองรับตัวเลขและอักขระ + # * ( ) -
+                        </small>
+                        <small
+                            id="extensionError"
+                            class="cp-form-error"
+                            data-field-error="extension_number"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">โทรศัพท์มือถือ</span>
+                        <input
+                            class="cp-input"
+                            type="tel"
+                            name="mobile_number"
+                            maxlength="30"
+                            autocomplete="tel"
+                            placeholder="เช่น 081-234-5678"
+                            aria-describedby="mobileError"
+                        >
+                        <small
+                            id="mobileError"
+                            class="cp-form-error"
+                            data-field-error="mobile_number"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">อีเมล</span>
+                        <input
+                            class="cp-input"
+                            type="email"
+                            name="email"
+                            maxlength="190"
+                            autocomplete="email"
+                            placeholder="name@example.com"
+                            aria-describedby="emailError"
+                        >
+                        <small
+                            id="emailError"
+                            class="cp-form-error"
+                            data-field-error="email"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">IP Address</span>
+                        <input
+                            class="cp-input"
+                            type="text"
+                            name="ip_address"
+                            maxlength="45"
+                            inputmode="decimal"
+                            autocomplete="off"
+                            placeholder="เช่น 192.168.1.100"
+                            aria-describedby="ipAddressHelp ipAddressError"
+                        >
+                        <small id="ipAddressHelp" class="cp-form-help">
+                            รองรับ IPv4 และ IPv6
+                        </small>
+                        <small
+                            id="ipAddressError"
+                            class="cp-form-error"
+                            data-field-error="ip_address"
+                            hidden
+                        ></small>
+                    </label>
+                </div>
+            </section>
+
+            <section
+                class="cp-form-section cp-form-section--full"
+                aria-labelledby="contactAdditionalHeading"
+            >
+                <header class="cp-form-section__header">
+                    <div>
+                        <h3 id="contactAdditionalHeading">ข้อมูลเพิ่มเติม</h3>
+                        <p>เพิ่มหมายเหตุสำหรับผู้ดูแลระบบตามความจำเป็น</p>
+                    </div>
+                </header>
+
+                <div class="cp-form-section__grid">
+                    <label class="cp-form-group cp-form-group--full">
+                        <span class="cp-form-label">หมายเหตุ</span>
+                        <textarea
+                            class="cp-textarea"
+                            name="notes"
+                            rows="4"
+                            maxlength="1000"
+                            placeholder="รายละเอียดเพิ่มเติมเกี่ยวกับผู้ติดต่อ..."
+                            aria-describedby="notesCounter notesError"
+                        ></textarea>
+                        <span class="cp-form-meta">
+                            <small class="cp-form-help">ไม่เกิน 1,000 ตัวอักษร</small>
+                            <small
+                                id="notesCounter"
+                                data-character-counter="notes"
+                            >0/1000</small>
+                        </span>
+                        <small
+                            id="notesError"
+                            class="cp-form-error"
+                            data-field-error="notes"
+                            hidden
+                        ></small>
+                    </label>
+                </div>
+            </section>
+
+            <div
+                class="cp-contact-form__saving"
+                data-contact-form-loading
+                role="status"
+                aria-live="polite"
+                hidden
+            >
+                <span class="cp-spinner" aria-hidden="true"></span>
+                <span>กำลังบันทึกข้อมูลผู้ติดต่อ...</span>
+            </div>
+
+            <footer class="cp-contact-form__footer">
+                <button
+                    type="button"
+                    class="cp-button cp-button--secondary"
+                    data-modal-close
+                    data-contact-form-cancel
+                >
+                    ยกเลิก
+                </button>
+
+                <button
+                    type="reset"
+                    class="cp-button cp-button--text"
+                    data-contact-form-reset
+                >
+                    ล้างข้อมูล
+                </button>
+
+                <button
+                    type="submit"
+                    class="cp-button cp-button--primary"
+                    data-contact-form-submit
+                >
+                    <span data-contact-form-submit-label>
+                        บันทึกผู้ติดต่อ
+                    </span>
+                </button>
+            </footer>
+        </form>
+    </div>
+</template>

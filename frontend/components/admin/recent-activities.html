@@ -1,0 +1,240 @@
+<!--
+    ConnectPro Admin Recent Activities
+    File: frontend/components/admin/recent-activities.html
+
+    Compatible JavaScript:
+    - assets/js/core/components.js
+    - assets/js/core/permissions.js
+    - assets/js/admin/dashboard.js
+    - assets/js/admin/activity-log.js
+-->
+
+<section
+    class="cp-recent-activities cp-glass-panel"
+    data-recent-activities
+    aria-labelledby="recentActivitiesHeading"
+>
+    <header class="cp-recent-activities__header">
+        <div>
+            <p class="cp-recent-activities__eyebrow">System Activity</p>
+            <h2 id="recentActivitiesHeading">กิจกรรมล่าสุด</h2>
+            <p>ติดตามการเปลี่ยนแปลงและการใช้งานระบบล่าสุด</p>
+        </div>
+
+        <div class="cp-recent-activities__header-actions">
+            <label class="cp-visually-hidden" for="recentActivityTypeFilter">
+                กรองประเภทกิจกรรม
+            </label>
+            <select
+                id="recentActivityTypeFilter"
+                class="cp-select cp-select--small"
+                data-recent-activities-filter
+            >
+                <option value="">ทุกกิจกรรม</option>
+                <option value="create">สร้างข้อมูล</option>
+                <option value="update">แก้ไขข้อมูล</option>
+                <option value="delete">ลบข้อมูล</option>
+                <option value="import">นำเข้าข้อมูล</option>
+                <option value="export">ส่งออกข้อมูล</option>
+                <option value="login">เข้าสู่ระบบ</option>
+                <option value="logout">ออกจากระบบ</option>
+                <option value="system">ระบบ</option>
+            </select>
+
+            <button
+                type="button"
+                class="cp-icon-button"
+                data-recent-activities-refresh
+                aria-label="รีเฟรชกิจกรรมล่าสุด"
+                title="รีเฟรช"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    width="19"
+                    height="19"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M20 7v5h-5"></path>
+                    <path d="M4 17v-5h5"></path>
+                    <path d="M6.1 9A7 7 0 0 1 18.5 6.5L20 8"></path>
+                    <path d="M17.9 15A7 7 0 0 1 5.5 17.5L4 16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div
+        class="cp-recent-activities__loading"
+        data-recent-activities-loading
+        role="status"
+        aria-live="polite"
+        hidden
+    >
+        <span class="cp-spinner" aria-hidden="true"></span>
+        <span>กำลังโหลดกิจกรรมล่าสุด...</span>
+    </div>
+
+    <div
+        class="cp-alert cp-alert--danger"
+        data-recent-activities-error
+        role="alert"
+        aria-live="assertive"
+        hidden
+    >
+        <span data-recent-activities-error-message>
+            ไม่สามารถโหลดกิจกรรมล่าสุดได้
+        </span>
+        <button
+            type="button"
+            class="cp-button cp-button--text cp-button--small"
+            data-recent-activities-retry
+        >
+            ลองใหม่
+        </button>
+    </div>
+
+    <ol
+        class="cp-activity-timeline"
+        data-recent-activities-list
+        aria-live="polite"
+        aria-relevant="additions text"
+    ></ol>
+
+    <div
+        class="cp-empty-state cp-empty-state--compact"
+        data-recent-activities-empty
+        role="status"
+        hidden
+    >
+        <div class="cp-empty-state__icon" aria-hidden="true">
+            <svg
+                viewBox="0 0 24 24"
+                width="42"
+                height="42"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+            </svg>
+        </div>
+        <h3>ยังไม่มีกิจกรรมล่าสุด</h3>
+        <p>กิจกรรมจากผู้ใช้งานและระบบจะแสดงในส่วนนี้</p>
+    </div>
+
+    <footer class="cp-recent-activities__footer">
+        <span class="cp-recent-activities__summary" aria-live="polite">
+            แสดง <strong data-recent-activities-count>0</strong> รายการล่าสุด
+        </span>
+
+        <a
+            class="cp-button cp-button--text"
+            href="/connectpro/frontend/pages/admin/activity-log.html"
+            data-permission="activity_logs.view"
+        >
+            ดู Activity Log ทั้งหมด
+            <span aria-hidden="true">→</span>
+        </a>
+    </footer>
+</section>
+
+<!-- Timeline item cloned by dashboard.js -->
+<template id="recentActivityItemTemplate">
+    <li
+        class="cp-activity-timeline__item"
+        data-recent-activity-item
+        data-activity-id=""
+        data-activity-type="system"
+    >
+        <span
+            class="cp-activity-timeline__marker cp-activity-timeline__marker--info"
+            data-activity-icon
+            aria-hidden="true"
+        >
+            <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 11v5M12 8h.01"></path>
+            </svg>
+        </span>
+
+        <article class="cp-activity-timeline__content">
+            <header class="cp-activity-timeline__item-header">
+                <div>
+                    <strong data-activity-title>กิจกรรมในระบบ</strong>
+                    <span
+                        class="cp-badge cp-badge--neutral"
+                        data-activity-type-label
+                    >System</span>
+                </div>
+
+                <time
+                    datetime=""
+                    data-activity-time
+                    title=""
+                >เมื่อสักครู่</time>
+            </header>
+
+            <p data-activity-description>
+                มีการดำเนินการในระบบ ConnectPro
+            </p>
+
+            <footer class="cp-activity-timeline__meta">
+                <span class="cp-activity-timeline__user">
+                    <span
+                        class="cp-glass-avatar cp-glass-avatar--small"
+                        data-activity-user-initials
+                        aria-hidden="true"
+                    >?</span>
+                    <span data-activity-user-name>System</span>
+                </span>
+
+                <span data-activity-entity hidden>
+                    รายการ: <strong data-activity-entity-name>-</strong>
+                </span>
+
+                <button
+                    type="button"
+                    class="cp-button cp-button--text cp-button--small"
+                    data-activity-view-detail
+                    data-permission="activity_logs.view"
+                    hidden
+                >
+                    ดูรายละเอียด
+                </button>
+            </footer>
+        </article>
+    </li>
+</template>
+
+<!-- Skeleton item used while loading -->
+<template id="recentActivitySkeletonTemplate">
+    <li
+        class="cp-activity-timeline__item cp-activity-timeline__item--skeleton"
+        data-recent-activity-skeleton
+        aria-hidden="true"
+    >
+        <span class="cp-skeleton cp-skeleton--icon"></span>
+        <div class="cp-skeleton-stack">
+            <span class="cp-skeleton cp-skeleton--title"></span>
+            <span class="cp-skeleton cp-skeleton--text"></span>
+            <span class="cp-skeleton cp-skeleton--text cp-skeleton--short"></span>
+        </div>
+    </li>
+</template>

@@ -1,0 +1,248 @@
+<!--
+    ConnectPro Admin Department Form Modal
+    File: frontend/components/admin/department-form-modal.html
+
+    Compatible JavaScript:
+    - assets/js/core/components.js
+    - assets/js/core/permissions.js
+    - assets/js/admin/departments.js
+-->
+
+<template id="departmentFormTemplate">
+    <div class="cp-department-form-modal" data-department-form-modal>
+        <div
+            class="cp-alert cp-alert--danger"
+            data-department-form-error
+            role="alert"
+            aria-live="assertive"
+            hidden
+        ></div>
+
+        <form
+            class="cp-admin-form-grid cp-department-form"
+            data-department-form
+            novalidate
+        >
+            <input type="hidden" name="id" value="">
+
+            <section
+                class="cp-form-section cp-form-section--full"
+                aria-labelledby="departmentGeneralHeading"
+            >
+                <header class="cp-form-section__header">
+                    <div>
+                        <h3 id="departmentGeneralHeading">ข้อมูลแผนก</h3>
+                        <p>กำหนดข้อมูลพื้นฐานและรายละเอียดสำหรับแสดงในระบบ</p>
+                    </div>
+
+                    <span class="cp-badge cp-badge--info">
+                        ช่องที่มี * จำเป็นต้องกรอก
+                    </span>
+                </header>
+
+                <div class="cp-form-section__grid">
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">
+                            รหัสแผนก <span aria-hidden="true">*</span>
+                        </span>
+                        <input
+                            class="cp-input"
+                            type="text"
+                            name="code"
+                            maxlength="50"
+                            autocomplete="off"
+                            placeholder="เช่น IT, HR, ENG"
+                            pattern="[A-Za-z0-9._-]{1,50}"
+                            aria-describedby="departmentCodeHelp departmentCodeError"
+                            required
+                        >
+                        <small id="departmentCodeHelp" class="cp-form-help">
+                            ใช้ตัวอักษรภาษาอังกฤษ ตัวเลข จุด ขีดกลาง หรือขีดล่าง
+                        </small>
+                        <small
+                            id="departmentCodeError"
+                            class="cp-form-error"
+                            data-field-error="code"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">
+                            ชื่อแผนก <span aria-hidden="true">*</span>
+                        </span>
+                        <input
+                            class="cp-input"
+                            type="text"
+                            name="name"
+                            minlength="2"
+                            maxlength="150"
+                            autocomplete="organization"
+                            placeholder="เช่น Information Technology"
+                            aria-describedby="departmentNameError"
+                            required
+                        >
+                        <small
+                            id="departmentNameError"
+                            class="cp-form-error"
+                            data-field-error="name"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">สถานที่หลัก</span>
+                        <select
+                            class="cp-select"
+                            name="location_id"
+                            data-department-location-select
+                            aria-describedby="departmentLocationError"
+                        >
+                            <option value="">ไม่ระบุสถานที่หลัก</option>
+                        </select>
+                        <small
+                            id="departmentLocationError"
+                            class="cp-form-error"
+                            data-field-error="location_id"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">ลำดับการแสดง</span>
+                        <input
+                            class="cp-input"
+                            type="number"
+                            name="sort_order"
+                            min="0"
+                            max="9999"
+                            step="1"
+                            value="0"
+                            inputmode="numeric"
+                            aria-describedby="departmentSortHelp departmentSortError"
+                        >
+                        <small id="departmentSortHelp" class="cp-form-help">
+                            ตัวเลขน้อยจะแสดงก่อน ค่าเริ่มต้นคือ 0
+                        </small>
+                        <small
+                            id="departmentSortError"
+                            class="cp-form-error"
+                            data-field-error="sort_order"
+                            hidden
+                        ></small>
+                    </label>
+
+                    <label class="cp-form-group">
+                        <span class="cp-form-label">สถานะ</span>
+                        <select
+                            class="cp-select"
+                            name="status"
+                            data-department-status-select
+                            aria-describedby="departmentStatusError"
+                            required
+                        >
+                            <option value="active" selected>Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                        <small
+                            id="departmentStatusError"
+                            class="cp-form-error"
+                            data-field-error="status"
+                            hidden
+                        ></small>
+                    </label>
+                </div>
+            </section>
+
+            <section
+                class="cp-form-section cp-form-section--full"
+                aria-labelledby="departmentDescriptionHeading"
+            >
+                <header class="cp-form-section__header">
+                    <div>
+                        <h3 id="departmentDescriptionHeading">รายละเอียดเพิ่มเติม</h3>
+                        <p>อธิบายหน้าที่หรือข้อมูลสำคัญของแผนก</p>
+                    </div>
+                </header>
+
+                <div class="cp-form-section__grid">
+                    <label class="cp-form-group cp-form-group--full">
+                        <span class="cp-form-label">รายละเอียดแผนก</span>
+                        <textarea
+                            class="cp-textarea"
+                            name="description"
+                            rows="5"
+                            maxlength="1000"
+                            placeholder="รายละเอียด หน้าที่ หรือขอบเขตความรับผิดชอบของแผนก..."
+                            aria-describedby="departmentDescriptionCounter departmentDescriptionError"
+                        ></textarea>
+
+                        <span class="cp-form-meta">
+                            <small class="cp-form-help">ไม่เกิน 1,000 ตัวอักษร</small>
+                            <small
+                                id="departmentDescriptionCounter"
+                                data-character-counter="description"
+                            >0/1000</small>
+                        </span>
+
+                        <small
+                            id="departmentDescriptionError"
+                            class="cp-form-error"
+                            data-field-error="description"
+                            hidden
+                        ></small>
+                    </label>
+                </div>
+            </section>
+
+            <aside
+                class="cp-alert cp-alert--warning"
+                data-department-inactive-warning
+                role="status"
+                hidden
+            >
+                การปิดใช้งานแผนกจะไม่ลบข้อมูลเดิม แต่แผนกอาจไม่แสดงในรายการสำหรับผู้ใช้งาน
+            </aside>
+
+            <div
+                class="cp-department-form__saving"
+                data-department-form-loading
+                role="status"
+                aria-live="polite"
+                hidden
+            >
+                <span class="cp-spinner" aria-hidden="true"></span>
+                <span>กำลังบันทึกข้อมูลแผนก...</span>
+            </div>
+
+            <footer class="cp-department-form__footer">
+                <button
+                    type="button"
+                    class="cp-button cp-button--secondary"
+                    data-modal-close
+                    data-department-form-cancel
+                >
+                    ยกเลิก
+                </button>
+
+                <button
+                    type="reset"
+                    class="cp-button cp-button--text"
+                    data-department-form-reset
+                >
+                    ล้างข้อมูล
+                </button>
+
+                <button
+                    type="submit"
+                    class="cp-button cp-button--primary"
+                    data-department-form-submit
+                >
+                    <span data-department-form-submit-label>
+                        บันทึกแผนก
+                    </span>
+                </button>
+            </footer>
+        </form>
+    </div>
+</template>
